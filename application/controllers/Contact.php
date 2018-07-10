@@ -18,15 +18,39 @@ class Contact extends CI_Controller {
 
 	public function add(){
 
-		$this->load->model('contacts');
-		$this->contacts->contacts_name =  $this->input->post('contacts_name');
-		$this->contacts->contacts_email =  $this->input->post('contacts_email');
-		$this->contacts->contacts_tel =  $this->input->post('contacts_tel');
-		$this->contacts->contacts_detail =  $this->input->post('contacts_detail');
-		$this->contacts->contacts_date = time();
-		$this->contacts->contacts_status =  'UNREAD';
-		$this->contacts->add_contact();
-		$return = array('status' => '1');    
-    	echo json_encode($return);
+		if($this->input->post('contacts_name') != '' && $this->input->post('contacts_email') != '' && $this->input->post('contacts_tel') != '' && $this->input->post('contacts_detail') != '' ){
+			$this->load->model('contacts');
+			$this->contacts->contacts_name =  $this->input->post('contacts_name');
+			$this->contacts->contacts_email =  $this->input->post('contacts_email');
+			$this->contacts->contacts_tel =  $this->input->post('contacts_tel');
+			$this->contacts->contacts_detail =  $this->input->post('contacts_detail');
+			$this->contacts->contacts_date = time();
+			$this->contacts->contacts_status =  'UNREAD';
+			$this->contacts->contacts_ip_address = $this->get_clientip();
+			$this->contacts->add_contact();
+			$return = array('status' => '1');    
+	    	echo json_encode($return);
+    	}else{
+    		$return = array('status' => '0');    
+	    	echo json_encode($return);
+    	}
 	}
+	public function get_clientip() {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
+    }
 }

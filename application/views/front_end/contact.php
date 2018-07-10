@@ -2,6 +2,12 @@
   #content{
     padding: 40px;
   }
+  .btn-form{
+      background-color: deepskyblue;border:none;padding:10px 10px;color:white;font-size: 18px;text-align:center;
+  }
+  .btn-process{
+      background-color: limegreen;border:none;padding:10px 10px;color:white;font-size: 18px;text-align:center;
+  }
 </style>
 <?php if($menu[0]['menu_type'] == 'SLIDE'){?>
     <section id="banner">
@@ -59,40 +65,34 @@
         
         <div class="col-md-6">
                     <form name="sentMessage" id="contactFormxxx"  onsubmit="chk_form();" novalidate>
-                     <h3 style="color:deepskyblue">ติดต่อสอบถาม</h3>
-                      <div class="control-group">
-                             <div class="controls">
-                                      <p style="font-size: 18px;">
-                                      <input type="text" class="form-control" 
-                                             placeholder="ชื่อ - นามสกุล" id="contacts_name" name="contacts_name"  style="font-size: 18px;"/>
-                                        <p class="help-block"></p>
-                                     </div>
-                       </div>     
+                        <h3 style="color:deepskyblue">ติดต่อสอบถาม</h3>
+                            <div class="control-group">
+                                 <div class="controls">
+                                    <input type="text" class="form-control" placeholder="ชื่อ - นามสกุล" id="contacts_name" name="contacts_name"  style="font-size: 18px;"/>
+                                      <p id="msg-1" class="help-block" style="color:deeppink;display:none;">กรุณากรอกชื่อ - นามสกุล *</p>
+                                  </div>
+                            </div>     
+                            <div class="control-group" style="padding-top:10px">
+                                <div class="controls">
+                                  <input type="email" class="form-control" placeholder="อีเมล" id="contacts_email" name="contacts_email" style="font-size: 18px;"/>
+                                  <p id="msg-2" class="help-block" style="color:deeppink;display:none;">กรุณากรอกอีเมล *</p>
+                                </div>
+                            </div>
+                            <div class="control-group" style="padding-top:10px">
+                                <div class="controls">
+                                  <input type="tel" class="form-control" placeholder="เบอร์โทรศัพท์" id="contacts_tel" name="contacts_tel" style="font-size: 18px;"/>
+                                  <p id="msg-3" class="help-block" style="color:deeppink;display:none;">กรุณากรอกเบอร์โทรศัพท์ *</p>
+                                </div>
+                            </div>  
                       
-                            <div class="controls">
-                              <input type="email" class="form-control" placeholder="อีเมล" 
-                                      id="contacts_email" name="contacts_email" required
-                                 data-validation-required-message="Please enter your email" style="font-size: 18px;"/>
-                              </div>
-                                    <div class="control-group" style="padding-top: 10px;">
-                            <div class="controls">
-                              <input type="tel" class="form-control" placeholder="เบอร์โทรศัพท์" 
-                                      id="contacts_tel" name="contacts_tel" required
-                                 data-validation-required-message="Please enter your email" style="font-size: 18px;"/>
-                              </div>
-                      </div>  
-                      
-                         <div class="control-group" style="padding-top: 10px;">
-                           <div class="controls">
-                           <textarea rows="10" cols="100" class="form-control" 
-                                 placeholder="รายละเอียด" id="contacts_detail" name="contacts_detail"
-                                  maxlength="999" style="resize:none;font-size: 18px;"></textarea>
-                  </div>
-                         </div>    
-                   <div id="msg" style="font-size: 18px;color:deeppink;display:none;"><br/>* กรุณากรอกข้อมูลให้ครบถ้วน *</div>
-      
+                            <div class="control-group" style="padding-top:10px">
+                                  <div class="controls">
+                                    <textarea rows="10" cols="100" class="form-control" 
+                                         placeholder="รายละเอียด" id="contacts_detail" name="contacts_detail" maxlength="999" style="resize:none;font-size: 18px;"></textarea><p id="msg-4" class="help-block" style="color:deeppink;display:none;">กรุณากรอกรายละเอียด *</p>
+                                  </div>
+                            </div>    
                    <br/>
-                       <button style="background-color: deepskyblue;border:none;padding:10px 10px;color:white;font-size: 18px;text-align:center">ส่งแบบสอบถาม</button>
+                       <button id="btn-form" class="btn-form">ส่งแบบสอบถาม</button>
                     </form>
         </div>
                                 
@@ -102,34 +102,49 @@
 <script type="text/javascript">
 
     $( "input" ).keypress(function() {
-       $("#msg").hide();
+       $(".help-block").hide();
     });
     $( "textarea" ).keypress(function() {
-       $("#msg").hide();
+       $(".help-block").hide();
     });
    
    function chk_form(){
       event.preventDefault();
        var chk = true;
       if( $("#contacts_name").val() == ''){
+        $("#msg-1").show();
         chk = false;
       }
 
       if( $("#contacts_email").val() == ''){
+        $("#msg-2").html('กรุณากรอกอีเมล *');
+        $("#msg-2").show();
         chk = false;
+      }else{
+        var Email=/^([a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z0-9]{2,5})$/
+          if(!document.getElementById('contacts_email').value.match(Email)){
+             $("#msg-2").html('กรุณากรอกอีเมลให้ถูกต้อง *');
+             $("#msg-2").show();
+             chk = false;
+          }
       }
 
       if( $("#contacts_tel").val() == ''){
+        $("#msg-3").show();
         chk = false;
       }
 
       if( $("#contacts_detail").val() == ''){
+        $("#msg-4").show();
         chk = false;
       }
       if(!chk){
         $("#msg").show();
       }else{
-
+          $('#btn-form').removeClass('btn-form');
+          $('#btn-form').addClass('btn-process');
+          $('#btn-form').html('กำลังดำเนินการ...');
+          $('#btn-form').prop('disabled', true);
           $.ajax({
               type: "POST",
                   url: "<?php echo base_url();?>contact/add",
@@ -143,9 +158,17 @@
                         $('#contacts_email').val('');
                         $('#contacts_tel').val('');
                         $('#contacts_detail').val('');
-                          alert('คุณได้ส่งแบบสอบถามเรียบร้อย');
+                        $('#btn-form').removeClass('btn-process');
+                        $('#btn-form').addClass('btn-form');
+                        $('#btn-form').html('ส่งแบบสอบถาม');
+                        $('#btn-form').prop('disabled', false);
+                        alert('คุณได้ส่งแบบสอบถามเรียบร้อย');
                       }else{
-                         alert('ไม่สามารถส่งแบบสอบถามได้');
+                        $('#btn-form').removeClass('btn-process');
+                        $('#btn-form').addClass('btn-form');
+                        $('#btn-form').html('ส่งแบบสอบถาม');
+                        $('#btn-form').prop('disabled', false);
+                        alert('ไม่สามารถส่งแบบสอบถามได้');
                       }
                   }
           });

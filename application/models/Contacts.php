@@ -27,15 +27,17 @@ class Contacts extends CI_Model {
 										contacts_tel,
 										contacts_detail,
 										contacts_date,
-										contacts_status
+										contacts_status,
+										contacts_ip_address
 										) 
-		VALUES (?,?,?,?,?,?) ";
+		VALUES (?,?,?,?,?,?,?) ";
 		$query = $this->db->query($sql,array($this->contacts_name,
 										$this->contacts_email,
 										$this->contacts_tel,
 										$this->contacts_detail,
 										$this->contacts_date,
-										$this->contacts_status
+										$this->contacts_status,
+										$this->contacts_ip_address
 										));
 		return $this->db->insert_id();
 	}
