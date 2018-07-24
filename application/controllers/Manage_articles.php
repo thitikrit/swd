@@ -42,7 +42,7 @@ class Manage_articles extends Manage_center {
 			   	$this->articles->articles_picture = $articles_picture;
 		}
 		$this->articles->insert();	
-		redirect('index.php/manage_articles');
+		redirect('manage_articles');
 	}
 
 	public function edit($id = NULL){
@@ -55,7 +55,7 @@ class Manage_articles extends Manage_center {
 			$data['content'] = $this->load->view('back_end/articles_edit',$data,true);
 			$this->load->view('back_end/page',$data);
 		}else{
-			redirect('index.php/manage_articles');			
+			redirect('manage_articles');			
 		}
 	}
 
@@ -82,9 +82,9 @@ class Manage_articles extends Manage_center {
 				$this->articles->articles_picture = $this->input->post('articles_picture_old');;
 			}
 			$this->articles->update();	
-			redirect('index.php/manage_articles/edit/'.$articles_id);
+			redirect('manage_articles/edit/'.$articles_id);
 		}else{
-			redirect('index.php/manage_articles');
+			redirect('manage_articles');
 		}
 
 	}

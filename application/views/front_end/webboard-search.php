@@ -1,3 +1,4 @@
+<?php include 'bar.php';?>
 <style>
 .editContent{
     font-size:16px;
@@ -51,43 +52,14 @@ a:hover{
 #search-webboard::placeholder{
     color:gray;
 }
+.btn-regis-webboard{
+    font-weight:bold;height:40px;font-size:20px;color:white;background-color:#ff0000d1;border:none;padding-left: 15px;padding-right:15px;
+}
+.btn-member-backend{
+    font-weight:bold;height:40px;font-size:20px;color:white;background-color:limegreen;border:none;padding-left: 15px;padding-right:15px;
+}
 </style>
-<?php if($menu[0]['menu_type'] == 'SLIDE'){?>
-    <section id="banner">
-     
-    <!-- Slider -->
-        <div id="main-slider" class="flexslider">
-            <ul class="slides">
-                <?php $slider = json_decode($menu[0]['menu_picture']); ?>
-                <?php for($i = 0 ; $i < count($slider);$i++){ ?>
-                  <li>
-                        <img src="<?php echo base_url(); ?>images/slides/<?php echo $slider[$i]->name; ?>" alt="" />
-                  </li>
-                <?php }?>
-            </ul>
-        </div>
-    <!-- end slider -->
-    </section>
-<?php }?>
-<?php if($menu[0]['menu_type'] == 'TEXT'){?>
-    <div style="background-color: white;height:72px"><br/><br/><br/>
-    </div>
-    <section id="call-to-action-2" style="padding-top: 50px;padding-bottom:  20px;">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div align="center">
-                            <span style="margin-top:0px;font-size:26px;font-weight: bold;color:white;"><?php echo $menu[0]['menu_name'];?></span>
-                    </div>
-                    
-                    
-                </div>
-               
-            </div>
-        </div>
-    </section>   
-<?php } ?>
     <section id="call-to-action-2" style="padding:10px;padding-bottom:0px;background: aliceblue;box-shadow: 0 2px 2px -2px gray;">
         <div class="container">
             <div class="row">
@@ -130,6 +102,20 @@ a:hover{
                             </div> 
                           
                         </form>
+                        <?php if(empty($this->session->userdata("user_username"))){ ?>
+                                <div style="padding-top: 10px;">
+                                    <a href="<?php echo base_url();?>register"><button class="btn-regis-webboard" >สร้างกระดานซื้อขาย ฟรี!!!
+                                    </button></a>
+                                </div>
+                        <?php }else{ ?>
+                            <?php if($this->session->userdata("user_status") == 'MEMBER'){ ?>
+                                <div style="padding-top: 10px;">
+                                    <a href="<?php echo base_url();?>member/webboard"><button class="btn-member-backend" >สร้างกระดานซื้อขาย
+                                    </button></a>
+
+                                </div>
+                            <?php }?>
+                        <?php }?>
                     </div>
                     
                     
@@ -197,7 +183,7 @@ a:hover{
                                         ประเภท : <?php echo $val['webboards_property'];?>
                                     </div> 
                                      <div class="col-sm-4" style="padding-left: 0px;">
-                                        ราคาขาย : <?php echo number_format($val['webboards_price']); ?>
+                                        ราคา : <?php echo number_format($val['webboards_price']); ?>
                                     </div> 
                                 </div>
                             </div>

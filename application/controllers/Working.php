@@ -1,6 +1,43 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Working extends CI_Controller {
+
+	function __construct() {
+		parent::__construct();
+		date_default_timezone_set('Asia/Bangkok');
+		$this->time_log();
+	}
+	public function time_log(){
+		$this->load->model('time_log');
+		$this->time_log->log_menu = 3;
+		$this->time_log->log_date = date("d");
+		$this->time_log->log_month = date("m");
+		$this->time_log->log_year = date("Y");
+		$this->time_log->log_ip_address = $this->get_clientip();
+		$this->time_log->log_time = time();
+		$this->time_log->add_time_log();
+
+	}
+	public function get_clientip() {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
+    }
+
+
 	public function index()
 	{
 		$this->load->model('area');

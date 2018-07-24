@@ -30,8 +30,16 @@
             <li>
                 <a href="<?php echo site_url();?>manage_contacts" class="waves-effect <?php if($menu == 8){echo 'active';} ?>"><i class="fa fa fa-phone o m-r-10" aria-hidden="true"></i>ติดต่อเรา</a>
             </li>
-            
+            <li>
+                <a href="<?php echo site_url();?>manage_member" class="waves-effect <?php if($menu == 9){echo 'active';} ?>"><i class="fa fa fa-group o m-r-10" aria-hidden="true"></i>สมาชิก</a>
+            </li>
+            <li>
+                <a href="<?php echo site_url();?>manage_tag" class="waves-effect <?php if($menu == 10){echo 'active';} ?>"><i class="fa fa fa-code o m-r-10" aria-hidden="true"></i>แท็กบนหน้าเว็บไซต์</a>
+            </li>
         </ul>
+        <div class="text-center m-t-30">
+            <a href="<?php echo site_url();?>home" class="btn btn-info">กลับสู่หน้าเว็บไซต์หลัก</a>
+        </div>
         <div class="text-center m-t-30">
             <a href="<?php echo site_url();?>manage_center/logout" class="btn btn-danger">ออกจากระบบ</a>
         </div>

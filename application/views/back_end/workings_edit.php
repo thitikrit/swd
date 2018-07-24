@@ -23,7 +23,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach ($workings_detail as $val) { ?>
-<form id="workings_edit_form" name="workings_edit_form" method="post" action="<?php echo base_url();?>index.php/manage_workings/update"  enctype="multipart/form-data">
+<form id="workings_edit_form" name="workings_edit_form" method="post" action="<?php echo base_url();?>manage_workings/update"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -116,7 +116,7 @@
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
         <input type="hidden" id="workings_id" name="workings_id" value="<?php echo $val['workings_id'];?>" />
         <button class="btn btn-primary" >บันทึก</button>
-        <a href="<?php echo base_url(); ?>index.php/manage_workings" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
+        <a href="<?php echo base_url(); ?>manage_workings" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
 </div>

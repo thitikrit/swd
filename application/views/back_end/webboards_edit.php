@@ -24,16 +24,16 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach($webboards_detail as $val){ ?>
-<form id="webboards_form" name="webboards_form" method="post" action="<?php echo base_url();?>index.php/manage_webboards/update"  enctype="multipart/form-data">
+<form id="webboards_form" name="webboards_form" method="post" action="<?php echo base_url();?>manage_webboards/update"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
         <div class="card">
             <div class="card-block">
                     <div class="form-group">
-                        <label class="col-md-12">ชื่อ</label>
+                        <label class="col-md-12">ชื่อหัวข้อซื้อขาย</label>
                             <div class="col-md-12">
-                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อ" class="form-control form-control-line" value="<?php echo $val['webboards_name'];?>">
+                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" class="form-control form-control-line" value="<?php echo $val['webboards_name'];?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -99,9 +99,13 @@
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-md-12">แท็ก</label>
+                        <label class="col-md-12">Tag หรือ Keyword </label>
                             <div class="col-md-12">
-                            <input id="webboards_tag" name="webboards_tag" type="text" class="form-control form-control-line" value="<?php echo $val['webboards_tag'];?>">
+                            <input id="webboards_tag" name="webboards_tag" type="text" class="form-control form-control-line" data-role="tagsinput" value="<?php echo $val['webboards_tag'];?>">
+                            <br/>
+                            <span style="font-size:16px;color:red">
+                            * กด Enter หนึ่งครั้งเพื่อเว้นคำ
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -110,9 +114,8 @@
                             <select class="form-control form-control-line" id="webboards_status" name="webboards_status">
                                 <option value="ACTIVE" <?php if($val['webboards_status'] == 'ACTIVE'){ echo 'selected'; } ?>>เผยแพร่</option>
                                 <option value="INACTIVE" <?php if($val['webboards_status'] == 'INACTIVE'){ echo 'selected'; } ?>>ไม่เผยแพร่</option>
-                                <option value="CANCEL" <?php if($val['webboards_status'] == 'CANCEL'){ echo 'selected'; } ?>>ยกเลิกการเผยแพร่</option>
+                                <option value="SOLDOUT" <?php if($val['webboards_status'] == 'SOLDOUT'){ echo 'selected'; } ?>>ขายแล้ว</option>
                             </select>
-
                         </div>
                     </div> 
             </div>
@@ -162,8 +165,8 @@
     <!-- Column -->
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
         <input type="hidden" id="webboards_id" name="webboards_id" value="<?php echo $val['webboards_id'];?>" />        
-        <button class="btn btn-primary" >บันทึก</button>
-        <a href="<?php echo base_url(); ?>index.php/manage_webboards" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
+        <button class="btn btn-primary" type="button" onclick="submit();">บันทึก</button>
+        <a href="<?php echo base_url(); ?>manage_webboards" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
 </div>
@@ -183,7 +186,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
 <!-- Include Editor JS files. -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script>
+<script src="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.css">  
 <script> 
 var count_div_gal; 
 $(function() { 

@@ -25,7 +25,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach($area_detail as $val){?>
-<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>index.php/manage_projects/area_update"  enctype="multipart/form-data">
+<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>manage_projects/area_update"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -56,7 +56,7 @@
     <div class="col-lg-6 col-xlg-6 col-md-6 text-center">
         <input type="hidden" id="area_id" name="area_id" value="<?php echo $val['area_id']; ?>" />
         <button style="position:absolute;right:15px" class="btn btn-primary" >บันทึก</button>
-        <a href="<?php echo base_url(); ?>index.php/manage_projects/manage_area" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
+        <a href="<?php echo base_url(); ?>manage_projects/manage_area" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
 </div>

@@ -26,7 +26,7 @@
                         ประเภท : <?php echo $val['webboards_property'];?>
                     </div> 
                      <div class="col-sm-4" style="padding-left: 0px;">
-                        ราคาขาย : <?php echo number_format($val['webboards_price']); ?>
+                        ราคา : <?php echo number_format($val['webboards_price']); ?>
                     </div> 
                 </div>
             </div>

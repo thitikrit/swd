@@ -11,7 +11,7 @@
         </ol>
     </div>
      <div class="col-md-6 col-4 align-self-center">
-        <a href="<?php echo base_url();?>index.php/manage_projects/area_create" class="btn pull-right hidden-sm-down btn-success">เพิ่มทำเล</a>
+        <a href="<?php echo base_url();?>manage_projects/area_create" class="btn pull-right hidden-sm-down btn-success">เพิ่มทำเล</a>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -51,7 +51,7 @@
                                             }
                                         ?></td>
                                     
-                                    <td><a href="<?php echo base_url();?>index.php/manage_projects/area_edit/<?php echo $val['area_id'];?>" class="btn btn-info">แก้ไข</a></td>
+                                    <td><a href="<?php echo base_url();?>manage_projects/area_edit/<?php echo $val['area_id'];?>" class="btn btn-info">แก้ไข</a></td>
                                 </tr>
                             <?php 
                             } 
@@ -65,7 +65,7 @@
 </div>
  <!-- Column -->
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
-        <a href="<?php echo base_url(); ?>index.php/manage_projects" class="btn btn-warning" style="position:absolute;left:5px;">ย้อนกลับ</a>
+        <a href="<?php echo base_url(); ?>manage_projects" class="btn btn-warning" style="position:absolute;left:5px;">ย้อนกลับ</a>
     </div>
     <br/>
 <!-- ============================================================== -->

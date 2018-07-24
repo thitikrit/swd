@@ -11,7 +11,7 @@ class Manage_center extends CI_Controller {
 	public function login()
 	{
 		if($this->session->userdata('user_id') && $this->session->userdata('user_username') && $this->session->userdata('user_status')){
-			redirect('index.php/manage_general');
+			redirect('manage_general');
 		}
 		$this->load->view('back_end/login',null);
 	}
@@ -20,7 +20,7 @@ class Manage_center extends CI_Controller {
 			$this->session->unset_userdata('user_username');
 			$this->session->unset_userdata('user_status');
 			$this->session->sess_destroy();
-			redirect('index.php/manage_center/login');
+			redirect('manage_center/login');
 	}
 	public function validate_login(){
 		$username =  $this->input->post('username');
@@ -32,6 +32,7 @@ class Manage_center extends CI_Controller {
 		if(count($sql)>0){
 			$this->session->set_userdata('user_id',$sql[0]['user_id']);
 			$this->session->set_userdata('user_username',$sql[0]['user_username']);
+			$this->session->set_userdata('user_fullname',$sql[0]['user_fullname']);
 			$this->session->set_userdata('user_status',$sql[0]['user_status']);
 			$return = array('status' => 1, 'message' => 'เข้าสู่ระบบสำเร็จ');    
     		echo json_encode($return);
@@ -42,7 +43,11 @@ class Manage_center extends CI_Controller {
 	}
 	public function checkSession(){
 		if($this->session->userdata('user_id') && $this->session->userdata('user_username') && $this->session->userdata('user_status')){
-			return 0;
+			if($this->session->userdata('user_status') != 'MEMBER'){
+				return 0;
+			}else{
+				$this->logout();
+			}
 		}
 		else{
 			$this->logout();

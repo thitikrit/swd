@@ -41,7 +41,7 @@ class Manage_projects extends Manage_center {
 		$this->area->area_name = $this->input->post('area_name');
 		$this->area->area_status = $this->input->post('area_status');
 		$this->area->insert();
-		redirect('index.php/manage_projects/manage_area');
+		redirect('manage_projects/manage_area');
 	}
 	public function area_edit($id = NULL){
 		if($id != NULL){
@@ -53,7 +53,7 @@ class Manage_projects extends Manage_center {
 			$data['content'] = $this->load->view('back_end/area_edit',$data,true);
 			$this->load->view('back_end/page',$data);
 		}else{
-			redirect('index.php/manage_projects/manage_area');		
+			redirect('manage_projects/manage_area');		
 		}
 	}
 	public function area_update(){
@@ -64,9 +64,9 @@ class Manage_projects extends Manage_center {
 			$this->area->area_name = $this->input->post('area_name');
 			$this->area->area_status = $this->input->post('area_status');
 			$this->area->update();
-			redirect('index.php/manage_projects/area_edit/'.$area_id);
+			redirect('manage_projects/area_edit/'.$area_id);
 		}else{
-			redirect('index.php/manage_projects/manage_area');
+			redirect('manage_projects/manage_area');
 		}
 	}
 	/**************** END manage area *******************/
@@ -103,7 +103,7 @@ class Manage_projects extends Manage_center {
 			$data['content'] = $this->load->view('back_end/projects_edit',$data,true);
 			$this->load->view('back_end/page',$data);
 		}else{
-			redirect('index.php/manage_projects/projects_list');			
+			redirect('manage_projects/projects_list');			
 		}
 	}
 	public function add(){
@@ -275,7 +275,7 @@ class Manage_projects extends Manage_center {
 		    	$this->plans->insert();	
 			}
 		}
-		redirect('/manage_projects/projects_list');
+		redirect('manage_projects/projects_list');
 	}
 
 	public function update(){
@@ -475,31 +475,7 @@ class Manage_projects extends Manage_center {
 						}
 					}
 					
-					/*
-					if(!empty($_FILES["plans_gallery"])){
-						$plans_gallery = array_merge($_FILES["plans_gallery"]);
-						$count_plans_gallery = count($plans_gallery["name"][$i]);
-						for($j = 0;$j < $count_plans_gallery;$j++){
-							if($plans_gallery["name"][$i][$j] != NULL){
-							$extension = strrchr($plans_gallery["name"][$i][$j], '.' );
-						    $plans_gallery_name = time().'_'.sprintf("%06d", mt_rand(1,9999999)).$extension;
-						    $plans_gallery_new[$j] = $plans_gallery_name;
-						   	//move_uploaded_file($plans_gallery["tmp_name"][$i][$j],$this->config->item('upload_path')."/images/projects/".$last_id ."/plans/".$plans_gallery_name);
-							}
-						}
-					}
 					
-					$count_all_plans_gallery = 0 ;
-
-					if(!empty($this->input->post('plans_gallery_old')[$i])){
-						$old_plans_gallery = $this->input->post('plans_gallery_old')[$i];
-						$count_old_plans_gallery =  count($old_plans_gallery);
-						for($j = 0;$j < $count_old_plans_gallery;$j++){
-							$plans_gallery_new[$count_all_plans_gallery] = $old_plans_gallery[$j];
-				    		$count_all_plans_gallery++;
-						}
-					}
-					*/
 					$plans_gallery_new = '';
 					if(!empty($_FILES["plans_gallery"]["tmp_name"][$i])){
 						$count_plans_gallery = count($_FILES["plans_gallery"]["tmp_name"][$i]);

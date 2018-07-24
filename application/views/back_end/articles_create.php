@@ -23,7 +23,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form id="articles_form" name="articles_form" method="post" action="<?php echo base_url();?>index.php/manage_articles/add"  enctype="multipart/form-data">
+<form id="articles_form" name="articles_form" method="post" action="<?php echo base_url();?>manage_articles/add"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -79,9 +79,13 @@
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-md-12">แท็ก</label>
+                        <label class="col-md-12">Tag หรือ Keyword </label>
                             <div class="col-md-12">
-                            <input id="articles_tag" name="articles_tag" type="text" class="form-control form-control-line" value="">
+                            <input id="articles_tag" name="articles_tag" type="text" class="form-control form-control-line" data-role="tagsinput" value="">
+                            <br/>
+                            <span style="font-size:16px;color:red">
+                            * กด Enter หนึ่งครั้งเพื่อเว้นคำ
+                            </span>
                         </div>
                     </div> 
             </div>
@@ -110,7 +114,7 @@
     <!-- Column -->
 
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
-        <button class="btn btn-primary" >บันทึก</button>
+        <button class="btn btn-primary" type="button" onclick="submit();">บันทึก</button>
         <a href="<?php echo base_url(); ?>/manage_articles" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
@@ -130,7 +134,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
 <!-- Include Editor JS files. -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script>
+<script src="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.css">  
 <script> 
   $(function() { 
     $('#articles_detail').froalaEditor({ 

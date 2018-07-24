@@ -42,7 +42,7 @@ class Manage_events extends Manage_center {
 			   	$this->events->events_picture = $events_picture;
 		}
 		$this->events->insert();	
-		redirect('index.php/manage_events');
+		redirect('manage_events');
 	}
 
 	public function edit($id = NULL){
@@ -55,7 +55,7 @@ class Manage_events extends Manage_center {
 			$data['content'] = $this->load->view('back_end/events_edit',$data,true);
 			$this->load->view('back_end/page',$data);
 		}else{
-			redirect('index.php/manage_events');			
+			redirect('manage_events');			
 		}
 	}
 
@@ -81,9 +81,9 @@ class Manage_events extends Manage_center {
 				$this->events->events_picture = $this->input->post('events_picture_old');;
 			}
 			$this->events->update();	
-			redirect('index.php/manage_events/edit/'.$events_id);
+			redirect('manage_events/edit/'.$events_id);
 		}else{
-			redirect('index.php/manage_events');
+			redirect('manage_events');
 		}
 
 	}

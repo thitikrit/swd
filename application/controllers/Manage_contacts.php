@@ -28,7 +28,7 @@ class Manage_contacts extends Manage_center {
 			$data['content'] = $this->load->view('back_end/contacts_detail',$data,true);
 			$this->load->view('back_end/page',$data);
 		}else{
-			redirect('index.php/manage_contacts');						
+			redirect('manage_contacts');						
 		}
 
 	}
@@ -41,9 +41,9 @@ class Manage_contacts extends Manage_center {
 			$this->contacts->contacts_id = $contacts_id;
 			$this->contacts->contacts_status = $contacts_status;
 			$this->contacts->update();
-			redirect('index.php/manage_contacts');		
+			redirect('manage_contacts');		
 		}else{
-			redirect('index.php/manage_contacts');		
+			redirect('manage_contacts');		
 		}
 	}
 }

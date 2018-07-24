@@ -67,14 +67,15 @@ input,textarea,button,select{
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
                             <!-- <img src="<?php echo base_url(); ?>assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> -->
-                            SWD
+                            <img src="<?php echo base_url(); ?>images/sawasdee.png" height="60px" alt="homepage" class="dark-logo" />
+                          
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span style="color:red">
                             <!-- dark Logo text -->
                             <!-- <img src="<?php echo base_url(); ?>assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
-                            Admin
+                           
                         </span>
                     </a>
                 </div>
@@ -100,7 +101,7 @@ input,textarea,button,select{
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>assets/monster-lite/assets/images/users/1.jpg" alt="user" class="profile-pic m-r-5" />Admin</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ยินดีต้อนรับ, คุณ <?php echo $this->session->userdata("user_fullname"); ?></a>
                         </li>
                     </ul>
                 </div>

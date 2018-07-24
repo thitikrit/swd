@@ -32,7 +32,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach($webboards_detail as $val){ ?>
-<form id="webboards_form" name="webboards_form" method="post" action="<?php echo base_url();?>index.php/manage_webboards/update_webboard_member"  enctype="multipart/form-data">
+<form id="webboards_form" name="webboards_form" method="post" action="<?php echo base_url();?>manage_webboards/update_webboard_member"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -69,16 +69,6 @@
                                                 echo '<span class="label label-success tag">เผยแพร่</span>';
                                             }else if($val['webboards_status'] == 'INACTIVE'){
                                                 echo '<span class="label label-warning tag">ไม่เผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'CANCEL'){
-                                                echo '<span class="label label-danger tag">ยกเลิกการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'WAIT'){
-                                                echo '<span class="label label-primary tag">ขอสิทธิ์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'APPROVE'){
-                                                echo '<span class="label label-info tag">ได้รับสิทธื์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'DISMISS'){
-                                                echo '<span class="label label-danger tag">ไม่ได้สิทธื์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'BLANK'){
-                                                echo '<span class="label label-warning tag">รอการตรวจสอบอีกครั้ง</span>';
                                             }else{
                                                 echo "-";
                                             } 
@@ -164,7 +154,7 @@
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
         <input type="hidden" id="webboards_id" name="webboards_id" value="<?php echo $val['webboards_id'];?>" />        
         <button class="btn btn-primary" >บันทึก</button>
-        <a href="<?php echo base_url(); ?>index.php/manage_webboards" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
+        <a href="<?php echo base_url(); ?>manage_webboards" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
 </div>

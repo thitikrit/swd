@@ -27,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th><b>#</b></th>
-                                <th><b>ชื่อ</b></th>
+                                <th><b>ชื่อหัวข้อ</b></th>
                                 <th><b>ประเภทกระดาน</b></th>
                                 <th><b>ทำเล</b></th>
                                 <th><b>ประเภทอสังหาริมทรัพย์</b></th>
@@ -65,10 +65,8 @@
                                                 echo '<span class="label label-success">เผยแพร่</span>';
                                             }else if($val['webboards_status'] == 'INACTIVE'){
                                                 echo '<span class="label label-warning">ไม่เผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'CANCEL'){
-                                                echo '<span class="label label-danger">ยกเลิกการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'WAIT'){
-                                                echo '<span class="label label-primary">ขอสิทธิ์ในการเผยแพร่</span>';
+                                            }else if($val['webboards_status'] == 'SOLDOUT'){
+                                                echo '<span class="label label-danger">ขายแล้ว</span>';
                                             }else{
                                                 echo "-";
                                             } 
@@ -84,8 +82,8 @@
                                             } 
                                             ?>
                                         </td>
-                                        <td><?php echo $val['user_fullname']; ?></td>
-                                        <td><a href="<?php echo base_url(); ?>index.php/manage_webboards/check/<?php echo $val['webboards_id']; ?>" class="btn btn-info">ตรวจสอบ</a></td>
+                                        <td><a href="<?php echo base_url();?>manage_member/detail/<?php echo $val['user_id']; ?>"><?php echo $val['user_fullname']; ?></a></td>
+                                        <td><a href="<?php echo base_url(); ?>manage_webboards/check/<?php echo $val['webboards_id']; ?>" class="btn btn-info">ตรวจสอบ</a></td>
                                         </tr>
                             <?php   $no++;
                                     
@@ -121,7 +119,7 @@
                         <thead>
                             <tr>
                                 <th><b>#</b></th>
-                                <th><b>ชื่อ</b></th>
+                                <th><b>ชื่อหัวข้อ</b></th>
                                 <th><b>ประเภทกระดาน</b></th>
                                 <th><b>ทำเล</b></th>
                                 <th><b>ประเภทอสังหาริมทรัพย์</b></th>
@@ -130,6 +128,7 @@
                                 <th><b>อัพเดตล่าสุดเมื่อ</b></th>
                                 <th><b>สิทธิ์ในการเผยแพร่</b></th>
                                 <th><b>ผู้สร้างกระดาน</b></th>
+                                <th><b>ผู้ตรวจสอบกระดาน</b></th>
                                 <th><b>จัดการ</b></th>
                             </tr>
                         </thead>
@@ -159,16 +158,8 @@
                                                 echo '<span class="label label-success">เผยแพร่</span>';
                                             }else if($val['webboards_status'] == 'INACTIVE'){
                                                 echo '<span class="label label-warning">ไม่เผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'CANCEL'){
-                                                echo '<span class="label label-danger">ยกเลิกการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'WAIT'){
-                                                echo '<span class="label label-primary">ขอสิทธิ์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'APPROVE'){
-                                                echo '<span class="label label-info">ได้รับสิทธื์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'DISMISS'){
-                                                echo '<span class="label label-danger">ไม่ได้สิทธื์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'BLANK'){
-                                                echo '<span class="label label-warning">รอการตรวจสอบอีกครั้ง</span>';
+                                            }else if($val['webboards_status'] == 'SOLDOUT'){
+                                                echo '<span class="label label-danger">ขายแล้ว</span>';
                                             }else{
                                                 echo "-";
                                             } 
@@ -185,8 +176,16 @@
                                             } 
                                             ?>
                                         </td>
-                                        <td><?php echo $val['user_fullname']; ?></td>
-                                        <td><a href="<?php echo base_url(); ?>index.php/manage_webboards/check/<?php echo $val['webboards_id']; ?>" class="btn btn-info">แก้ไข</a></td>
+                                        <td><a href="<?php echo base_url();?>manage_member/detail/<?php echo $val['user_id']; ?>"><?php echo $val['user_fullname']; ?></a></td>
+                                        <td>
+                                            <?php foreach($admin as $ad){
+                                                    if($ad['user_id'] == $val['webboards_approve_by_user_id']){
+                                                        echo $ad['user_fullname']; 
+                                                    }
+
+                                            }?>
+                                        </td>
+                                        <td><a href="<?php echo base_url(); ?>manage_webboards/check/<?php echo $val['webboards_id']; ?>" class="btn btn-info">แก้ไข</a></td>
                                         </tr>
                             <?php   $no++;
                                     

@@ -33,6 +33,8 @@ class Manage_webboards extends Manage_center {
 		$this->load->model('webboards');
 		$data['webboards_member'] = $this->webboards->get_webboards_by_member_and_status_not_wait();
 		$data['webboards_member_wait'] = $this->webboards->get_webboards_by_member_and_status_wait();
+		$this->load->model('user');
+		$data['admin'] = $this->user->get_admin();
 		$data['menu'] = 5;
 		$data['sidebar'] = $this->load->view('back_end/sidebar',$data,true);
 		$data['content'] = $this->load->view('back_end/webboards_member',$data,true);
@@ -61,6 +63,7 @@ class Manage_webboards extends Manage_center {
 		$this->webboards->webboards_detail = $this->input->post('webboards_detail');
 		$this->webboards->webboards_date_modified = time();
 		$this->webboards->webboards_gallery = NULL;
+		$this->webboards->webboards_user = $this->session->userdata("user_id");
 
 
 		if(!empty($_FILES["webboards_picture"]["tmp_name"])){
@@ -91,7 +94,7 @@ class Manage_webboards extends Manage_center {
     	}	
 
 		$this->webboards->insert();	
-		redirect('index.php/manage_webboards');
+		redirect('manage_webboards');
 	}
 
 	public function edit($id = NULL){
@@ -104,7 +107,7 @@ class Manage_webboards extends Manage_center {
 			$data['content'] = $this->load->view('back_end/webboards_edit',$data,true);
 			$this->load->view('back_end/page',$data);
 		}else{
-			redirect('index.php/manage_webboards');			
+			redirect('manage_webboards');			
 		}
 	}
 
@@ -196,16 +199,8 @@ class Manage_webboards extends Manage_center {
 			$permission = $this->input->post('webboards_permission');
 			$this->webboards->webboards_id = $id;
 			$this->webboards->webboards_permission = $permission;
+			$this->webboards->webboards_approve_by_user_id = $this->session->userdata("user_id");
 
-			if($permission == 0){
-				$status = 'BLANK';
-			}else if($permission == 1){
-				$status = 'APPROVE';
-			}else{
-				$status = 'DISMISS';
-			}
-
-			$this->webboards->webboards_status= $status;
 			$this->webboards->update_permission_webboards();
 			redirect('manage_webboards/check/'.$webboards_id);
 		}else{

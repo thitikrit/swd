@@ -10,7 +10,7 @@
         </ol>
     </div>
     <div class="col-md-6 col-4 align-self-center">
-        <a href="<?php echo base_url();?>index.php/manage_events/create" class="btn pull-right hidden-sm-down btn-success">เพิ่มกิจกรรม ข่าวสาร และโปรโมชั่น</a>
+        <a href="<?php echo base_url();?>manage_events/create" class="btn pull-right hidden-sm-down btn-success">เพิ่มกิจกรรม ข่าวสาร และโปรโมชั่น</a>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -80,7 +80,7 @@
                                         </td>
                                         
                                         <td><?php echo date("d/m/Y H:i",$val['events_date_modified']);?></td>
-                                        <td><a href="<?php echo base_url(); ?>index.php/manage_events/edit/<?php echo $val['events_id']; ?>" class="btn btn-info">แก้ไข</a></td>
+                                        <td><a href="<?php echo base_url(); ?>manage_events/edit/<?php echo $val['events_id']; ?>" class="btn btn-info">แก้ไข</a></td>
                                         </tr>
                             <?php   $no++;
                                     }

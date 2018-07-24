@@ -22,7 +22,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form id="company_form" name="company_form" method="post" action="<?php echo base_url();?>index.php/manage_company/update"  enctype="multipart/form-data">
+<form id="company_form" name="company_form" method="post" action="<?php echo base_url();?>manage_company/update"  enctype="multipart/form-data">
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -121,7 +121,7 @@
     </div>
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
         <button class="btn btn-primary" >บันทึก</button>
-        <a href="<?php echo base_url(); ?>index.php/manage_company" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
+        <a href="<?php echo base_url(); ?>manage_company" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
 </div>

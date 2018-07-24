@@ -8,7 +8,7 @@ class Events extends CI_Model {
 	
 	function insert(){
 	
-		$sql = "INSERT INTO  events (events_name,events_status,events_type,events_picture,events_date_modified,events_recommend,events_tag,events_sub_detail,events_detail) VALUES (?,?,?,?,?,?,?,?) ";
+		$sql = "INSERT INTO  events (events_name,events_status,events_type,events_picture,events_date_modified,events_recommend,events_tag,events_sub_detail,events_detail) VALUES (?,?,?,?,?,?,?,?,?) ";
 		$query = $this->db->query($sql,array($this->events_name,$this->events_status,$this->events_type,$this->events_picture,$this->events_date_modified,$this->events_recommend,$this->events_tag,$this->events_sub_detail,$this->events_detail));
 	
 		return $query;

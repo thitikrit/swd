@@ -22,6 +22,9 @@ class Manage_menu extends Manage_center {
 		$this->load->model('menu');
 		$this->menu->menu_id = $id;
 		$data['result'] = $this->menu->get_menu_by_id();
+		if(empty($data['result'])){
+			redirect('manage_menu');
+		}
 		$data['menu'] = 1;
 		$data['sidebar'] = $this->load->view('back_end/sidebar',$data,true);
 		$data['content'] = $this->load->view('back_end/menu_detail',$data,true);
@@ -117,6 +120,6 @@ class Manage_menu extends Manage_center {
 			
 		}
 		$this->menu->update();	
-		redirect('index.php/manage_menu');
+		redirect('manage_menu');
 	}
 }

@@ -107,6 +107,7 @@ button{
                <div class="box-message"></div>
                 <div class="box-footer">
                     <button onclick="validate_form_login();">เข้าสู่ระบบ</button>
+                    <br/><br/><a href="<?php echo base_url();?>home">กลับสู่หน้าเว็บไซต์</a>
                </div>          
         </div>
     </form>
@@ -133,14 +134,14 @@ function validate_form_login(){
 function validate_login(){
     $.ajax({
         type: "POST",
-            url: "<?php echo base_url();?>/index.php/manage_center/validate_login",
+            url: "<?php echo base_url();?>manage_center/validate_login",
             data: {username:$('#username').val(),password:$('#password').val()}, // serializes the form's elements.
             dataType: 'json',
             cache : false,
             success: function(response)
             {
                 if(response.status == 1){
-                    location.href = "<?php echo base_url();?>index.php/manage_general";
+                    location.href = "<?php echo base_url();?>manage_general";
                 }else{
                     $('.box-message').html(response.message);
                     $('.box-message').show();

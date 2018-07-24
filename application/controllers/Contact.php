@@ -1,6 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Contact extends CI_Controller {
+
+	function __construct() {
+		parent::__construct();
+		date_default_timezone_set('Asia/Bangkok');
+		$this->time_log();
+	}
+	public function time_log(){
+		$this->load->model('time_log');
+		$this->time_log->log_menu = 7;
+		$this->time_log->log_date = date("d");
+		$this->time_log->log_month = date("m");
+		$this->time_log->log_year = date("Y");
+		$this->time_log->log_ip_address = $this->get_clientip();
+		$this->time_log->log_time = time();
+		$this->time_log->add_time_log();
+
+	}
+
 	public function index()
 	{
 		$this->load->model('area');

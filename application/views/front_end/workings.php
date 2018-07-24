@@ -1,40 +1,5 @@
-<?php if($menu[0]['menu_type'] == 'SLIDE'){?>
-    <section id="banner">
-     
-    <!-- Slider -->
-        <div id="main-slider" class="flexslider">
-            <ul class="slides">
-                <?php $slider = json_decode($menu[0]['menu_picture']); ?>
-                <?php for($i = 0 ; $i < count($slider);$i++){ ?>
-                  <li>
-                        <img src="<?php echo base_url(); ?>images/slides/<?php echo $slider[$i]->name; ?>" alt="" />
-                  </li>
-                <?php }?>
-            </ul>
-        </div>
-    <!-- end slider -->
-    </section>
-<?php }?>
-<?php if($menu[0]['menu_type'] == 'TEXT'){?>
-    <div style="background-color: white;height:72px"><br/><br/><br/>
-    </div>
-    <section id="call-to-action-2" style="padding-top: 50px;padding-bottom:  20px;">
+<?php include 'bar.php';?>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div align="center">
-                            <span style="margin-top:0px;font-size:26px;font-weight: bold;color:white;"><?php echo $menu[0]['menu_name'];?></span>
-                    </div>
-                    
-                    
-                </div>
-               
-            </div>
-        </div>
-    </section>   
-    <br/>
-<?php } ?>
     <style>
     a:hover{
         text-decoration:none;
@@ -88,6 +53,7 @@
        
     </script>
     <!-- Start Gallery 1-2 -->
+    <br/>
     <section id="gallery-1" class="content-block section-wrapper gallery-1" style="padding-top: 10px">
             <div class="container">
 

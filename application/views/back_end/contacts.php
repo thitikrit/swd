@@ -48,7 +48,7 @@
                                         <td><span class="label label-warning">ยังไม่ได้อ่าน</span>
                                         </td>
                                         <td><?php echo date("d/m/Y H:i",$val['contacts_date']);?></td>
-                                        <td><a href="<?php echo base_url(); ?>index.php/manage_contacts/detail/<?php echo $val['contacts_id']; ?>" class="btn btn-info">ดูรายละเอียด</a></td>
+                                        <td><a href="<?php echo base_url(); ?>manage_contacts/detail/<?php echo $val['contacts_id']; ?>" class="btn btn-info">ดูรายละเอียด</a></td>
                                         </tr>
                             <?php   $no++;
                                     }
@@ -63,7 +63,7 @@
                                         <td><span class="label label-success">อ่านแล้ว</span>
                                         </td>
                                         <td><?php echo date("d/m/Y H:i",$val['contacts_date']);?></td>
-                                        <td><a href="<?php echo base_url(); ?>index.php/manage_contacts/detail/<?php echo $val['contacts_id']; ?>" class="btn btn-info">ดูรายละเอียด</a></td>
+                                        <td><a href="<?php echo base_url(); ?>manage_contacts/detail/<?php echo $val['contacts_id']; ?>" class="btn btn-info">ดูรายละเอียด</a></td>
                                         </tr>
                             <?php   $no++;
                                     }

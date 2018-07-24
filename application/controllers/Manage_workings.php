@@ -62,7 +62,7 @@ class Manage_workings extends Manage_center {
 		}
 
 		$this->workings->insert();	
-		redirect('index.php/manage_workings');
+		redirect('manage_workings');
 	}
 
 	public function edit($id = NULL)
@@ -78,7 +78,7 @@ class Manage_workings extends Manage_center {
 			$data['content'] = $this->load->view('back_end/workings_edit',$data,true);
 			$this->load->view('back_end/page',$data);
 		}else{
-			redirect('index.php/manage_workings');			
+			redirect('manage_workings');			
 		}
 	}
 		
@@ -123,9 +123,9 @@ class Manage_workings extends Manage_center {
 			}
 
 			$this->workings->update();	
-			redirect('index.php/manage_workings/edit/'.$workings_id);
+			redirect('manage_workings/edit/'.$workings_id);
 		}else{
-			redirect('index.php/manage_workings');
+			redirect('manage_workings');
 		}
 	}
 }

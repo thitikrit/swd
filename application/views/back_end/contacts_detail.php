@@ -23,7 +23,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach($contacts_detail as $val){ ?> 
-<form id="contacts_form" name="contacts_form" method="post" action="<?php echo base_url();?>index.php/manage_contacts/update"  enctype="multipart/form-data">
+<form id="contacts_form" name="contacts_form" method="post" action="<?php echo base_url();?>manage_contacts/update"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -77,7 +77,7 @@
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
         <input type="hidden" id="contacts_id" name="contacts_id" value="<?php echo $val['contacts_id']; ?>" />
         <button class="btn btn-primary" >บันทึก</button>
-        <a href="<?php echo base_url(); ?>index.php/manage_menu" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
+        <a href="<?php echo base_url(); ?>manage_menu" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
 </div>

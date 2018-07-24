@@ -23,7 +23,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach($result as $val){ ?> 
-<form id="menu_form" name="menu_form" method="post" action="<?php echo base_url();?>index.php/manage_menu/menu_update"  enctype="multipart/form-data">
+<form id="menu_form" name="menu_form" method="post" action="<?php echo base_url();?>manage_menu/menu_update"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -40,8 +40,9 @@
                         <div class="col-sm-12">
                             <select class="form-control form-control-line" id="menu_status" name="menu_status">
                                 <option value="ACTIVE" <?php if($val['menu_status'] == 'ACTIVE' ){ echo 'selected'; } ?>>แสดงผล</option>
+                                <?php if($val['menu_id'] != 1){ ?>
                                 <option value="INACTIVE" <?php if($val['menu_status'] == 'INACTIVE' ){ echo 'selected'; } ?>>ไม่แสดงผล</option>
-                             
+                                <?php }?>
                             </select>
                         </div>
                     </div>
@@ -51,8 +52,7 @@
                             <select class="form-control form-control-line" id="menu_type" name="menu_type">
                                 <option value="TEXT" <?php if($val['menu_type'] == 'TEXT' ){ echo 'selected'; } ?>>ชื่อเมนู</option>
                                 <option value="SLIDE" <?php if($val['menu_type'] == 'SLIDE' ){ echo 'selected'; } ?>>สไลด์รูปภาพ</option>
-                                <option value="VIDEO" <?php if($val['menu_type'] == 'VIDEO' ){ echo 'selected'; } ?>>วิดีโอ</option>
-                                <option value="SLIDEVIDEO" <?php if($val['menu_type'] == 'SLIDEVIDEO' ){ echo 'selected'; } ?>>สไลด์รูปภาพและวิดีโอ</option>
+                                <option value="GIF" <?php if($val['menu_type'] == 'GIF' ){ echo 'selected'; } ?>>รูปภาพ Gif</option>
                              
                             </select>
                         </div>
@@ -105,12 +105,12 @@
                     </table>
                 </div>
                 <br/>
-                <label class="col-md-12">วีดีโอ &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_video()">เพิ่มวิดีโอ</a></label>
+                <label class="col-md-12">รูปภาพ Gif &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_video()">เพิ่มรูปภาพ Gif</a></label>
                 <div class="table-responsive col-md-12">
                     <table id="video" class="table">
                         <thead>
                             <tr>
-                                <th style="text-align: center; ">วิดีโอที่แสดง</th>
+                                <th style="text-align: center; ">รูปภาพ Gif ที่แสดง</th>
                                 <th style="text-align: center; ">ลำดับที่แสดง</th>
                                 <th style="text-align: center; ">-</th>
                             </tr>
@@ -120,16 +120,13 @@
                             if($val['menu_video'] != NULL ){?>
                                 <tr id="tr-vdo-blank" style="display:none;">
                                     <td width="50%">-</td>
-                                    <td width="25%">-</td>
                                     <td>-</td>
                                 </tr> 
                                 <?php $video = json_decode($val['menu_video']); 
                                 for($i = 0 ; $i < count($video);$i++){ ?>
                                 <tr id="tr-vdo-<?php echo $i; ?>">
-                                    <td width="50%" style="padding:5px 10px;">
-                                        <video width="100%" controls>
-                                          <source src="<?php echo base_url(); ?>videos/<?php echo $video[$i]->name; ?>" type="video/mp4">
-                                        </video>
+                                    <td width="50%" style="padding:5px 10px;"> 
+                                        <img src="<?php echo base_url(); ?>videos/<?php echo $video[$i]->name; ?>" width="100%"/>
                                         <input type="hidden" name="menu_vdo_old[]" value="<?php echo $video[$i]->name; ?>" />
                                     </td>
                                     <td width="25%"><input type="text" name="menu_vdo_order_old[]" style="width:35px" maxlength="1" class="form-control" value="<?php echo $video[$i]->order; ?>" /></td>
@@ -153,7 +150,7 @@
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
         <input type="hidden" id="menu_id" name="menu_id" value="<?php echo $val['menu_id']; ?>" />
         <button class="btn btn-primary" >บันทึก</button>
-        <a href="<?php echo base_url(); ?>index.php/manage_menu" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
+        <a href="<?php echo base_url(); ?>manage_menu" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
 </div>

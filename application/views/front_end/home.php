@@ -1,26 +1,6 @@
+<?php include 'bar.php';?>
 
-<section id="banner">
-    <img width="100%" src="<?php echo base_url();?>videos/hom.gif" /> 
-    <!-- Slider --><!--
-        <div id="main-slider" class="flexslider">
-            <ul class="slides">
-              <li>
-                <img src="<?php echo base_url();?>/images/slides/s2.jpg" alt="" height="480px;"/>
-                
-              </li>
-              <li>
-                <img src="<?php echo base_url();?>/images/slides/s1.jpg" alt="" height="480px;"/>
-              
-              </li>
-              <li>
-                <img src="<?php echo base_url();?>/images/slides/s3.jpg" alt="" height="480px;"/>
-              
-              </li>
-            </ul>
-        </div>
-    <!-- end slider -->
- 
-    </section>
+
     <?php foreach($company as $val){ ?>   
     <section id="call-to-action-2">
         <div class="container">

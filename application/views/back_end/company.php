@@ -15,7 +15,7 @@
         </ol>
     </div>
     <div class="col-md-6 col-4 align-self-center">
-        <a href="<?php echo base_url();?>index.php/manage_company/edit" class="btn pull-right hidden-sm-down btn-success">แก้ไขข้อมูล</a>
+        <a href="<?php echo base_url();?>manage_company/edit" class="btn pull-right hidden-sm-down btn-success">แก้ไขข้อมูล</a>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -177,7 +177,7 @@
         </div>
     </div>
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
-        <a href="<?php echo base_url(); ?>index.php/manage_company/edit" class="btn btn-success" >แก้ไขข้อมูล</a>
+        <a href="<?php echo base_url(); ?>manage_company/edit" class="btn btn-success" >แก้ไขข้อมูล</a>
     </div>
     <br/>
 </div>

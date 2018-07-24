@@ -45,10 +45,8 @@
                                                 echo "ชื่อเมนู";
                                             }else if($val['menu_type'] == 'SLIDE'){
                                                 echo "สไลด์รูปภาพ";
-                                            }else if($val['menu_type'] == 'VIDEO'){
-                                                echo "วิดีโอ";
-                                            }else if($val['menu_type'] == 'SLIDEVIDEO'){
-                                                echo "สไลด์รูปภาพ และวิดีโอ";
+                                            }else if($val['menu_type'] == 'GIF'){
+                                                echo "รูปภาพ GIF";
                                             }else{
                                                 echo "-";
                                             }
@@ -64,7 +62,7 @@
                                             }
                                         ?></td>
                                     <td><?php echo date("d/m/Y H:i",$val['menu_date_modified']);?></td>
-                                    <td><a href="<?php echo base_url();?>index.php/manage_menu/menu_detail/<?php echo $val['menu_id']; ?>" class="btn btn-info">แก้ไข</a></td>
+                                    <td><a href="<?php echo base_url();?>manage_menu/menu_detail/<?php echo $val['menu_id']; ?>" class="btn btn-info">แก้ไข</a></td>
                                 </tr>
                             <?php 
                             }

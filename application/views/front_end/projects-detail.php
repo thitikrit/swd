@@ -186,14 +186,32 @@ usort($slide, function($a, $b) {
                 <?php foreach($plans as $val2){ ?>
                 <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper">
                     <div class="gallery-item">
-                        <div class="gallery-thumb">
+                        <div <?php if(!empty($val2['plans_gallery'])){ echo 'class="gallery-thumb"'; } ?> onmousemove="$('#floor_plan<?php echo $val2['plans_id']; ?>').css('bottom','55px'); " onmouseout="$('#floor_plan<?php echo $val2['plans_id']; ?>').css('bottom','-100px'); ">
                             <img src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/plans/<?php echo $val2['plans_picture']; ?>" style="height:200px;width: 100%" class="img-responsive">
                             <div class="image-overlay"></div>
-                            <a href="##" class="gallery-link"><i class="fa fa-eye" ></i></a>
+                            <?php $floor_plan = json_decode($val2['plans_gallery']);  ?> 
+                            <div id="floor_plan<?php echo $val2['plans_id']; ?>" style="display:none;position:absolute;bottom:-100px;
+                            <?php if(count($floor_plan) == 1){
+                                echo "left:40%;";
+                            }  else{
+                                echo "left:30%;";
+                            }?>
+
+                            ">
+                                <?php for($i = 0 ; $i < count($floor_plan);$i++){ ?>
+                                <a href="#">
+                                <img alt="<?php echo $i+1; ?>"
+                                     src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/plans/<?php echo $floor_plan[$i]; ?>"
+                                     data-image="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/plans/<?php echo $floor_plan[$i]; ?>"
+                                     data-description="<?php echo $i+1; ?>"
+                                     style="display:none">
+                                </a>
+                                <?php }?>
+                            </div>
                         </div>
                         <div class="gallery-details" >
                             <div class="editContent">
-                                <h4><a href="##" style="text-decoration: none;" ><?php echo $val2['plans_name']; ?></a></h4>
+                                <h4><a href="javascript:void(0);" style="text-decoration: none;" ><?php echo $val2['plans_name']; ?></a></h4>
                             </div>
                             <div class="editContent">
                                 <p><?php echo $val2['plans_detail']; ?></p>
@@ -201,7 +219,7 @@ usort($slide, function($a, $b) {
                         </div>
                     </div>
                 </div>
-                <?php } ?>
+                               <?php } ?>
         </div>
         <!-- /.row --> 
     <!-- /.container -->
@@ -255,6 +273,9 @@ usort($slide, function($a, $b) {
     jQuery(document).ready(function(){
 
         jQuery("#gallery").unitegallery();
+        <?php foreach($plans as $val2){ ?>
+        jQuery("#floor_plan<?php echo $val2['plans_id'];?>").unitegallery();
+        <?php }?>
 
     });   
 </script>
@@ -263,3 +284,4 @@ usort($slide, function($a, $b) {
 }
 }
 ?>
+

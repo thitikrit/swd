@@ -8,14 +8,25 @@ class Webboards extends CI_Model {
 	
 	function insert(){
 	
-		$sql = "INSERT INTO  webboards (webboards_name,webboards_status,webboards_type,webboards_area,webboards_property,webboards_price,webboards_unit,webboards_picture,webboards_date_modified,webboards_recommend,webboards_tag,webboards_sub_detail,webboards_detail,webboards_gallery) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) ";
-		$query = $this->db->query($sql,array($this->webboards_name,$this->webboards_status,$this->webboards_type,$this->webboards_area,$this->webboards_property,$this->webboards_price,$this->webboards_unit,$this->webboards_picture,$this->webboards_date_modified,$this->webboards_recommend,$this->webboards_tag,$this->webboards_sub_detail,$this->webboards_detail,$this->webboards_gallery));
+		$sql = "INSERT INTO  webboards (webboards_name,webboards_status,webboards_type,webboards_area,webboards_property,webboards_price,webboards_unit,webboards_picture,webboards_date_modified,webboards_recommend,webboards_tag,webboards_sub_detail,webboards_detail,webboards_gallery,webboards_permission,webboards_user) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1) ";
+		$query = $this->db->query($sql,array($this->webboards_name,$this->webboards_status,$this->webboards_type,$this->webboards_area,$this->webboards_property,$this->webboards_price,$this->webboards_unit,$this->webboards_picture,$this->webboards_date_modified,$this->webboards_recommend,$this->webboards_tag,$this->webboards_sub_detail,$this->webboards_detail,$this->webboards_gallery,$this->webboards_user));
 	
 		return $query;
-	}	
+	}
+	function insert_by_member(){
+	
+		$sql = "INSERT INTO  webboards (webboards_name,webboards_status,webboards_type,webboards_area,webboards_property,webboards_price,webboards_unit,webboards_picture,webboards_date_modified,webboards_tag,webboards_sub_detail,webboards_detail,webboards_gallery,webboards_permission,webboards_user) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		$query = $this->db->query($sql,array($this->webboards_name,$this->webboards_status,$this->webboards_type,$this->webboards_area,$this->webboards_property,$this->webboards_price,$this->webboards_unit,$this->webboards_picture,$this->webboards_date_modified,$this->webboards_tag,$this->webboards_sub_detail,$this->webboards_detail,$this->webboards_gallery,$this->webboards_permission,$this->webboards_user));
+	
+		return $query;
+	}		
 	function update(){
 		$sql = "UPDATE webboards SET webboards_name = ? , webboards_status = ? , webboards_type = ? ,webboards_area = ? , webboards_property = ? , webboards_price = ? , webboards_unit = ? , webboards_picture = ? , webboards_date_modified = ? ,webboards_recommend = ? , webboards_tag = ? , webboards_sub_detail = ?  , webboards_detail = ?  , webboards_gallery = ? WHERE webboards_id = ? ";
 			$query = $this->db->query($sql,array($this->webboards_name,$this->webboards_status,$this->webboards_type,$this->webboards_area,$this->webboards_property,$this->webboards_price,$this->webboards_unit,$this->webboards_picture,$this->webboards_date_modified,$this->webboards_recommend,$this->webboards_tag,$this->webboards_sub_detail,$this->webboards_detail,$this->webboards_gallery,$this->webboards_id));
+	}
+	function update_by_member(){
+		$sql = "UPDATE webboards SET webboards_name = ? , webboards_status = ? , webboards_type = ? ,webboards_area = ? , webboards_property = ? , webboards_price = ? , webboards_unit = ? , webboards_picture = ? , webboards_date_modified = ? ,webboards_permission = ? , webboards_tag = ? , webboards_sub_detail = ?  , webboards_detail = ?  , webboards_gallery = ? WHERE webboards_id = ? ";
+			$query = $this->db->query($sql,array($this->webboards_name,$this->webboards_status,$this->webboards_type,$this->webboards_area,$this->webboards_property,$this->webboards_price,$this->webboards_unit,$this->webboards_picture,$this->webboards_date_modified,$this->webboards_permission,$this->webboards_tag,$this->webboards_sub_detail,$this->webboards_detail,$this->webboards_gallery,$this->webboards_id));
 	}
 	function get_webboards(){
 		$sql = "SELECT * FROM webboards";
@@ -36,24 +47,29 @@ class Webboards extends CI_Model {
 	}
 
 	function get_webboards_by_member(){
-		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER'";
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' ORDER BY webboards_id DESC, webboards_date_modified DESC";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 
 	function get_webboards_by_member_and_status_wait(){
-		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_status = 'WAIT' ";
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_status = 'ACTIVE' AND webboards_permission = 0 ORDER BY webboards_id DESC, webboards_date_modified DESC";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 	function get_webboards_by_member_and_status_not_wait(){
-		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_status != 'WAIT' ORDER BY webboards_id DESC, webboards_date_modified DESC";
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_permission != 0 ORDER BY webboards_id DESC, webboards_date_modified DESC";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
+	function get_webboards_by_user_id(){
+		$sql = "SELECT * FROM webboards  WHERE webboards_user = ? ORDER BY webboards_id DESC";
+		$query = $this->db->query($sql,array($this->webboards_user))->result_array();
+		return $query;
+	}
 	function update_permission_webboards(){
-		$sql = "UPDATE webboards SET webboards_permission = ? , webboards_status = ? WHERE webboards_id = ?";
-		$query = $this->db->query($sql,array($this->webboards_permission,$this->webboards_status,$this->webboards_id));
+		$sql = "UPDATE webboards SET webboards_permission = ? ,webboards_approve_by_user_id = ? WHERE webboards_id = ?";
+		$query = $this->db->query($sql,array($this->webboards_permission,$this->webboards_approve_by_user_id,$this->webboards_id));
 	}
 	function get_webboards_public(){
 		$sql = "SELECT * FROM webboards WHERE webboards_status = 'ACTIVE' AND webboards_permission = 1 ORDER BY webboards_id  DESC";
@@ -154,6 +170,21 @@ class Webboards extends CI_Model {
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 
+	}
+	function get_webboards_by_id_and_check_user(){
+		$sql = "SELECT * FROM webboards WHERE webboards_id = ? AND webboards_user = ? AND webboards_status != 'REMOVE'";
+		$query = $this->db->query($sql,array($this->webboards_id,$this->webboards_user))->result_array();
+		return $query;
+	} 
+	function get_wb(){
+		$sql = "SELECT * FROM webboards WHERE webboards_permission = '1' AND (webboards_status = 'ACTIVE' OR webboards_status = 'SOLD')";
+		$query = $this->db->query($sql)->result_array();
+		return count($query);
+	}
+	function get_webboards_by_member_id(){
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE webboards_user = ? ORDER BY webboards_id DESC";
+		$query = $this->db->query($sql,array($this->webboards_user))->result_array();
+		return $query;
 	}
 }
 ?>

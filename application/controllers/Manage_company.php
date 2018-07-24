@@ -44,6 +44,6 @@ class Manage_company extends Manage_center {
 		$this->company->com_service_title_5 = $this->input->post('com_service_title_5');
 		$this->company->com_service_detail_5 = $this->input->post('com_service_detail_5');
 		$this->company->update();
-		redirect('index.php/manage_company');		
+		redirect('manage_company');		
 	}
 }
