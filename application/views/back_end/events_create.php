@@ -22,16 +22,17 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>manage_events/add"  enctype="multipart/form-data">
+<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>manage_events/add"  onsubmit="return chk_form();"  enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
         <div class="card">
             <div class="card-block">
                     <div class="form-group">
-                        <label class="col-md-12">ชื่อ</label>
+                        <label class="col-md-12">ชื่อหัวข้อ *</label>
                             <div class="col-md-12">
-                            <input id="events_name" name="events_name" type="text" placeholder="กรุณากรอกชื่อ" class="form-control form-control-line" value="">
+                            <input id="events_name" name="events_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" class="form-control form-control-line" value="">
+                            <p id="msg-1" class="help-block" style="color:red;display:none;">กรุณากรอกชื่อ *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -67,7 +68,8 @@
                     <div class="form-group">
                         <label class="col-md-12">รูปภาพ</label>
                         <div class="col-md-12">
-                            <input type="file" name="events_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif">
+                            <input type="file" id="events_picture" name="events_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">
+                             <p id="msg-2" class="help-block" style="color:red;display:none;">กรุณาเลือกรูปภาพ *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -98,15 +100,17 @@
         <div class="card">
             <div class="card-block">
                     <div class="form-group">
-                        <label class="col-md-12">รายละเอียดแบบย่อ</label>
+                        <label class="col-md-12">รายละเอียดแบบย่อ *</label>
                         <div class="col-md-12">
                             <textarea id="events_sub_detail" style="height:100px" name="events_sub_detail" type="text" class="form-control form-control-line"></textarea>
+                            <p id="msg-3" class="help-block" style="color:red;display:none;">กรุณากรอกละเอียดแบบย่อ *</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">รายละเอียด</label>
+                        <label class="col-md-12">รายละเอียด *</label>
                         <div class="col-md-12">
                             <textarea id="events_detail" name="events_detail"></textarea>
+                             <p id="msg-4" class="help-block" style="color:red;display:none;">กรุณากรอกละเอียด *</p>
                         </div>
                     </div>
             </div>
@@ -115,7 +119,7 @@
     <!-- Column -->
 
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
-        <button class="btn btn-primary" type="button" onclick="submit();">บันทึก</button>
+        <button class="btn btn-primary" >บันทึก</button>
         <a href="<?php echo base_url(); ?>manage_events" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
@@ -139,10 +143,51 @@
 <script src="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.css"> 
 <script> 
-  $(function() { 
+$(function() { 
     $('#events_detail').froalaEditor({ 
         height: 300 ,
-        placeholderText: 'กรุณากรอกรายละเียด'
+        placeholderText: 'กรุณากรอกรายละเอียด'
     });
+    $( "input" ).keypress(function() {
+        $(".help-block").hide();
+    }); 
+    $( "textarea" ).keypress(function() {
+        $(".help-block").hide();
+    }); 
+}); 
+function chk_file(obj){
+     var FileSize = obj.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+            alert('ไม่สามารถอัพไฟล์ขนาดเกิน 2 MB');
+            obj.value = null;
+        }else{
+            var FileName = obj.files[0].name;
+            var FileType = FileName.substring(FileName.lastIndexOf('.') + 1).toLowerCase();
+            if(FileType != 'jpg' && FileType != 'jpeg' && FileType != 'png'){
+                alert('อัพโหลดได้เฉพาะ .jpg .jpeg .png');
+                obj.value = null;
+            }
+        } 
+}
+function chk_form(){
+    chk = true;
+    if($("#events_name").val().trim() == ''){
+        $("#msg-1").show();
+        chk = false;
+    }
+    if($("#events_sub_detail").val().trim() == ''){
+          $("#msg-3").show();
+          chk = false;
+    }
+    if($("#events_detail").val().trim() == ''){
+          $("#msg-4").show();
+          chk = false;
+    }
+    if($("#events_picture").get(0).files.length == 0){
+          $("#msg-2").show();
+          chk = false;
+    }
+    return chk;
+}
 
- }); </script>
+</script>

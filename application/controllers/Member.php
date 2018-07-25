@@ -41,7 +41,11 @@ class Member extends CI_Controller {
 		$this->webboards->webboards_detail = $this->input->post('webboards_detail');
 		$this->webboards->webboards_date_modified = time();
 		$this->webboards->webboards_gallery = NULL;
-		$this->webboards->webboards_permission = 0;
+		if($this->input->post('webboards_status') == 'ACTIVE'){
+			$this->webboards->webboards_permission = -1;
+		}else{
+			$this->webboards->webboards_permission = NULL;
+		}
 		$this->webboards->webboards_user = $this->session->userdata("user_id");
 
 
@@ -115,6 +119,9 @@ class Member extends CI_Controller {
 			if($status == 'ACTIVE'){
 				$this->webboards->webboards_status = $status;
 				$this->webboards->webboards_permission = 0;
+			}else if($status == 'INACTIVE'){
+				$this->webboards->webboards_status = $status;
+				$this->webboards->webboards_permission = $this->input->post('webboards_permission');
 			}else{
 				$this->webboards->webboards_status = $status;
 				$this->webboards->webboards_permission = $this->input->post('webboards_permission');
@@ -177,5 +184,60 @@ class Member extends CI_Controller {
 		$data['sidebar'] = $this->load->view('back_end/member_sidebar',$data,true);
 		$data['content'] = $this->load->view('back_end/member_setting',$data,true);
 		$this->load->view('back_end/page',$data);
+	}
+	public function check_tel(){
+		if($this->input->post('tel') != ''){
+			$this->load->model('user');
+			$this->user->user_tel = trim($this->input->post('tel'));
+			$result = $this->user->get_user_by_tel();
+			if(count($result)>0){
+				$return = array('status' => '0');    
+		   		echo json_encode($return);
+		    }else{
+		    	$return = array('status' => '1');    
+		   		echo json_encode($return);
+		    }
+	   	}else{
+		   	$return = array('status' => '0');    
+		   	echo json_encode($return);
+	   	}	
+
+	}
+
+	public function update_info(){
+		$this->load->model('user');
+		$this->user->user_fullname = $this->input->post('user_fullname');
+		$this->user->user_tel = $this->input->post('user_tel');
+		$this->user->user_id = $this->input->post('user_id');
+		$result = $this->user->update_info();
+		if(!$result){
+			$this->session->set_userdata('user_fullname',$this->input->post('user_fullname'));
+			$this->session->set_userdata('user_tel',$this->input->post('user_tel'));
+		}
+		redirect('member/setting');
+	}
+	public function update_password(){
+		$this->load->model('user');
+		$password_old = $this->input->post('password_old');
+		
+		$this->user->user_id = $this->input->post('user_id');
+		$this->user->user_password = md5($password_old);
+		$result = $this->user->check_password_old();
+		if(!empty($result)){
+			$this->user->user_password = md5($this->input->post('password_new'));
+			$update = $this->user->update_password();
+			if($update){
+				$return = array('status' => '1');    
+		   		echo json_encode($return);
+			}else{
+				$return = array('status' => '0');    
+		   		echo json_encode($return);
+			}
+			
+		}else{
+			$return = array('status' => '0');    
+		   	echo json_encode($return);
+		}
+		
 	}
 }

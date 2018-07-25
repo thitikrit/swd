@@ -11,7 +11,7 @@
     <div class="col-md-6 col-8 align-self-center">
         <h3 class="text-themecolor m-b-0 m-t-0">ตั้งค่าบัญชี</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">สมาชิก</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Admin</a></li>
             <li class="breadcrumb-item active">ตั้งค่าบัญชี</li>
         </ol>
     </div>
@@ -22,13 +22,13 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<?php foreach($member as $val){ ?>
+<?php foreach($user as $val){ ?>
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
         <div class="card">
             <div class="card-block">
-                <form id="user_form" name="user_form" method="post" action="<?php echo base_url();?>member/update_info" onsubmit="return chk_form();"  enctype="multipart/form-data">
+                <form id="user_form" name="user_form" method="post" action="<?php echo base_url();?>setting/update_info" onsubmit="return chk_form();"  enctype="multipart/form-data">
 
                      <div class="form-group">
                         <label class="col-md-12">รหัสผู้ใช้งาน  <span style="color:red;font-size: 14px;">( ไม่สามารถแก้ไขได้* )</span></label>
@@ -38,19 +38,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">ชื่อ - นามสกุล</label>
+                        <label class="col-md-12">ชื่อ</label>
                             <div class="col-md-12">
                             <input id="user_fullname" name="user_fullname" type="text" placeholder="กรุณากรอกชื่อ" class="form-control form-control-line" value="<?php echo $val['user_fullname'];?>">
                             <p id="msg-1" class="help-block" style="color:red;display:none;">กรุณากรอกชื่อ *</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-12">เบอร์โทรศัพท์</label>
-                            <div class="col-md-12">
-                            <input id="user_tel" name="user_tel" type="text" placeholder="กรุณากรอกเบอร์โทรศัพท์" maxlength="10" class="form-control form-control-line" value="<?php echo $val['user_tel'];?>">
-                            <p id="msg-2" class="help-block" style="color:red;display:none;">กรุณาเบอร์โทรศัพท์ *</p>
-                            <p id="msg-2-2" class="tel-status" style="color:limegreen;display:none;">เบอร์โทรศัพท์นี้สามารถใช้งานได้</p>
-                            <p id="msg-2-3" class="tel-status" style="color:red;display:none;">เบอร์โทรศัพท์นี้มีผู้ใช้งานแล้ว</p>
                         </div>
                     </div>
                     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
@@ -126,54 +117,12 @@ $( "input" ).keypress(function() {
 $( ".input2" ).keypress(function() {
     $(".help-block2").hide();
 }); 
- $( "#user_tel" ).keyup(function() {
-    tel_status = false;
-    $(".tel-status").hide();
-    if( /[^0-9]/.test($("#user_tel").val())){     
-        alert("กรอกได้เฉพาะตัวเลข");  
-        $("#user_tel").val('');   
-        return (false);    
-    }else{
-          if($("#user_tel").val().length > 8){
-            $(".tel-status").hide();
-            $.ajax({
-              type: "POST",
-                  url: "<?php echo base_url();?>member/check_tel",
-                  data: {tel:$('#user_tel').val()},
-                  dataType: 'json',
-                  cache : false,
-                  success: function(response)
-                  {
-                      if(response.status == 1){
-                        tel_status = true;
-                        $("#msg-2-2").show();
-                      }else{
-                        tel_status = false;
-                        $("#msg-2-3").show();
-                      }
-                  },
-                  error: function(data){
-                      tel_status = false;
-                      alert('ไม่สามารถตรวจสอบ รหัสผู้ใช้งานเบอร์โทรศัพท์ได้');
-                  }
-            });
-          }
-      }
-});
+
 function chk_form(){
 
     var chk = true;
     if( $("#user_fullname").val().trim() == ''){
          $("#msg-1").show();
-        chk = false;
-    }else{
-        if(!tel_status){
-            chk = false;
-        }
-    }
-
-    if( $("#user_tel").val() == ''){
-         $("#msg-2").show();
         chk = false;
     }
     return chk;
@@ -218,7 +167,7 @@ function chk_form_2(){
          $('#cf_password').prop('disabled', true);
          $.ajax({
               type: "POST",
-                  url: "<?php echo base_url();?>member/update_password",
+                  url: "<?php echo base_url();?>setting/update_password",
                   data: {user_id:$("#user_id").val(),password_old:$('#password_old').val(),password_new:$('#password_new').val(),password_new_2:$('#password_new_2').val()},
                   dataType: 'json',
                   cache : false,

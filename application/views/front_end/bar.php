@@ -3,16 +3,15 @@
     <!-- Slider -->
         <div id="main-slider" class="flexslider">
             <ul class="slides">
-                <?php $slider = json_decode($menu[0]['menu_picture']); ?>
-                <?php foreach($projects as $val){ 
+                <?php 
                     $slider = json_decode($menu[0]['menu_picture']);
                     usort($slider, function($a, $b) {
                         return $a->order - $b->order ;
                      }); 
-                } ?>
+                ?>
                 <?php for($i = 0 ; $i < count($slider);$i++){ ?>
                   <li>
-                        <img src="<?php echo base_url(); ?>images/slides/<?php echo $slider[$i]->name; ?>" alt="" />
+                        <img src="<?php echo base_url(); ?>images/slides/<?php echo $slider[$i]->name; ?>" alt="" height="auto"/>
                   </li>
                 <?php }?>
             </ul>
@@ -24,13 +23,12 @@
     <!-- Slider -->
         <div id="main-slider" class="flexslider">
             <ul class="slides">
-                <?php $slider = json_decode($menu[0]['menu_video']); ?>
-                  <?php foreach($projects as $val){ 
+                <?php
                     $slider = json_decode($menu[0]['menu_video']);
                     usort($slider, function($a, $b) {
                         return $a->order - $b->order ;
                      }); 
-                } ?>
+                ?>
                 <?php for($i = 0 ; $i < count($slider);$i++){ ?>
                   <li>
                         <img src="<?php echo base_url(); ?>videos/<?php echo $slider[$i]->name; ?>" alt="" />

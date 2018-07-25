@@ -26,13 +26,13 @@ class Time_log extends CI_Model {
 	}
 
 	function get_ip(){
-		$sql = "SELECT * FROM time_log GROUP BY log_ip_address";
+		$sql = "SELECT DISTINCT(log_ip_address) FROM time_log ";
 		$query = $this->db->query($sql)->result_array();
 		return count($query);
 	}
 
 	function get_year(){
-		$sql = "SELECT * FROM time_log GROUP BY log_year DESC";
+		$sql = "SELECT DISTINCT(log_year) FROM time_log";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}

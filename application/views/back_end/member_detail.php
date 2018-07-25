@@ -144,8 +144,10 @@
                                                 echo '<span class="label label-warning">รอการตรวจสอบ</span>';
                                             }else if($val['webboards_permission'] == '1'){
                                                 echo '<span class="label label-success">อนุญาตให้เผยแพร่</span>';
+                                            }else if($val['webboards_permission'] == '2'){
+                                                echo '<span class="label label-success">อนุญาตให้เผยแพร่</span>';
                                             }else{
-                                                echo '<span class="label label-danger">ไม่อนุญาตให้เผยแพร่</span>';
+                                                echo '-';
                                             } 
                                             ?>
                                         </td>

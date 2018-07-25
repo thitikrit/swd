@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label class="col-md-12">ชื่อหัวข้อซื้อขาย</label>
                             <div class="col-md-12">
-                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" class="form-control form-control-line" value="<?php echo $val['webboards_name'];?>">
+                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" maxlength="100" class="form-control form-control-line" value="<?php echo $val['webboards_name'];?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,7 +108,9 @@
                             <select class="form-control form-control-line" id="webboards_status" name="webboards_status">
                                 <option value="ACTIVE" <?php if($val['webboards_status'] == 'ACTIVE'){ echo 'selected'; } ?>>เผยแพร่</option>
                                 <option value="INACTIVE" <?php if($val['webboards_status'] == 'INACTIVE'){ echo 'selected'; } ?>>ไม่เผยแพร่</option>
+                                <?php if($val['webboards_permission'] != '-1'){ ?>
                                 <option value="SOLDOUT" <?php if($val['webboards_status'] == 'SOLDOUT'){ echo 'selected'; } ?>>ขายแล้ว</option>
+                                <?php }?>
                             </select>
                                 <div style="color:red;padding-top: 10px">* หากมีการแก้ไขข้อมูล และเลือกสถานะในการแสดงผลกระดานซื้อขายเป็นสถานะ "เผยแพร่" กระดานซื้อขายที่ถูกแก้ไขข้อมูลนี้ จะต้องถูกตรวจสอบการอนุญาตสิทธิ์ในการเผยแพร่จากผู้ดูแลระบบใหม่อีกครั้ง</div>
                         </div>

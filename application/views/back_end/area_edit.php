@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label class="col-md-12">ชื่อทำเล</label>
                             <div class="col-md-12">
-                            <input id="area_name" name="area_name" type="text" placeholder="กรุณากรอกชื่อทำเล" class="form-control form-control-line" value="<?php echo $val['area_name']; ?>">
+                            <input id="area_name" name="area_name" type="text" placeholder="กรุณากรอกชื่อทำเล" class="form-control form-control-line" value="<?php echo $val['area_name']; ?>" required>
                         </div>
                     </div>
                     <div class="form-group">

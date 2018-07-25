@@ -11,7 +11,7 @@ class Manage_member extends Manage_center {
 	public function index()
 	{	
 		$this->load->model('user');
-		$data['user'] = $this->user->get_user();
+		$data['user'] = $this->user->get_user_and_wb();
 		$data['menu'] = 9;
 		$data['sidebar'] = $this->load->view('back_end/sidebar',$data,true);
 		$data['content'] = $this->load->view('back_end/member',$data,true);

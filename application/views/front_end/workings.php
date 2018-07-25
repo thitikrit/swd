@@ -72,8 +72,9 @@
                     <?php if( $val['workings_type'] == 'NEW'){?>
                     <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper now " >
                         <div class="gallery-item">
+                            <?php if($val['workings_project_id'] != 0){ ?>
                             <div class="gallery-thumb">
-                                <a title="คลิ๊กเพื่อดูรายละเอียดโครงการ" href="<?php echo site_url();?>project/detail/<?php echo $val['workings_project_id'];?>"><img src="<?php echo base_url(); ?>images/workings/<?php echo $val['workings_picture']; ?>" style="height:170px;width: 100%" class="img-responsive" alt="1st gallery Thumb"></a>
+                                <a title="คลิ๊กเพื่อดูรายละเอียดโครงการ" href="<?php echo site_url();?>project/detail/<?php echo $val['workings_project_id'];?>"><img src="<?php echo base_url(); ?>images/workings/<?php echo $val['workings_picture']; ?>" style="height:auto;width: 100%" class="img-responsive" alt="1st gallery Thumb"></a>
                             </div>
                             <div class="gallery-details" >
                                 <div class="editContent">
@@ -83,6 +84,19 @@
                                     <p><?php echo $val['workings_area']; ?><br/><?php echo $val['workings_text']; ?></p>
                                 </div>
                             </div>
+                            <?php }else{ ?>
+                                <div class="gallery-thumb">
+                                    <a href="javascript:void(0);"><img src="<?php echo base_url(); ?>images/workings/<?php echo $val['workings_picture']; ?>" style="height:auto;width: 100%" class="img-responsive" alt="1st gallery Thumb"></a>
+                                </div>
+                                <div class="gallery-details" >
+                                    <div class="editContent">
+                                     <a href="javascript:void(0);"><h4 style="color:deepskyblue"><?php echo $val['workings_name']; ?></h4></a>
+                                    </div>
+                                    <div class="editContent">
+                                        <p><?php echo $val['workings_area']; ?><br/><?php echo $val['workings_text']; ?></p>
+                                    </div>
+                                </div>
+                            <?php }?>
                         </div>
                     </div>
                     <?php }?>
@@ -95,7 +109,7 @@
                     onmouseout="$('#w<?php echo $no;?>').show(); $('#w<?php echo $no;?><?php echo $no;?>').hide(); ">
                         <div class="gallery-item">
                             <div class="gallery-thumb">
-                                <img id="w<?php echo $no;?>" src="<?php echo base_url(); ?>images/workings/<?php echo $val['workings_picture']; ?>" style="height:170px;width: 100%" class="img-responsive" alt="1st gallery Thumb">
+                                <img id="w<?php echo $no;?>" src="<?php echo base_url(); ?>images/workings/<?php echo $val['workings_picture']; ?>" style="height:auto;width: 100%" class="img-responsive" alt="1st gallery Thumb">
                                 <img id="w<?php echo $no;?><?php echo $no;?>" src="<?php echo base_url(); ?>images/workings/old/<?php echo $val['workings_picture_slider']; ?>" style="height:170px;width: 100%;display:none;" class="img-responsive" alt="1st gallery Thumb">
                             </div>
                             <div class="gallery-details" >

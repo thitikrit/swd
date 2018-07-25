@@ -85,7 +85,7 @@
         $("#msg-2").show();
         chk = false;
       }else{
-        var Email=/^([a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z0-9]{2,5})$/
+        var Email=/^([a-zA-Z0-9\.\_]+)@([a-zA-Z0-9]+)\.([a-zA-Z0-9]{2,5})$/
           if(!document.getElementById('contacts_email').value.match(Email)){
              $("#msg-2").html('กรุณากรอกอีเมลให้ถูกต้อง *');
              $("#msg-2").show();

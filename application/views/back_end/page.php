@@ -9,8 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/favicon.png">
-    <title>SWD - Admin</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>images/sawasdee.ico">
+    <?php 
+    if($this->session->userdata('user_status') != 'MEMBER'){ ?>
+        <title>SWD - Admin</title>
+    <?php }else{ ?>
+        <title>SWD - Member</title>
+    <?php }?>
+    <
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/monster-lite/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->

@@ -66,18 +66,8 @@
                                                 echo '<span class="label label-success">เผยแพร่</span>';
                                             }else if($val['webboards_status'] == 'INACTIVE'){
                                                 echo '<span class="label label-warning">ไม่เผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'CANCEL'){
-                                                echo '<span class="label label-danger">ยกเลิกการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'WAIT'){
-                                                echo '<span class="label label-primary">ขอสิทธิ์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'APPROVE'){
-                                                echo '<span class="label label-info">ได้รับสิทธื์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'DISMISS'){
-                                                echo '<span class="label label-danger">ไม่ได้สิทธื์ในการเผยแพร่</span>';
-                                            }else if($val['webboards_status'] == 'BLANK'){
-                                                echo '<span class="label label-warning">รอการตรวจสอบอีกครั้ง</span>';
-                                            }else if($val['webboards_status'] == 'REMOVE'){
-                                                echo '<span class="label label-danger">ยกเลิกกระดานซื้อขาย</span>';
+                                            }else if($val['webboards_status'] == 'SOLDOUT'){
+                                                echo '<span class="label label-danger tag">ขายแล้ว</span>';
                                             }else{
                                                 echo "-";
                                             } 

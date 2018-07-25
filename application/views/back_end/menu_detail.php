@@ -23,7 +23,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach($result as $val){ ?> 
-<form id="menu_form" name="menu_form" method="post" action="<?php echo base_url();?>manage_menu/menu_update"  enctype="multipart/form-data">
+<form id="menu_form" name="menu_form" method="post" action="<?php echo base_url();?>manage_menu/menu_update"   onsubmit="return chk_form();" enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -33,6 +33,7 @@
                         <label class="col-md-12">ชื่อเมนู</label>
                         <div class="col-md-12">
                             <input id="menu_name" name="menu_name" type="text" placeholder="กรุณากรอกชื่อเมนู" class="form-control form-control-line" value="<?php echo $val['menu_name']; ?>">
+                             <p id="msg-1" class="help-block" style="color:red;display:none;">กรุณากรอกชื่อเมนู *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -166,13 +167,18 @@
 var count_tr_pic;
 var count_tr_vdo;
 $(document).ready(function(){
+
+    $( "input" ).keypress(function() {
+        $(".help-block").hide();
+    }); 
+
     count_tr_pic = $("#picture tbody tr").length + 1;
     count_tr_vdo = $("#video tbody tr").length + 1;
 });
 function add_picture(){
     $("#tr-pic-blank").hide();
     new_picture ='<tr id="tr-pic-'+count_tr_pic+'">';
-    new_picture +='<td width="50%"><input type="file" name="menu_pic[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif"></td>';
+    new_picture +='<td width="50%"><input type="file" name="menu_pic[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)"></td>';
     new_picture +='<td width="25%"><input type="text" name="menu_pic_order[]" style="width:35px" maxlength="1" class="form-control"/></td>';
     new_picture +='<td><a href="javascript:void(0)" class="btn btn-info" onclick="del_picture('+count_tr_pic+');">ลบ</a></td>';
     new_picture +='</tr> ';
@@ -190,7 +196,7 @@ function del_picture(row){
 function add_video(){
     $("#tr-vdo-blank").hide();
     new_video ='<tr id="tr-vdo-'+count_tr_vdo+'">';
-    new_video +='<td width="50%"><input type="file" name="menu_vdo[]" style="width:100%" class="form-control" accept=".mp4"></td>';
+    new_video +='<td width="50%"><input type="file" name="menu_vdo[]" style="width:100%" class="form-control" accept=".gif" onchange="chk_file_gif(this)"></td>';
     new_video +='<td width="25%"><input type="text" name="menu_vdo_order[]" style="width:35px" maxlength="1" class="form-control"/></td>';
     new_video +='<td><a href="javascript:void(0)" class="btn btn-info" onclick="del_video('+count_tr_vdo+');">ลบ</a></td>';
     new_video +='</tr> ';
@@ -204,5 +210,42 @@ function del_video(row){
             $("#tr-vdo-blank").show();
         }
     }); 
+}
+function chk_file(obj){
+     var FileSize = obj.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+            alert('ไม่สามารถอัพไฟล์ขนาดเกิน 2 MB');
+            obj.value = null;
+        }else{
+            var FileName = obj.files[0].name;
+            var FileType = FileName.substring(FileName.lastIndexOf('.') + 1).toLowerCase();
+            if(FileType != 'jpg' && FileType != 'jpeg' && FileType != 'png'){
+                alert('อัพโหลดได้เฉพาะ .jpg .jpeg .png');
+                obj.value = null;
+            }
+        } 
+}
+function chk_file_gif(obj){
+     var FileSize = obj.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 5) {
+            alert('ไม่สามารถอัพไฟล์ขนาดเกิน 5 MB');
+            obj.value = null;
+        }else{
+            var FileName = obj.files[0].name;
+            var FileType = FileName.substring(FileName.lastIndexOf('.') + 1).toLowerCase();
+            if(FileType != 'gif'){
+                alert('อัพโหลดได้เฉพาะ .gif');
+                obj.value = null;
+            }
+        } 
+}
+function chk_form(){
+    chk = true;
+    if($("#menu_name").val().trim() == ''){
+        $("#msg-1").show();
+        chk = false;
+    }
+    
+    return chk;
 }
 </script>

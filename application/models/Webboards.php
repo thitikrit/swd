@@ -47,18 +47,18 @@ class Webboards extends CI_Model {
 	}
 
 	function get_webboards_by_member(){
-		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' ORDER BY webboards_id DESC, webboards_date_modified DESC";
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_permission != '-1' ORDER BY webboards_id DESC, webboards_date_modified DESC";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 
 	function get_webboards_by_member_and_status_wait(){
-		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_status = 'ACTIVE' AND webboards_permission = 0 ORDER BY webboards_id DESC, webboards_date_modified DESC";
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_permission = 0 ORDER BY webboards_id DESC, webboards_date_modified DESC";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 	function get_webboards_by_member_and_status_not_wait(){
-		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_permission != 0 ORDER BY webboards_id DESC, webboards_date_modified DESC";
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE user_status = 'MEMBER' AND webboards_permission != '-1' AND webboards_permission != '0' ORDER BY webboards_id DESC, webboards_date_modified DESC";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
@@ -72,12 +72,12 @@ class Webboards extends CI_Model {
 		$query = $this->db->query($sql,array($this->webboards_permission,$this->webboards_approve_by_user_id,$this->webboards_id));
 	}
 	function get_webboards_public(){
-		$sql = "SELECT * FROM webboards WHERE webboards_status = 'ACTIVE' AND webboards_permission = 1 ORDER BY webboards_id  DESC";
+		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE' AND webboards_permission = 1 ORDER BY webboards_id  DESC";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 	function get_webboards_active_by_id_(){
-		$sql = "SELECT * FROM webboards WHERE webboards_id = ? AND webboards_status = 'ACTIVE' AND webboards_permission = 1 ";
+		$sql = "SELECT * FROM webboards LEFT JOIN user ON webboards_user = user_id WHERE webboards_id = ? AND webboards_status != 'INACTIVE' AND webboards_permission = 1 ";
 		$query = $this->db->query($sql,array($this->webboards_id))->result_array();
 		return $query;
 	}
@@ -166,7 +166,7 @@ class Webboards extends CI_Model {
 		}
 
 
-		$sql = "SELECT * FROM webboards WHERE webboards_status ='ACTIVE' AND webboards_permission = 1 $s $a $t $p $tb ORDER BY $r";
+		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE' AND webboards_permission = 1 $s $a $t $p $tb ORDER BY $r";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 
@@ -177,12 +177,12 @@ class Webboards extends CI_Model {
 		return $query;
 	} 
 	function get_wb(){
-		$sql = "SELECT * FROM webboards WHERE webboards_permission = '1' AND (webboards_status = 'ACTIVE' OR webboards_status = 'SOLD')";
+		$sql = "SELECT * FROM webboards WHERE webboards_permission = '1' AND webboards_status != 'INACTIVE'";
 		$query = $this->db->query($sql)->result_array();
 		return count($query);
 	}
 	function get_webboards_by_member_id(){
-		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE webboards_user = ? ORDER BY webboards_id DESC";
+		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE webboards_user = ? AND webboards_permission != '-1' ORDER BY webboards_id DESC";
 		$query = $this->db->query($sql,array($this->webboards_user))->result_array();
 		return $query;
 	}

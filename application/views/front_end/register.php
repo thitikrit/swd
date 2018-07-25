@@ -134,13 +134,18 @@
                                 <div class="col-md-12" style="padding-top: 15px;">
                                   <div class="col-md-4">
                                       <div class="controls">                                  
-                                        <p style="font-size:20px;">เบอร์โทรศัพท์ : </p>
+                                        <span style="font-size:20px;">เบอร์โทรศัพท์ : </span><br/><p style="color:red;">* ใช้เพื่อติดต่อกระดานซื้อขาย</p>
                                       </div>
                                   </div>
                                    <div class="col-md-8">
                                       <div class="controls">
-                                        <input type="text" class="form-control" placeholder="เบอร์โทรศัพท์" id="tel" name="tel"  maxlength="15"  style="font-size: 18px;"/>
-                                        <p id="msg-2" class="help-block" style="color:deeppink;display:none;">กรุณากรอกชื่อ - นามสกุล *</p>
+                                        <input type="text" class="form-control" placeholder="เบอร์โทรศัพท์" id="tel" name="tel"  maxlength="10"  style="font-size: 18px;"/>
+                                        <p id="msg-2" class="help-block" style="color:deeppink;display:none;">กรุณากรอกเบอร์โทรศัพท์ *</p>
+                                        <p id="msg-2-1" class="help-block" style="color:deeppink;display:none;">กรุณาตรวจสอบเบอร์โทรศัพท์อีกครั้ง</p>
+                                        <p id="msg-2-2" class="tel-status" style="color:limegreen;display:none;">เบอร์โทรศัพท์นี้สามารถใช้งานได้</p>
+                                        <p id="msg-2-3" class="tel-status" style="color:red;display:none;">เบอร์โทรศัพท์นี้มีผู้ใช้งานแล้ว</p>
+
+
                                       </div>
                                   </div>
                                 </div>
@@ -174,7 +179,7 @@
                                    <div class="col-md-8">
                                       <div class="controls">
                                         <input type="password" class="form-control" placeholder="รหัสผ่าน" id="password" name="password" maxlength="14"  style="font-size: 18px;" required/>
-                                        <p id="msg-4" class="help-block" style="color:deeppink;display:none;">กรุณารหัสผ่าน *</p>
+                                        <p id="msg-4" class="help-block" style="color:deeppink;display:none;">กรุณากรอกรหัสผ่าน *</p>
                                         <p id="msg-4-1" class="help-block" style="color:deeppink;display:none;">รหัสผ่านไม่ตรงกัน *</p>
                                         <p id="msg-4-2" class="help-block" style="color:deeppink;display:none;">กรุณากรอกรหัสผ่าน 6-14 ตัวอักษร</p>
                                       </div>
@@ -227,11 +232,13 @@
     </section>
 <script type="text/javascript">
 var username_status = false;
+var tel_status = false;
     $( "input" ).keypress(function() {
        $(".help-block").hide();
        $("#accept_form").prop('checked',false);
 
     });
+
     $( "#username" ).keyup(function() {
       username_status = false;
       $(".usr-status").hide();
@@ -265,12 +272,39 @@ var username_status = false;
         }
       } 
     });
-     $( "#tel" ).keyup(function() {
-       if ( /[^0-9]/.test($("#tel").val())) {     
-            alert("กรอกได้เฉพาะตัวเลข");  
-            $("#tel").val('');   
-            return (false);    
-         } 
+    $( "#tel" ).keyup(function() {
+      tel_status = false;
+      $(".tel-status").hide();
+      if ( /[^0-9]/.test($("#tel").val())){     
+          alert("กรอกได้เฉพาะตัวเลข");  
+          $("#tel").val('');   
+          return (false);    
+      }else{
+          if($("#tel").val().length > 8){
+             $(".tel-status").hide();
+            $.ajax({
+              type: "POST",
+                  url: "<?php echo base_url();?>register/check_tel",
+                  data: {tel:$('#tel').val()}, // serializes the form's elements.
+                  dataType: 'json',
+                  cache : false,
+                  success: function(response)
+                  {
+                      if(response.status == 1){
+                        tel_status = true;
+                        $("#msg-2-2").show();
+                      }else{
+                        tel_status = false;
+                        $("#msg-2-3").show();
+                      }
+                  },
+                  error: function(data){
+                      tel_status = false;
+                      alert('ไม่สามารถตรวจสอบ รหัสผู้ใช้งานเบอร์โทรศัพท์ได้');
+                  }
+            });
+          }
+      }
 
     });
    
@@ -278,7 +312,7 @@ var username_status = false;
       event.preventDefault();
        var chk = true;
 
-      if( $("#fullname").val() == ''){
+      if( $("#fullname").val().trim() == ''){
         $("#msg-1").show();
         chk = false;
       }
@@ -286,6 +320,10 @@ var username_status = false;
       if( $("#tel").val() == ''){
         $("#msg-2").show();
         chk = false;
+      }else{
+        if(!tel_status){
+            chk = false;
+          }
       }
 
       if( $("#username").val() == ''){
@@ -366,6 +404,8 @@ var username_status = false;
                         $("#accept_form").prop('checked',false);
                         $(".usr-status").hide();
                         username_status = false;
+                        $(".tel-status").hide();
+                        tel_status = false;
                         alert('สมัครสมาชิกสำเร็จ');
                       }else{
                         $('#btn-form').removeClass('btn-process');

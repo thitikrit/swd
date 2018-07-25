@@ -112,6 +112,9 @@ a:hover{
         <div class="container"> 
             <div class="row">
                      <div class="col-sm-12 col-md-12 col-lg-12 webboard">
+                        <?php if($val['webboards_status'] == 'SOLDOUT'){ ?>
+                                <img src="<?php echo base_url(); ?>images/soldout.png" style="position:absolute;z-index:11;right:0px;top:0px;height:250px;width:250px;border-radius: 5px;" >
+                        <?php }?>
                         <div class="col-sm-12 text-center" style="padding-top: 10px">
                             <h2  style="color:<?php if($val['webboards_type'] == 'SELL'){ echo 'deeppink'; }else{ echo 'deepskyblue'; } ?>"><?php echo $val['webboards_name'];?></h2>  <hr/>
                         </div>
@@ -132,6 +135,9 @@ a:hover{
                         </div>                 
                         <div class="col-sm-8" style="font-size: 19px;line-height:30px;padding-bottom: 25px;padding-top: 10px;">
                             <?php echo $val['webboards_detail']; ?>
+                            <?php if( $val['user_status'] == 'MEMBER'){ ?>
+                            <br/><i class="fa fa fa-phone o m-r-10" aria-hidden="true"></i><b> ติดต่อสอบถาม : </b><?php echo $val['user_tel']; ?>
+                            <?php }?>
                             <hr/>
 
                             <?php if($val['webboards_tag'] != NULL){ ?>

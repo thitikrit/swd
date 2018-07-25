@@ -75,7 +75,6 @@ class Manage_articles extends Manage_center {
 			if(!empty($_FILES["articles_picture"]["tmp_name"])){
 				$extension = strrchr($_FILES["articles_picture"]["name"], '.' );
 			    $articles_picture = time().'_'.sprintf("%06d", mt_rand(1,9999999)).$extension;
-			    $articles_picture = time().'_'.sprintf("%06d", mt_rand(1,9999999)).$extension;
 			   	move_uploaded_file($_FILES["articles_picture"]["tmp_name"],$this->config->item('upload_path')."/images/articles/".$articles_picture);
 			   	$this->articles->articles_picture = $articles_picture;
 			}else{

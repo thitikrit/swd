@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label class="col-md-12">ชื่อหัวข้อซื้อขาย</label>
                             <div class="col-md-12">
-                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" class="form-control form-control-line" value="">
+                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" maxlength="100" class="form-control form-control-line" value="">
                         </div>
                     </div>
                     <div class="form-group">

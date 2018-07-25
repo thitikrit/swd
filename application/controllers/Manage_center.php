@@ -34,6 +34,9 @@ class Manage_center extends CI_Controller {
 			$this->session->set_userdata('user_username',$sql[0]['user_username']);
 			$this->session->set_userdata('user_fullname',$sql[0]['user_fullname']);
 			$this->session->set_userdata('user_status',$sql[0]['user_status']);
+			$this->user->user_id = $sql[0]['user_id'];
+			$this->user->user_login_date = time();	
+			$this->user->update_login_time();
 			$return = array('status' => 1, 'message' => 'เข้าสู่ระบบสำเร็จ');    
     		echo json_encode($return);
 		}else{

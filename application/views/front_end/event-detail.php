@@ -93,7 +93,7 @@ a:hover{
                             <h2 style="color:<?php if($val['events_recommend'] == '1'){ echo 'deeppink'; }else{ echo 'deepskyblue'; } ?>"><?php echo $val['events_name'];?></h2>  <hr/>
                         </div>
                          <div class="col-sm-12 text-center" style="padding-top: 10px;padding-bottom: 25px;">
-                             <img alt="1" src="<?php echo base_url();?>images/events/<?php echo $val['events_picture'];?>" style="height:100%;max-height:550px;width:85%;border-radius: 10px" >
+                             <img alt="1" src="<?php echo base_url();?>images/events/<?php echo $val['events_picture'];?>" style="height:100%;width:80%;border-radius: 10px" >
                         </div>                
                         <div class="col-sm-12" style="font-size: 18px;line-height:30px;padding-bottom: 25px;padding-top: 10px;padding-left: 2%;padding-right:2%;">
                             <div class="col-sm-12">

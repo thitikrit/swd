@@ -8,6 +8,9 @@
         $num_cols--; ?>
 
             <div class="col-sm-6 col-md-6 col-lg-6 webboard">
+                <?php if($val['webboards_status'] == 'SOLDOUT'){ ?>
+                <img src="<?php echo base_url(); ?>images/soldout.png" style="position:absolute;z-index:11;right:0px;top:0px;height:150px;width: 150px;border-radius: 5px;" >
+                <?php }?>
                 <div class="col-sm-12" style="padding-top: 10px">
                     <a href="<?php echo base_url();?>webboard/detail/<?php echo $val['webboards_id'];?>"><h4 style="color:<?php if($val['webboards_type'] == 'SELL'){ echo 'deeppink'; }else{ echo 'deepskyblue'; } ?>"><?php echo $val['webboards_name'];?></h4></a>
                 </div>

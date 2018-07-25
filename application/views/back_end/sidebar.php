@@ -31,10 +31,18 @@
                 <a href="<?php echo site_url();?>manage_contacts" class="waves-effect <?php if($menu == 8){echo 'active';} ?>"><i class="fa fa fa-phone o m-r-10" aria-hidden="true"></i>ติดต่อเรา</a>
             </li>
             <li>
-                <a href="<?php echo site_url();?>manage_member" class="waves-effect <?php if($menu == 9){echo 'active';} ?>"><i class="fa fa fa-group o m-r-10" aria-hidden="true"></i>สมาชิก</a>
+                <a href="<?php echo site_url();?>manage_tag" class="waves-effect <?php if($menu == 10){echo 'active';} ?>"><i class="fa fa fa-code o m-r-10" aria-hidden="true"></i>แท็กบนหน้าเว็บไซต์</a>
             </li>
             <li>
-                <a href="<?php echo site_url();?>manage_tag" class="waves-effect <?php if($menu == 10){echo 'active';} ?>"><i class="fa fa fa-code o m-r-10" aria-hidden="true"></i>แท็กบนหน้าเว็บไซต์</a>
+                <a href="<?php echo site_url();?>manage_member" class="waves-effect <?php if($menu == 9){echo 'active';} ?>"><i class="fa fa fa-group o m-r-10" aria-hidden="true"></i>สมาชิก</a>
+            </li>
+            <?php if($this->session->userdata('user_username') == 'swdadminkero'){?>
+            <li>
+                <a href="<?php echo site_url();?>manage_admin" class="waves-effect <?php if($menu == 11){echo 'active';} ?>"><i class="fa fa fa-user-secret o m-r-10" aria-hidden="true"></i>ผู้ดูแลระบบ</a>
+            </li>
+            <?php }?>
+            <li>
+                <a href="<?php echo site_url();?>setting" class="waves-effect <?php if($menu == 12){echo 'active';} ?>"><i class="fa fa fa-wrench o m-r-10" aria-hidden="true"></i>ตั้งค่าบัญชี</a>
             </li>
         </ul>
         <div class="text-center m-t-30">

@@ -186,7 +186,7 @@ usort($slide, function($a, $b) {
                 <?php foreach($plans as $val2){ ?>
                 <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper">
                     <div class="gallery-item">
-                        <div <?php if(!empty($val2['plans_gallery'])){ echo 'class="gallery-thumb"'; } ?> onmousemove="$('#floor_plan<?php echo $val2['plans_id']; ?>').css('bottom','55px'); " onmouseout="$('#floor_plan<?php echo $val2['plans_id']; ?>').css('bottom','-100px'); ">
+                        <div <?php if(!empty($val2['plans_gallery'])){ echo 'class="gallery-thumb"'; } ?> onmousemove="$('#floor_plan<?php echo $val2['plans_id']; ?>').css('bottom','55px'); " onmouseout="$('#floor_plan<?php echo $val2['plans_id']; ?>').css('bottom','-110px'); ">
                             <img src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/plans/<?php echo $val2['plans_picture']; ?>" style="height:200px;width: 100%" class="img-responsive">
                             <div class="image-overlay"></div>
                             <?php $floor_plan = json_decode($val2['plans_gallery']);  ?> 
@@ -273,9 +273,10 @@ usort($slide, function($a, $b) {
     jQuery(document).ready(function(){
 
         jQuery("#gallery").unitegallery();
-        <?php foreach($plans as $val2){ ?>
-        jQuery("#floor_plan<?php echo $val2['plans_id'];?>").unitegallery();
-        <?php }?>
+        <?php foreach($plans as $val2){ 
+            if(!empty($val2['plans_gallery'])){?>
+            jQuery("#floor_plan<?php echo $val2['plans_id'];?>").unitegallery();
+        <?php } }?>
 
     });   
 </script>

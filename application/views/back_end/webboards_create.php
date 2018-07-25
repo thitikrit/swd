@@ -23,7 +23,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form id="webboards_form" name="webboards_form" method="post" action="<?php echo base_url();?>manage_webboards/add"  enctype="multipart/form-data">
+<form id="webboards_form" name="webboards_form" method="post" action="<?php echo base_url();?>manage_webboards/add"  enctype="multipart/form-data" required>
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label class="col-md-12">ชื่อหัวข้อซื้อขาย</label>
                             <div class="col-md-12">
-                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" class="form-control form-control-line" value="">
+                            <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" class="form-control form-control-line" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,25 +47,25 @@
                     <div class="form-group">
                         <label class="col-md-12">ทำเล</label>
                             <div class="col-md-12">
-                            <input id="webboards_area" name="webboards_area" type="text" placeholder="ทำเล เช่น เมืองชลบุรี" class="form-control form-control-line" value="">
+                            <input id="webboards_area" name="webboards_area" type="text" placeholder="ทำเล เช่น เมืองชลบุรี" class="form-control form-control-line" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">ประเภทอสังหาริมทรัพย์</label>
                             <div class="col-md-12">
-                            <input id="webboards_property" name="webboards_property" type="text" placeholder="เช่น บ้านเดี่ยว บ้าแฝด คอนโด " class="form-control form-control-line" value="">
+                            <input id="webboards_property" name="webboards_property" type="text" placeholder="เช่น บ้านเดี่ยว บ้าแฝด คอนโด " class="form-control form-control-line" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">ราคาซื้อ ขาย / เช่า</label>
                             <div class="col-md-12">
-                               <input id="webboards_price" name="webboards_price" type="number" placeholder="กรอกราคาซื้อขาย - เช่า" class="form-control form-control-line" value="">
+                               <input id="webboards_price" name="webboards_price" type="number" placeholder="กรอกราคาซื้อขาย - เช่า" class="form-control form-control-line" value="" required>
                             </div>
                     </div>
                      <div class="form-group">
                         <label class="col-md-6">หน่วย</label>
                         <div class="col-md-6">
-                            <input id="webboards_unit" name="webboards_unit" type="text" placeholder="เช่น บาท หรือ ต่อปี" class="form-control form-control-line" value="">
+                            <input id="webboards_unit" name="webboards_unit" type="text" placeholder="เช่น บาท หรือ ต่อปี" class="form-control form-control-line" value="" required>
                         </div>
                     </div>
                    
@@ -82,7 +82,7 @@
                     <div class="form-group">
                         <label class="col-md-12">รูปภาพ</label>
                         <div class="col-md-12">
-                            <input type="file" name="webboards_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif">
+                            <input type="file" name="webboards_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -124,13 +124,13 @@
                     <div class="form-group">
                         <label class="col-md-12">รายละเอียดแบบย่อ</label>
                         <div class="col-md-12">
-                            <textarea id="webboards_sub_detail" style="height:100px" name="webboards_sub_detail" type="text" class="form-control form-control-line"></textarea>
+                            <textarea id="webboards_sub_detail" style="height:100px" name="webboards_sub_detail" type="text" class="form-control form-control-line" required></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">รายละเอียด</label>
                         <div class="col-md-12">
-                            <textarea id="webboards_detail" name="webboards_detail"></textarea>
+                            <textarea id="webboards_detail" name="webboards_detail" required></textarea>
                         </div>
                     </div>
             </div>
@@ -146,7 +146,7 @@
                         <label class="col-md-12">แกลลอรี่ &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_gallery()">เพิ่มรูปภาพ</a></label>
                         <div id="row_div_gal" class="row" style='padding: 15px 15px;'>
                             <div id="div-gal-1" class="col-md-3" style="margin-bottom: 15px;">
-                                <input type="file" name="webboards_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif">
+                                <input type="file" name="webboards_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">
                             </div>
                         </div>
                     </div>

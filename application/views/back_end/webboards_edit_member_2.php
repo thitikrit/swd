@@ -69,6 +69,8 @@
                                                 echo '<span class="label label-success tag">เผยแพร่</span>';
                                             }else if($val['webboards_status'] == 'INACTIVE'){
                                                 echo '<span class="label label-warning tag">ไม่เผยแพร่</span>';
+                                            }else if($val['webboards_status'] == 'SOLDOUT'){
+                                                echo '<span class="label label-danger tag">ขายแล้ว</span>';
                                             }else{
                                                 echo "-";
                                             } 
@@ -107,7 +109,6 @@
                         <label class="col-sm-12">สิทธิ์ในการเผยแพร่</label>
                         <div class="col-sm-12">
                             <select class="form-control form-control-line" id="webboards_permission" name="webboards_permission">
-                                <option value="0" <?php if($val['webboards_permission'] == '0'){ echo 'selected'; }?> >รอการตรวจสอบ</option>
                                 <option value="1" <?php if($val['webboards_permission'] == '1'){ echo 'selected'; }?> >อนุญาตให้เผยแพร่</option>
                                 <option value="2" <?php if($val['webboards_permission'] == '2'){ echo 'selected'; }?> >ไม่อนุญาตให้เผยแพร่</option>
                             </select>

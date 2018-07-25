@@ -17,7 +17,7 @@ class Manage_general extends Manage_center {
 		$data['wb'] = $this->webboards->get_wb();
 
 		$this->load->model('user');
-		$data['usr'] = count($this->user->get_user());
+		$data['usr'] = count($this->user->get_member());
 
 		$this->load->model('contacts');
 		$data['cont'] = count($this->contacts->get_contacts());
