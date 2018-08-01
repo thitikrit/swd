@@ -16,7 +16,7 @@ class Working extends CI_Controller {
 		$this->time_log->log_ip_address = $this->get_clientip();
 		$this->time_log->log_time = time();
 		$this->time_log->add_time_log();
-
+		$this->time_log->del_bug_time_log();
 	}
 	public function get_clientip() {
         $ipaddress = '';
@@ -51,6 +51,9 @@ class Working extends CI_Controller {
 		$this->menu->menu_id = 3;
 		$data['menu'] = $this->menu->get_menu_by_id();
 		$data['section'] = 0;
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/workings',$data,true);
 		$this->load->view('front_end/page',$data);
 	}
@@ -67,6 +70,9 @@ class Working extends CI_Controller {
 		$this->menu->menu_id = 3;
 		$data['menu'] = $this->menu->get_menu_by_id();
 		$data['section'] = 2;
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']."ที่ผ่านมา - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/workings',$data,true);
 		$this->load->view('front_end/page',$data);
 	}
@@ -83,6 +89,9 @@ class Working extends CI_Controller {
 		$this->menu->menu_id = 3;
 		$data['menu'] = $this->menu->get_menu_by_id();
 		$data['section'] = 1;
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']."ในปัจจุบัน - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/workings',$data,true);
 		$this->load->view('front_end/page',$data);
 	}

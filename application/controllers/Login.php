@@ -20,6 +20,9 @@ class Login extends CI_Controller {
 		$data['menu'] = 'login';
 		$data['header'] = $this->load->view('front_end/header',$data,true);
 		$data['content'] = $this->load->view('front_end/login',$data,true);
+		$this->load->model('tags');
+		$data['title'] = "เข้าสู่ระบบ - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$this->load->view('front_end/page',$data);
 	}
 	public function check_username(){

@@ -2,10 +2,13 @@
 
 foreach($projects as $val){ 
 
+if(!empty($val['projects_slide'])){
 $slide = json_decode($val['projects_slide']);
 usort($slide, function($a, $b) {
     return $a->order - $b->order ;
 });
+}
+
 ?>
 
 <style type="text/css">
@@ -39,6 +42,7 @@ usort($slide, function($a, $b) {
     }
 </style>
 
+<?php if(!empty($val['projects_slide'])) { ?>
 <section id="banner">
  <!-- Slider -->
     <div id="main-slider" class="flexslider" >
@@ -54,8 +58,23 @@ usort($slide, function($a, $b) {
         </ul>
     </div>
 <!-- end slider -->
-
 </section>
+<?php }else{ ?>
+<div style="background-color: white;height:72px"><br/><br/><br/>
+    </div>
+    <section id="call-to-action-2" style="padding-top: 50px;padding-bottom:  20px;">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div align="center">
+                            <span style="margin-top:0px;font-size:26px;font-weight: bold;color:white;"><?php echo $val['projects_name'];?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+<?php }?>
 
 <section id="content" style="padding: 40px 15px;">
 
@@ -128,7 +147,7 @@ usort($slide, function($a, $b) {
         $facility = json_decode($val['projects_facility']); 
         $condition =  count($facility) / 2;
     ?> 
-
+    <?php if(!empty($val['projects_facility'])) { ?>
     <h3 style="color:dodgerblue;"  align="center">สิ่งอำนวยความสะดวก</h3><hr/><br/>
     
       
@@ -175,8 +194,11 @@ usort($slide, function($a, $b) {
                 <?php }?>
             </div>
             <?php }?>
+    <?php }?>
 
+    <?php if(!empty($plans )){?>
      <h3 style="color:dodgerblue;" align="center">แบบห้อง</h3><hr/><br/>
+    
       
 
     <!-- Start Gallery 1-2 -->
@@ -222,49 +244,64 @@ usort($slide, function($a, $b) {
                                <?php } ?>
         </div>
         <!-- /.row --> 
-    <!-- /.container -->
-    </div>
-</section>
-
-
-      
-<h3 style="color:dodgerblue;" align="center">บรรยากาศโครงการ</h3><hr/><br/>
-  <!-- Start Gallery 1-2 -->
-<?php $gallery = json_decode($val['projects_gallery']); ?>
-<section id="gallery-1" class="content-block section-wrapper gallery-1">
-    <div class="container">
-        <div id="gallery" style="display:none;">
-            <?php for($i = 0 ; $i < count($gallery);$i++){ ?>
-            <a href="#">
-            <img alt="<?php echo $i+1; ?>"
-                 src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/gallery/<?php echo $gallery[$i]; ?>"
-                 data-image="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/gallery/<?php echo $gallery[$i]; ?>"
-                 data-description="<?php echo $i+1; ?>"
-                 style="display:none">
-            </a>
-            <?php }?>
+        <!-- /.container -->
         </div>
-    <!-- /.container -->
+    </section>
+    <?php }?>
+
+
+    <?php if(!empty($val['projects_gallery'])){ ?>
+    <h3 style="color:dodgerblue;" align="center">บรรยากาศโครงการ</h3><hr/><br/>
+      <!-- Start Gallery 1-2 -->
+    <?php $gallery = json_decode($val['projects_gallery']); ?>
+    <section id="gallery-1" class="content-block section-wrapper gallery-1">
+        <div class="container">
+            <div id="gallery" style="display:none;">
+                <?php for($i = 0 ; $i < count($gallery);$i++){ ?>
+                <a href="#">
+                <img alt="<?php echo $i+1; ?>"
+                     src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/gallery/<?php echo $gallery[$i]; ?>"
+                     data-image="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/gallery/<?php echo $gallery[$i]; ?>"
+                     data-description="<?php echo $i+1; ?>"
+                     style="display:none">
+                </a>
+                <?php }?>
+            </div>
+        <!-- /.container -->
+        </div>
+    </section>
+    <!--// End Gallery 1-2 -->  
+    <br/><br/>
+    <?php }?>
+
+    <?php if(!empty($val['projects_map']) || !empty($val['projects_googlemap'])) {?>
+    <h3 style="color:dodgerblue;" align="center">ที่ตั้งโครงการ</h3><hr/><br/>
+
+    <?php if(!empty($val['projects_map'])) { ?>
+    <div class="row">
+        <div class="col-md-12">
+            <img  src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $val['projects_map'];?>" width="100%">
+             </img>
+        </div>
     </div>
-</section>
-<!--// End Gallery 1-2 -->  
-<br/><br/>
-<h3 style="color:dodgerblue;" align="center">ที่ตั้งโครงการ</h3><hr/><br/>
-<div class="row">
-    <div class="col-md-12">
-        <img  src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $val['projects_map'];?>" width="100%">
-         </img>
+    <?php }?>
+
+    <?php if(!empty($val['projects_googlemap'])) { ?>
+    <div class="row">
+        <div class="col-md-12">
+            <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCwiI39TyG_aaKXbnyulKrff7Eu7DDo03A&language=th&region=TH"></script><div style="overflow:hidden;height:500px;width:100%;"><div id="gmap_canvas" style="height:500px;width:100%;"></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type="text/javascript"> function init_map(){var myOptions = {zoom:14,center:new google.maps.LatLng(<?php echo $val['projects_googlemap']; ?>),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(<?php echo $val['projects_googlemap']; ?>)});infowindow = new google.maps.InfoWindow({content:"  <img src='<?php echo base_url();?>/images/projects/<?php echo $val['projects_id'];?>/<?php echo $val['projects_logo']; ?>' height='70px'/>" });google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCwiI39TyG_aaKXbnyulKrff7Eu7DDo03A&language=th&region=TH"></script><div style="overflow:hidden;height:500px;width:100%;"><div id="gmap_canvas" style="height:500px;width:100%;"></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type="text/javascript"> function init_map(){var myOptions = {zoom:14,center:new google.maps.LatLng(13.2888603,100.931528),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(13.2888603,100.931528)});infowindow = new google.maps.InfoWindow({content:"  <img src='<?php echo base_url();?>/images/projects/<?php echo $val['projects_id'];?>/<?php echo $val['projects_logo']; ?>' height='70px'/>" });google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+    <?php }?>
+
+    <?php }?>
 
     </div>
-</div>
-
-</div>
 </section>
+
+
+
 <script type='text/javascript' src='<?php echo base_url();?>assets/unitegallery-master/package/unitegallery/js/jquery-11.0.min.js'></script>   
 <script type='text/javascript' src='<?php echo base_url();?>assets/unitegallery-master/package/unitegallery/js/unitegallery.min.js'></script>  
 <link rel='stylesheet' href='<?php echo base_url();?>assets/unitegallery-master/package/unitegallery/css/unite-gallery.css' type='text/css' />
@@ -272,7 +309,12 @@ usort($slide, function($a, $b) {
 <script type="text/javascript">
     jQuery(document).ready(function(){
 
-        jQuery("#gallery").unitegallery();
+        <?php foreach($projects as $val){ 
+            if(!empty($val['projects_gallery'])){?>
+            jQuery("#gallery").unitegallery();
+        <?php } }?>
+
+
         <?php foreach($plans as $val2){ 
             if(!empty($val2['plans_gallery'])){?>
             jQuery("#floor_plan<?php echo $val2['plans_id'];?>").unitegallery();

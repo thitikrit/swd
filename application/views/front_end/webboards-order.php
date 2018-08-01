@@ -39,6 +39,19 @@
         <?php $num_cols = 2; }?> 
 
     <?php }?>
+    <div class="col-sm-12 text-center" style="height: 150px;">
+        <ul class="pagination">
+            <li><a style="cursor: pointer;" onclick="page_order(1)">หน้าแรก</a></li>
+            <?php for($i = 1;$i<$total_pages+1;$i++){ ?>
+                <?php 
+                $check = $page - $i;
+                if(   $check == -1 || $check == -2 || $check == 1 || $check == 2 || $check == 0 ){ ?>
+                <li class="<?php if($page == $i){ echo 'disabled'; } ?>"><a style="cursor: pointer;" onclick="page_order(<?php echo $i; ?>)"><?php echo $i; ?></a></li>
+                <?php }?>
+            <?php }?>
+            <li><a style="cursor: pointer;" onclick="page_order(<?php echo $total_pages; ?>)">หน้าสุดท้าย</a></li>
+        </ul>
+    </div>
 <?php }else{ ?>
 <div class="col-sm-12 col-md-12 col-lg-12 text-center" style="height:300px;padding-top:120px;font-size:25px;">
     - ไม่พบกระดานซื้อขาย -

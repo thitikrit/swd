@@ -30,9 +30,10 @@
         <div class="card">
             <div class="card-block">
                     <div class="form-group">
-                        <label class="col-md-12">ชื่อหัวข้อซื้อขาย</label>
+                        <label class="col-md-12">ชื่อหัวข้อซื้อขาย *</label>
                             <div class="col-md-12">
                             <input id="webboards_name" name="webboards_name" type="text" placeholder="กรุณากรอกชื่อหัวข้อ" maxlength="100" class="form-control form-control-line" value="">
+                            <p id="msg-1" class="help-block" style="color:red;display:none;">กรุณากรอกชื่อหัวข้อซ์้อขาย *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,27 +46,32 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">ทำเล</label>
+                        <label class="col-md-12">ทำเล *</label>
                             <div class="col-md-12">
                             <input id="webboards_area" name="webboards_area" type="text" placeholder="ทำเล เช่น เมืองชลบุรี ศรีราชา พัทยา เป็นต้น" class="form-control form-control-line" value="">
+                            <p id="msg-2" class="help-block" style="color:red;display:none;">กรุณากรอกชื่อทำเล *</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">ประเภทอสังหาริมทรัพย์</label>
+                        <label class="col-md-12">ประเภทอสังหาริมทรัพย์ *</label>
                             <div class="col-md-12">
                             <input id="webboards_property" name="webboards_property" type="text" placeholder="เช่น บ้านเดี่ยว บ้านแฝด คอนโด อาคารพาณิชย์ เป็นต้น" class="form-control form-control-line" value="">
+                            <p id="msg-3" class="help-block" style="color:red;display:none;">กรุณากรอกประเภทอสังหาริมทรัพย์ *</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">ราคาซื้อ ขาย / เช่า</label>
+                        <label class="col-md-12">ราคาซื้อ ขาย / เช่า *</label>
                             <div class="col-md-12">
                                <input id="webboards_price" name="webboards_price" type="number" placeholder="กรอกราคาซื้อขาย - เช่า" class="form-control form-control-line" value="">
+                               <p id="msg-4" class="help-block" style="color:red;display:none;">กรุณากรอกราคาซื้อ ขาย / เช่า*</p>
                             </div>
+                            
                     </div>
                      <div class="form-group">
-                        <label class="col-md-6">หน่วย</label>
+                        <label class="col-md-6">หน่วย *</label>
                         <div class="col-md-6">
                             <input id="webboards_unit" name="webboards_unit" type="text" placeholder="เช่น บาท หรือ ต่อปี" class="form-control form-control-line" value="">
+                            <p id="msg-5" class="help-block" style="color:red;display:none;">กรุณากรอกหน่วยของราคา *</p>
                         </div>
                     </div>
                    
@@ -82,7 +88,8 @@
                     <div class="form-group">
                         <label class="col-md-12">รูปภาพปกของกระดานซื้อขาย</label>
                         <div class="col-md-12">
-                            <input type="file" name="webboards_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">
+                            <input type="file" id="webboards_picture" name="webboards_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">
+                            <p id="msg-6" class="help-block" style="color:red;display:none;">กรุณาเลือกรูปภาพ *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -114,15 +121,17 @@
         <div class="card">
             <div class="card-block">
                     <div class="form-group">
-                        <label class="col-md-12">รายละเอียดแบบย่อ</label>
+                        <label class="col-md-12">รายละเอียดแบบย่อ *</label>
                         <div class="col-md-12">
                             <textarea maxlength="1000" id="webboards_sub_detail" style="height:100px" name="webboards_sub_detail" type="text" class="form-control form-control-line"></textarea>
+                            <p id="msg-7" class="help-block" style="color:red;display:none;">กรุณากรอกรายละเอียดแบบย่อ *</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">รายละเอียด</label>
+                        <label class="col-md-12">รายละเอียด *</label>
                         <div class="col-md-12">
                             <textarea id="webboards_detail" name="webboards_detail"></textarea>
+                            <p id="msg-8" class="help-block" style="color:red;display:none;">กรุณากรอกรายละเอียด *</p>
                         </div>
                     </div>
             </div>
@@ -138,7 +147,7 @@
                         <label class="col-md-12">แกลลอรี่ หรือ รูปภาพเพิ่มเติม &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_gallery()">เพิ่มรูปภาพ</a></label>
                         <div id="row_div_gal" class="row" style='padding: 15px 15px;'>
                             <div id="div-gal-1" class="col-md-3" style="margin-bottom: 15px;">
-                                <input type="file" name="webboards_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif">
+                                <input type="file" name="webboards_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)" >
                             </div>
                         </div>
                     </div>
@@ -148,7 +157,7 @@
     <!-- Column -->
 
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
-        <button class="btn btn-primary" type="button" onclick="submit();">บันทึก</button>
+        <button class="btn btn-primary" type="button" onclick="chk_form();">บันทึก</button>
         <a href="<?php echo base_url(); ?>member/webboard" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
@@ -179,11 +188,17 @@ $(function() {
         placeholderText: 'กรุณากรอกรายละเอียด',
     });
     count_div_gal = $("#row_div_gal div").length + 1;
+    $( "input" ).keypress(function() {
+        $(".help-block").hide();
+    }); 
+    $( "textarea" ).keypress(function() {
+        $(".help-block").hide();
+    }); 
 }); 
 function add_gallery(){
     if( $("#row_div_gal div").length != 9){
         new_gallery = ' <div id="div-gal-'+count_div_gal+'" class="col-md-3" style="margin-bottom: 15px;">';
-        new_gallery +=  '<input type="file" name="webboards_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif">';
+        new_gallery +=  '<input type="file" name="webboards_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">';
         new_gallery +=  '<a href="javascript:void(0)" class="btn btn-danger btn-sm" style="position:absolute;right:15px;top:0;" onclick="del_gal('+count_div_gal+');">x</a>';
         new_gallery +=  '</div>';
         $("#row_div_gal").append(new_gallery);
@@ -195,4 +210,59 @@ function del_gal(row){
         $(this).remove(); 
     }); 
 }  
+function chk_file(obj){
+     var FileSize = obj.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+            alert('ไม่สามารถอัพไฟล์ขนาดเกิน 2 MB');
+            obj.value = null;
+        }else{
+            var FileName = obj.files[0].name;
+            var FileType = FileName.substring(FileName.lastIndexOf('.') + 1).toLowerCase();
+            if(FileType != 'jpg' && FileType != 'jpeg' && FileType != 'png'){
+                alert('อัพโหลดได้เฉพาะ .jpg .jpeg .png');
+                obj.value = null;
+            }
+        } 
+}
+function chk_form(){
+    event.preventDefault();
+    chk = true;
+    if($("#webboards_name").val().trim() == ''){
+        $("#msg-1").show();
+        chk = false;
+    }
+    if($("#webboards_area").val().trim() == ''){
+          $("#msg-2").show();
+          chk = false;
+    }
+    if($("#webboards_property").val().trim() == ''){
+          $("#msg-3").show();
+          chk = false;
+    }
+    if($("#webboards_price").val().trim() == ''){
+          $("#msg-4").show();
+          chk = false;
+    }
+    if($("#webboards_unit").val().trim() == ''){
+          $("#msg-5").show();
+          chk = false;
+    }
+     if($("#webboards_picture").get(0).files.length == 0){
+          $("#msg-6").show();
+          chk = false;
+    }
+    if($("#webboards_sub_detail").val().trim() == ''){
+          $("#msg-7").show();
+          chk = false;
+    }
+    if($("#webboards_detail").val().trim() == ''){
+          $("#msg-8").show();
+          chk = false;
+    }
+   
+    if(chk){
+        $("#webboards_form").submit();
+    }
+}
+
 </script>

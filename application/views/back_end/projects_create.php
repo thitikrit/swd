@@ -32,13 +32,15 @@
                     <div class="form-group">
                         <label class="col-md-12 ">รูปโลโก้โครงการ</label>
                         <div class="col-md-12">
-                            <input type="file" name="projects_logo" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">
+                            <input type="file" id="projects_logo" name="projects_logo" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">
+                            <p id="msg-1" class="help-block" style="color:red;display:none;">กรุณาเลือกรูปโลโก้ *</p>
                         </div>
                     </div>  
                     <div class="form-group">
                         <label class="col-md-12">ชื่อโครงการ</label>
                             <div class="col-md-12">
                             <input id="projects_name" name="projects_name" type="text" placeholder="กรุณากรอกชื่อโครงการ" class="form-control form-control-line" value="">
+                            <p id="msg-2" class="help-block" style="color:red;display:none;">กรุณากรอกชื่อโครงการ *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,12 +55,14 @@
                                     <option value="0" >* ยังไม่ได้เพิ่มทำเล *</option>
                                 <?php } ?>
                             </select>
+                            <p id="msg-3" class="help-block" style="color:red;display:none;">กรุณาเลือกทำเล *</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">ประเภทอสังหาริมทรัพย์</label>
                             <div class="col-md-12">
                             <input id="projects_property" name="projects_property" type="text" placeholder="เช่น บ้านเดี่ยว บ้านแฝด คอนโด " class="form-control form-control-line" value="">
+                            <p id="msg-4" class="help-block" style="color:red;display:none;">กรุณากรอกประเภทอสังหาริมทรัพย์ *</p>
                         </div>
                     </div>
                    
@@ -66,30 +70,35 @@
                         <label class="col-md-12">ราคาเริ่มต้น (ข้อความ)</label>
                             <div class="col-md-12">
                                <input id="projects_price_text" name="projects_price_text" type="text" placeholder="กรอกราคาราคาเริ่มต้น (ข้อความ) เช่น ราคาเริ่มต้น 3.5ล้านบาท" class="form-control form-control-line" value="">
+                                <p id="msg-5" class="help-block" style="color:red;display:none;">กรุณากรอกราคาเริ่มต้น (ข้อความ) *</p>
                             </div>
                     </div>
                      <div class="form-group">
                         <label class="col-md-12">ราคาเริ่มต้น (ตัวเลข)</label>
                             <div class="col-md-12">
                                <input id="projects_price" name="projects_price" type="number" placeholder="กรอกราคาราคาเริ่มต้น (ตัวเลข) 3500000" class="form-control form-control-line" value="">
+                                <p id="msg-6" class="help-block" style="color:red;display:none;">กรุณากรอกราคาเริ่มต้น (ตัวเลข) *</p>
                             </div>
                     </div> 
                     <div class="form-group">
                         <label class="col-md-12">ที่ตั้งโครงการ</label>
                         <div class="col-md-12">
                             <input id="projects_location" name="projects_location" type="text" placeholder="กรุณากรอกที่ตั้งของโครงการ" class="form-control form-control-line" value="">
+                            <p id="msg-7" class="help-block" style="color:red;display:none;">กรุณากรอกที่ตั้งของโครงการ *</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">รูปภาพแผนที่โครงการ</label>
                         <div class="col-md-12">
-                            <input type="file" name="projects_map" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">
+                            <input type="file" id="projects_map" name="projects_map" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">
+                            <p id="msg-8" class="help-block" style="color:red;display:none;">กรุณาเลือกแผนที่โครงการ *</p>
                         </div>
                     </div>
                      <div class="form-group">
                         <label class="col-md-12">Google map (ละติจูด,ลองจิจูด)</label>
                         <div class="col-md-12">
                             <input id="projects_googlemap" name="projects_googlemap" type="text" placeholder="ละติจูด,ลองจิจูด เช่น 13.247625,100.933495" class="form-control form-control-line" value="">
+
                         </div>
                     </div>               
             </div>
@@ -105,6 +114,7 @@
                         <label class="col-md-12">เบอร์โทรศัพท์สำนักงานขาย</label>
                         <div class="col-md-12">
                            <input id="projects_tel" name="projects_tel" type="text" placeholder="เช่น 038-123-456,081-234-5678" class="form-control form-control-line" value="">
+                           <p id="msg-10" class="help-block" style="color:red;display:none;">กรุณกรอกเบอร์โทรศัพท์สำนักงานขาย*</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -129,7 +139,8 @@
                     <div class="form-group">
                         <label class="col-md-12">รูปภาพปก</label>
                         <div class="col-md-12">
-                            <input type="file" name="projects_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">
+                            <input type="file" id="projects_picture" name="projects_picture" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">
+                            <p id="msg-14" class="help-block" style="color:red;display:none;">กรุณาเลือกรูปภาพปก *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -157,7 +168,6 @@
                             <select class="form-control form-control-line" id="projects_status" name="projects_status">
                                 <option value="ACTIVE" >เผยแพร่</option>
                                 <option value="INACTIVE" >ไม่เผยแพร่</option>
-                                <option value="CANCEL" >ยกเลิกการเผยแพร่</option>
                             </select>
                         </div>
                     </div>
@@ -173,12 +183,14 @@
                         <label class="col-md-12">รายละเอียดแบบย่อ</label>
                         <div class="col-md-12">
                             <input id="projects_sub_detail" name="projects_sub_detail" type="text" class="form-control form-control-line" value="" maxlength="100">
+                            <p id="msg-15" class="help-block" style="color:red;display:none;">กรุณากรอกรายละเอียดแบบย่อ *</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">รายละเอียด</label>
                         <div class="col-md-12">
                             <textarea id="projects_detail" name="projects_detail" placeholder="กรุณากรอกรายละเอียด"></textarea>
+                            <p id="msg-16" class="help-block" style="color:red;display:none;">กรุณากรอกรายละเอียด *</p>
                         </div>
                     </div>
             </div>
@@ -192,10 +204,7 @@
                     <div class="form-group">
                         <label class="col-md-12">สิ่งอำนวยความสะดวก &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_facility()">เพิ่ม</a></label>
                         <div id="row_div_fac" class="row" style='padding: 15px 15px;'>
-                            <div id="div-fac-1" class="col-md-3" style="margin-bottom: 15px;">
-                                <input type="file" name="projects_facility_pic[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">
-                                <input  name="projects_facility_name[]" type="text" class="form-control form-control-line" value="" maxlength="30">
-                            </div>
+                           
                         </div>
                     </div>
             </div>
@@ -228,6 +237,7 @@
                                 </tr>
                         </tbody>
                     </table>
+                    <p id="msg-18" class="help-block" style="color:red;display:none;">กรุณาตรวจสอบรายละเอียด *</p>
                 </div>
             </div>
         </div>
@@ -237,7 +247,7 @@
     <div class="col-lg-12 col-xlg-12 col-md-12">
         <div class="card">
             <div class="card-block">
-                 <label class="col-md-12">รูปภาพสไลด์ &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_picture_slide()">เพิ่มรูปภาพ</a></label>
+                 <label class="col-md-12">รูปภาพปกสไลด์ &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_picture_slide()">เพิ่มรูปภาพ</a></label>
                 <div class="table-responsive col-md-12">
                     <table id="picture_slide" class="table">
                         <thead>
@@ -267,9 +277,7 @@
                     <div class="form-group">
                         <label class="col-md-12">แกลลอรี่ &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-success btn-sm" onclick="add_gallery()">เพิ่มรูปภาพ</a></label>
                         <div id="row_div_gal" class="row" style='padding: 15px 15px;'>
-                            <div id="div-gal-1" class="col-md-3" style="margin-bottom: 15px;">
-                                <input type="file" name="projects_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif">
-                            </div>
+            
                         </div>
                     </div>
             </div>
@@ -278,7 +286,7 @@
     <!-- Column -->
 
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
-        <button class="btn btn-primary" type="button" onclick="submit();">บันทึก</button>
+        <button class="btn btn-primary" type="button" onclick="chk_form();">บันทึก</button>
         <a href="<?php echo base_url(); ?>manage_projects/projects_list" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
@@ -309,7 +317,7 @@ var count_tr_plans;
 $(function() { 
     $('#projects_detail').froalaEditor({ 
         height: 300 ,
-        placeholderText: 'กรุณากรอกรายละเียด'
+        placeholderText: 'กรุณากรอกรายละเอียด'
     });
     count_div_gal = $("#row_div_gal div").length + 1;
     count_div_fac = $("#row_div_fac div").length + 1;
@@ -318,14 +326,12 @@ $(function() {
     num_add_plans_gal = 1;
 }); 
 function add_gallery(){
-    if( $("#row_div_gal div").length != 9){
-        new_gallery = ' <div id="div-gal-'+count_div_gal+'" class="col-md-3" style="margin-bottom: 15px;">';
-        new_gallery +=  '<input type="file" name="projects_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">';
+     new_gallery = ' <div id="div-gal-'+count_div_gal+'" class="col-md-3" style="margin-bottom: 15px;">';
+        new_gallery +=  '<input type="file" name="projects_gallery[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">';
         new_gallery +=  '<a href="javascript:void(0)" class="btn btn-danger btn-sm" style="position:absolute;right:15px;top:0;" onclick="del_gal('+count_div_gal+');">x</a>';
         new_gallery +=  '</div>';
         $("#row_div_gal").append(new_gallery);
         count_div_gal++;
-    }
 }
 function del_gal(row){
     $("#div-gal-"+row).fadeOut(300, function() { 
@@ -333,9 +339,9 @@ function del_gal(row){
     }); 
 } 
 function add_facility(){
-    if( $("#row_div_fac div").length != 9){
+    if( $("#row_div_fac div").length != 10){
         new_facility = ' <div id="div-fac-'+count_div_fac+'" class="col-md-3" style="margin-bottom: 15px;">';
-        new_facility +=  '<input type="file" name="projects_facility_pic[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png">';
+        new_facility +=  '<input type="file" name="projects_facility_pic[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)">';
         new_facility +=  '<a href="javascript:void(0)" class="btn btn-danger btn-sm" style="position:absolute;right:15px;top:0;" onclick="del_fac('+count_div_fac+');">x</a>';
         new_facility +=  '<input  name="projects_facility_name[]" type="text" class="form-control form-control-line" value="" maxlength="30">';
         new_facility +=  '</div>';
@@ -351,7 +357,7 @@ function del_fac(row){
 function add_picture_slide(){
     $("#tr-pic-slide-blank").hide();
     new_picture_slide ='<tr id="tr-pic-slide-'+count_tr_pic+'">';
-    new_picture_slide +='<td width="50%"><input type="file" name="menu_pic_slide[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png , .gif"></td>';
+    new_picture_slide +='<td width="50%"><input type="file" name="menu_pic_slide[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)"></td>';
     new_picture_slide +='<td width="25%"><input type="text" name="menu_pic_slide_order[]" style="width:35px" maxlength="1" class="form-control"/></td>';
     new_picture_slide +='<td><a href="javascript:void(0)" class="btn btn-info" onclick="del_picture_slide('+count_tr_pic+');">ลบ</a></td>';
     new_picture_slide +='</tr> ';
@@ -371,7 +377,7 @@ function add_plans(){
     new_plans ='<tr id="tr-plans-'+count_tr_plans+'">';
     new_plans +='<td width="25%"><input type="text" name="plans_name[]" style="width:100%" class="form-control"></td>';
     new_plans +='<td width="25%"><input type="text" name="plans_detail[]" style="width:100%" class="form-control"></td>';
-    new_plans +='<td width="25%"><input type="file" name="plans_picture[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png"></td>';
+    new_plans +='<td width="25%"><input type="file" name="plans_picture[]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)"></td>';
     new_plans +='<td width="25%" id="td-plans-gal-'+count_tr_plans+'">';
     new_plans +='<div class="col-12" style="padding:0px"></div>';
     new_plans +='<span></span><a href="javascript:void(0)" class="btn btn-success btn-xs" onclick="add_plans_gallery('+count_tr_plans+');">+</a>';
@@ -390,13 +396,107 @@ function del_plans(row){
     }); 
 }
 function add_plans_gallery(row){
-    new_plans_gal = '<div class="col-12" id="div-add-plans-gal-'+num_add_plans_gal+'" style="padding:0px"><input type="file" name="plans_gallery['+row+'][]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png"><a href="javascript:void(0)" class="btn btn-danger btn-xs" style="position:absolute;right:0px;" onclick="del_plans_gallery('+num_add_plans_gal+');">x</a></div>';
-    $("#td-plans-gal-"+row+" span").append(new_plans_gal);
-    num_add_plans_gal++;
+    if( $("#td-plans-gal-"+row+" span div").length < 2){
+        new_plans_gal = '<div class="col-12" id="div-add-plans-gal-'+num_add_plans_gal+'" style="padding:0px"><input type="file" name="plans_gallery['+row+'][]" style="width:100%" class="form-control" accept=".jpg, .jpeg, .png" onchange="chk_file(this)"><a href="javascript:void(0)" class="btn btn-danger btn-xs" style="position:absolute;right:0px;" onclick="del_plans_gallery('+num_add_plans_gal+');">x</a></div>';
+        $("#td-plans-gal-"+row+" span").append(new_plans_gal);
+        num_add_plans_gal++;
+    }
 }
 function del_plans_gallery(num){
     $("#div-add-plans-gal-"+num).fadeOut(300, function() { 
         $(this).remove(); 
     }); 
+}
+function chk_file(obj){
+     var FileSize = obj.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+            alert('ไม่สามารถอัพไฟล์ขนาดเกิน 2 MB');
+            obj.value = null;
+        }else{
+            var FileName = obj.files[0].name;
+            var FileType = FileName.substring(FileName.lastIndexOf('.') + 1).toLowerCase();
+            if(FileType != 'jpg' && FileType != 'jpeg' && FileType != 'png'){
+                alert('อัพโหลดได้เฉพาะ .jpg .jpeg .png');
+                obj.value = null;
+            }
+        } 
+}
+function chk_form(){
+    event.preventDefault();
+    $(".help-block").hide();
+    chk = true;
+
+    if($("#projects_logo").get(0).files.length == 0){
+        $("#msg-1").show();
+        chk = false;
+    }
+    if($("#projects_name").val().trim() == ''){
+        $("#msg-2").show();
+        chk = false;
+    }
+    if($("#projects_area").val() == '0'){
+        $("#msg-3").show();
+        chk = false;
+    }
+    if($("#projects_area").val() == '0'){
+        $("#msg-3").show();
+        chk = false;
+    }
+    if($("#projects_property").val().trim() == ''){
+        $("#msg-4").show();
+        chk = false;
+    }
+    if($("#projects_price_text").val().trim() == ''){
+        $("#msg-5").show();
+        chk = false;
+    }
+    if($("#projects_price").val().trim() == ''){
+        $("#msg-6").show();
+        chk = false;
+    }
+    if($("#projects_location").val().trim() == ''){
+        $("#msg-7").show();
+        chk = false;
+    }
+    if($("#projects_map").get(0).files.length == 0){
+        $("#msg-8").show();
+        chk = false;
+    }
+    if($("#projects_tel").val().trim() == ''){
+        $("#msg-10").show();
+        chk = false;
+    }
+    if($("#projects_picture").get(0).files.length == 0){
+        $("#msg-14").show();
+        chk = false;
+    }
+    if($("#projects_sub_detail").val().trim() == ''){
+        $("#msg-15").show();
+        chk = false;
+    }
+    if($("#projects_detail").val().trim() == ''){
+        $("#msg-16").show();
+        chk = false;
+    }
+
+    num_plans = document.getElementsByName("plans_name[]").length;
+    for(var i=0; i<num_plans;i++){
+        if(document.getElementsByName("plans_name[]")[i].value.trim() == ''){
+            $("#msg-18").show();
+            chk=false;
+        }
+        if(document.getElementsByName("plans_detail[]")[i].value.trim() == ''){
+            $("#msg-18").show();
+            chk=false;
+        }
+        if(document.getElementsByName("plans_picture[]")[i].value == ''){
+            $("#msg-18").show();
+            chk=false;
+        }
+    }
+
+    if(chk){
+        $("#projects_form").submit();
+    }
 }
 </script>

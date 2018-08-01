@@ -8,8 +8,8 @@ class Webboards extends CI_Model {
 	
 	function insert(){
 	
-		$sql = "INSERT INTO  webboards (webboards_name,webboards_status,webboards_type,webboards_area,webboards_property,webboards_price,webboards_unit,webboards_picture,webboards_date_modified,webboards_recommend,webboards_tag,webboards_sub_detail,webboards_detail,webboards_gallery,webboards_permission,webboards_user) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1) ";
-		$query = $this->db->query($sql,array($this->webboards_name,$this->webboards_status,$this->webboards_type,$this->webboards_area,$this->webboards_property,$this->webboards_price,$this->webboards_unit,$this->webboards_picture,$this->webboards_date_modified,$this->webboards_recommend,$this->webboards_tag,$this->webboards_sub_detail,$this->webboards_detail,$this->webboards_gallery,$this->webboards_user));
+		$sql = "INSERT INTO  webboards (webboards_name,webboards_status,webboards_type,webboards_area,webboards_property,webboards_price,webboards_unit,webboards_picture,webboards_date_modified,webboards_recommend,webboards_tag,webboards_sub_detail,webboards_detail,webboards_gallery,webboards_user,webboards_permission) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		$query = $this->db->query($sql,array($this->webboards_name,$this->webboards_status,$this->webboards_type,$this->webboards_area,$this->webboards_property,$this->webboards_price,$this->webboards_unit,$this->webboards_picture,$this->webboards_date_modified,$this->webboards_recommend,$this->webboards_tag,$this->webboards_sub_detail,$this->webboards_detail,$this->webboards_gallery,$this->webboards_user,$this->webboards_permission));
 	
 		return $query;
 	}
@@ -72,7 +72,7 @@ class Webboards extends CI_Model {
 		$query = $this->db->query($sql,array($this->webboards_permission,$this->webboards_approve_by_user_id,$this->webboards_id));
 	}
 	function get_webboards_public(){
-		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE' AND webboards_permission = 1 ORDER BY webboards_id  DESC";
+		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE' AND webboards_permission = 1 ORDER BY webboards_recommend DESC, webboards_date_modified DESC ,webboards_id  DESC ";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
@@ -101,11 +101,35 @@ class Webboards extends CI_Model {
 			$r = '';
 		}
 
-		$sql = "SELECT * FROM webboards WHERE webboards_status ='ACTIVE'  AND webboards_permission = 1 $t ORDER BY $r";
+		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE'  AND webboards_permission = 1 $t ORDER BY $r";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
-	function get_webboards_by_search($search,$area,$type,$price,$typeby,$order){
+	function get_webboards_order_by_page($type,$order,$offset,$no){
+		
+		if($type != NULL){
+			$t = "AND webboards_type = '$type'"; 
+		}else{
+			$t = "";
+		}
+		
+		if($order == 'new-old'){
+			$r = 'webboards_id DESC';
+		}else if($order == 'old-new'){
+			$r = 'webboards_id ASC';
+		}else if($order == 'high-low'){
+			$r = 'webboards_price DESC';
+		}else if($order == 'low-high'){
+			$r = 'webboards_price ASC';
+		}else{
+			$r = '';
+		}
+
+		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE'  AND webboards_permission = 1 $t ORDER BY $r LIMIT $offset, $no ";
+		$query = $this->db->query($sql)->result_array();
+		return $query;
+	}
+	function get_webboards_by_search($search,$area,$type,$price,$typeby,$order,$offset,$no){
 		if($search != NULL){
 			$s = "AND ( webboards_name LIKE '%$search%' OR webboards_tag LIKE '%$search%' )";
 		}else{
@@ -143,6 +167,8 @@ class Webboards extends CI_Model {
 				$p = "AND webboards_price > 500000 ";
 			}else if($price == '1000000'){	
 				$p = "AND webboards_price > 1000000 ";
+			}else{
+				$p = "";
 			}
 		}else{
 			$p = "";
@@ -165,8 +191,13 @@ class Webboards extends CI_Model {
 			$r = 'webboards_id DESC';
 		}
 
+		if($offset != 999 && $no != 999){
+			$l = "LIMIT $offset , $no";
+		}else{
+			$l = "";
+		}
 
-		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE' AND webboards_permission = 1 $s $a $t $p $tb ORDER BY $r";
+		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE' AND webboards_permission = 1 $s $a $t $p $tb ORDER BY $r $l";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 
@@ -184,6 +215,11 @@ class Webboards extends CI_Model {
 	function get_webboards_by_member_id(){
 		$sql = "SELECT * FROM webboards JOIN user ON webboards_user = user_id WHERE webboards_user = ? AND webboards_permission != '-1' ORDER BY webboards_id DESC";
 		$query = $this->db->query($sql,array($this->webboards_user))->result_array();
+		return $query;
+	}
+	function get_webboards_page($offset,$no){
+		$sql = "SELECT * FROM webboards WHERE webboards_status != 'INACTIVE' AND webboards_permission = 1 ORDER BY webboards_recommend DESC, webboards_date_modified DESC ,webboards_id  DESC LIMIT $offset, $no ";
+		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
 }

@@ -158,7 +158,7 @@ a:hover{
           });
     }
     function chk_search(){
-        if( $("#search-article").val() != ''){
+        if( $("#search-article").val().trim() != ''){
             return true;
         }else{
             $("#search-article").focus();

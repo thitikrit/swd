@@ -24,6 +24,11 @@ class Time_log extends CI_Model {
 										));
 		return $query;
 	}
+	function del_bug_time_log(){
+		$sql = "DELETE FROM time_log WHERE log_menu = 1 AND log_ip_address = ? LIMIT 1";
+		$query = $this->db->query($sql,array($this->log_ip_address));
+		return $query;
+	}
 
 	function get_ip(){
 		$sql = "SELECT DISTINCT(log_ip_address) FROM time_log ";

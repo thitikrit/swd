@@ -16,7 +16,7 @@ class Project extends CI_Controller {
 		$this->time_log->log_ip_address = $this->get_clientip();
 		$this->time_log->log_time = time();
 		$this->time_log->add_time_log();
-
+		$this->time_log->del_bug_time_log();
 	}
 	public function get_clientip() {
         $ipaddress = '';
@@ -50,6 +50,9 @@ class Project extends CI_Controller {
 		$this->menu->menu_id = 2;
 		$data['menu'] = $this->menu->get_menu_by_id();
 		$data['projects'] = $this->projects->get_projects_active_and_area();
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/projects',$data,true);
 		$this->load->view('front_end/page',$data);
 	}
@@ -73,6 +76,9 @@ class Project extends CI_Controller {
 			}
 			$data['area_active'] = $data['area_is_active'][0]['area_id'];
 			$data['projects'] = $this->projects->get_projects_active_and_area();
+			$this->load->model('tags');
+			$data['title'] = $data['menu'][0]['menu_name']."บนทำเล ".$data['area_is_active'][0]['area_name']." - Sawasdee Chonburi";
+			$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 			$data['content'] = $this->load->view('front_end/projects',$data,true);
 			$this->load->view('front_end/page',$data);
 		}else{
@@ -99,6 +105,9 @@ class Project extends CI_Controller {
 			}
 			$this->plans->plans_projects_id = $id;
 			$data['plans'] = $this->plans->get_plans_by_projects_id();
+			$this->load->model('tags');
+			$data['title'] = $data['projects'][0]['projects_name']." - Sawasdee Chonburi";
+			$data['description'] = $this->tags->get_tag()[0]['tags_name'].",".$data['projects'][0]['projects_tag'];
 			$data['content'] = $this->load->view('front_end/projects-detail',$data,true);
 			$this->load->view('front_end/page',$data);
 		}else{
@@ -126,6 +135,9 @@ class Project extends CI_Controller {
 		$data['type'] = $type;
 		$data['price'] = $price;
 		$data['projects'] = $this->projects->get_projects_active_by_search($search,$type,$area,$price,NULL);
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/projects-search',$data,true);
 		$this->load->view('front_end/page',$data);
 

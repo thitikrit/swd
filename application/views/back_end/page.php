@@ -16,7 +16,6 @@
     <?php }else{ ?>
         <title>SWD - Member</title>
     <?php }?>
-    <
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/monster-lite/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->

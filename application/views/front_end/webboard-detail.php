@@ -118,26 +118,30 @@ a:hover{
                         <div class="col-sm-12 text-center" style="padding-top: 10px">
                             <h2  style="color:<?php if($val['webboards_type'] == 'SELL'){ echo 'deeppink'; }else{ echo 'deepskyblue'; } ?>"><?php echo $val['webboards_name'];?></h2>  <hr/>
                         </div>
+                        <?php if(!empty($val['webboards_gallery'])){ ?>
                         <div class="col-sm-4" style="padding-bottom: 25px;padding-top: 10px;">      
                             <div id="gallery" style="display:none;">
                                 <?php $gallery = json_decode($val['webboards_gallery']); 
                                 for($i = 0 ; $i < count($gallery);$i++){ ?>
                                 <a href="#">
-                                <img alt="<?php echo $i ; ?>"
+                                <img alt="<?php echo $i+1 ; ?>"
                                      src="<?php echo base_url();?>images/webboards/gallery/<?php echo $gallery[$i]; ?>"
                                      data-image="<?php echo base_url();?>images/webboards/gallery/<?php echo $gallery[$i]; ?>"
-                                     data-description="<?php echo $i ; ?>"
+                                     data-description="<?php echo $i+1 ; ?>"
                                      style="display:none">
                                 </a>
                                 <?php } ?>
                                
                             </div>
-                        </div>                 
+                        </div>    
+                        <?php } ?> 
+                        <?php if(!empty($val['webboards_gallery'])){ ?>            
                         <div class="col-sm-8" style="font-size: 19px;line-height:30px;padding-bottom: 25px;padding-top: 10px;">
+                        <?php }else{ ?>
+                        <div class="col-sm-12" style="font-size: 19px;line-height:30px;padding-bottom: 25px;padding-top: 10px;">
+                        <?php }?>
                             <?php echo $val['webboards_detail']; ?>
-                            <?php if( $val['user_status'] == 'MEMBER'){ ?>
-                            <br/><i class="fa fa fa-phone o m-r-10" aria-hidden="true"></i><b> ติดต่อสอบถาม : </b><?php echo $val['user_tel']; ?>
-                            <?php }?>
+                       
                             <hr/>
 
                             <?php if($val['webboards_tag'] != NULL){ ?>
@@ -174,9 +178,9 @@ a:hover{
 <script type='text/javascript' src='<?php echo base_url();?>assets/unitegallery-master/package/unitegallery/themes/tiles/ug-theme-tiles.js'></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-
+        <?php if(!empty($val['webboards_gallery'])){ ?>
         jQuery("#gallery").unitegallery();
-
+        <?php }?>
     });  
     var check_form = 1;
     function orderBy(order){

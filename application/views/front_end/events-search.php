@@ -161,7 +161,7 @@ a:hover{
           });
     }
      function chk_search(){
-        if( $("#search-events").val() != ''){
+        if( $("#search-events").val().trim() != ''){
             return true;
         }else{
             $("#search-events").focus();

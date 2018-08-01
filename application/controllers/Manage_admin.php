@@ -73,7 +73,7 @@ class Manage_admin extends Manage_center {
 		}
 	}
 	public function create(){
-		$data['menu'] = 12;
+		$data['menu'] = 11;
 		$data['sidebar'] = $this->load->view('back_end/sidebar',$data,true);
 		$data['content'] = $this->load->view('back_end/admin_create',$data,true);
 		$this->load->view('back_end/page',$data);

@@ -127,7 +127,7 @@ var chart = AmCharts.makeChart("chartdiv", {
                 <?php foreach($gf as $gfx){ 
                     if($gfx['log_year'] == $yx['log_year']){ 
                         if($gfx['log_menu'] == 1){
-                            echo '"a": '.$gfx["no"].',';
+                            echo '"a": '.floor($gfx["no"]/2).',';
                         }else if($gfx['log_menu'] == 2){
                             echo '"b": '.$gfx["no"].',';      
                         }else if($gfx['log_menu'] == 3){
@@ -190,7 +190,7 @@ var chart = AmCharts.makeChart("chartdiv", {
                 <?php foreach($gf as $gfx){ 
                     if($gfx['log_month'] == $mx['log_month']){ 
                         if($gfx['log_menu'] == 1){
-                            echo '"a": '.$gfx["no"].',';
+                            echo '"a": '.floor($gfx["no"]/2).',';
                         }else if($gfx['log_menu'] == 2){
                             echo '"b": '.$gfx["no"].',';      
                         }else if($gfx['log_menu'] == 3){
@@ -221,7 +221,7 @@ var chart = AmCharts.makeChart("chartdiv", {
                 <?php foreach($gf as $gfx){ 
                     if($gfx['log_year'] == $yx['log_year']){ 
                         if($gfx['log_menu'] == 1){
-                            echo '"a": '.$gfx["no"].',';
+                            echo '"a": '.floor($gfx["no"]/2).',';
                         }else if($gfx['log_menu'] == 2){
                             echo '"b": '.$gfx["no"].',';      
                         }else if($gfx['log_menu'] == 3){
@@ -281,7 +281,7 @@ var chart = AmCharts.makeChart("chartdiv", {
                 <?php foreach($gf as $gfx){ 
                     if($gfx['log_year'] == $year){ 
                         if($gfx['log_menu'] == 1){
-                            echo '"a": '.$gfx["no"].',';
+                            echo '"a": '.floor($gfx["no"]/2).',';
                         }else if($gfx['log_menu'] == 2){
                             echo '"b": '.$gfx["no"].',';      
                         }else if($gfx['log_menu'] == 3){

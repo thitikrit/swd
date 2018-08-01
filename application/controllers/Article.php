@@ -16,7 +16,7 @@ class Article extends CI_Controller {
 		$this->time_log->log_ip_address = $this->get_clientip();
 		$this->time_log->log_time = time();
 		$this->time_log->add_time_log();
-
+		$this->time_log->del_bug_time_log();
 	}
 	public function get_clientip() {
         $ipaddress = '';
@@ -51,6 +51,9 @@ class Article extends CI_Controller {
 		$this->menu->menu_id = 6;
 		$data['menu'] = $this->menu->get_menu_by_id();
 		$data['articles'] = $this->articles->get_articles_active();
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/articles',$data,true);
 		$this->load->view('front_end/page',$data);
 	}
@@ -71,6 +74,9 @@ class Article extends CI_Controller {
 			if(empty($data['article'])){
 				redirect('article');
 			}
+			$this->load->model('tags');
+			$data['title'] = $data['article'][0]['articles_name']." - Sawasdee Chonburi";
+			$data['description'] = $this->tags->get_tag()[0]['tags_name'].",".$data['article'][0]['articles_tag'];
 			$data['content'] = $this->load->view('front_end/article-detail',$data,true);
 			$this->load->view('front_end/page',$data);
 
@@ -104,6 +110,9 @@ class Article extends CI_Controller {
 		$data['menu'] = $this->menu->get_menu_by_id();
 		$data['search'] = $search;
 		$data['articles'] = $this->articles->get_articles_by_search($search,'DESC');
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/articles-search',$data,true);
 		$this->load->view('front_end/page',$data);
 	}

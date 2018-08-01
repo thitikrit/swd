@@ -64,6 +64,7 @@ class Manage_webboards extends Manage_center {
 		$this->webboards->webboards_date_modified = time();
 		$this->webboards->webboards_gallery = NULL;
 		$this->webboards->webboards_user = $this->session->userdata("user_id");
+		$this->webboards->webboards_permission = 1;
 
 
 		if(!empty($_FILES["webboards_picture"]["tmp_name"])){

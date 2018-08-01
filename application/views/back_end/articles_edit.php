@@ -24,7 +24,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <?php foreach($articles_detail as $val){ ?>
-<form id="articles_form" name="articles_form" method="post" action="<?php echo base_url();?>manage_articles/update" onsubmit="return chk_form();"  enctype="multipart/form-data">
+<form id="articles_form" name="articles_form" method="post" action="<?php echo base_url();?>manage_articles/update" enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -51,7 +51,6 @@
                             <select class="form-control form-control-line" id="articles_status" name="articles_status">
                                 <option value="ACTIVE" <?php if($val['articles_status'] == 'ACTIVE'){ echo 'selected'; } ?>>เผยแพร่</option>
                                 <option value="INACTIVE" <?php if($val['articles_status'] == 'INACTIVE'){ echo 'selected'; } ?>>ไม่เผยแพร่</option>
-                                <option value="CANCEL" <?php if($val['articles_status'] == 'CANCEL'){ echo 'selected'; } ?>>ยกเลิกการเผยแพร่</option>
                             </select>
                         </div>
                     </div>
@@ -123,7 +122,7 @@
 
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
         <input type="hidden" id="articles_id" name="articles_id" value="<?php echo $val['articles_id'];?>" />        
-        <button class="btn btn-primary" >บันทึก</button>
+        <button class="btn btn-primary" type="button" onclick="chk_form();">บันทึก</button>
         <a href="<?php echo base_url(); ?>manage_articles" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
@@ -177,6 +176,7 @@ function chk_file(obj){
         } 
 }
 function chk_form(){
+    event.preventDefault();
     chk = true;
     if($("#articles_name").val().trim() == ''){
         $("#msg-1").show();
@@ -190,7 +190,8 @@ function chk_form(){
           $("#msg-4").show();
           chk = false;
     }
-
-    return chk;
+    if(chk){
+        $("#articles_form").submit();
+    }
 }
 </script>

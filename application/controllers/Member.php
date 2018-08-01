@@ -42,9 +42,9 @@ class Member extends CI_Controller {
 		$this->webboards->webboards_date_modified = time();
 		$this->webboards->webboards_gallery = NULL;
 		if($this->input->post('webboards_status') == 'ACTIVE'){
-			$this->webboards->webboards_permission = -1;
+			$this->webboards->webboards_permission = 0;
 		}else{
-			$this->webboards->webboards_permission = NULL;
+			$this->webboards->webboards_permission = -1;
 		}
 		$this->webboards->webboards_user = $this->session->userdata("user_id");
 

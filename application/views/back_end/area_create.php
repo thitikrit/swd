@@ -24,7 +24,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>manage_projects/area_add"  enctype="multipart/form-data">
+<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>manage_projects/area_add" onsubmit="return chk_form();" enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -33,7 +33,8 @@
                     <div class="form-group">
                         <label class="col-md-12">ชื่อทำเล</label>
                             <div class="col-md-12">
-                            <input id="area_name" name="area_name" type="text" placeholder="กรุณากรอกชื่อทำเล" class="form-control form-control-line" value="" required>
+                            <input id="area_name" name="area_name" type="text" placeholder="กรุณากรอกชื่อทำเล" class="form-control form-control-line" value="">
+                             <p id="msg-1" class="help-block" style="color:red;display:none;">กรุณากรอกชื่อทำเล *</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,3 +64,21 @@
 <!-- ============================================================== -->
 <!-- End PAge Content -->
 <!-- ============================================================== -->
+<script> 
+$(function() { 
+    $( "input" ).keypress(function() {
+        $(".help-block").hide();
+    }); 
+}); 
+
+function chk_form(){
+    chk = true;
+    if($("#area_name").val().trim() == ''){
+        $("#msg-1").show();
+        chk = false;
+    }
+    
+    return chk;
+}
+
+</script>

@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12">ชื่อผู้ดูแลล</label>
+                        <label class="col-md-12">ชื่อผู้ดูแลระบบ</label>
                             <div class="col-md-12">
                             <?php echo $val['user_fullname'];?>
                         </div>

@@ -4,9 +4,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Access-Control-Allow-Origin" content="*">
-<title>Sawasdee Chonburi</title>
+<title><?php echo $title; ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="xzcvskdj,sadasdsad" />
+<meta name="description" content="<?php echo $description; ?>" />
 <meta name="author" content="บริษัท สวัสดีชลบุรี จำกัด" />
 <!-- css -->
 <link rel="icon" type="image/ico" sizes="16x16" href="<?php echo base_url(); ?>images/sawasdee.ico">
@@ -72,7 +72,7 @@ header .navbar-collapse ul.navbar-nav {
 .navbar .nav > li > a {
     color: white;
     text-shadow: none;
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 8px !important;
 }
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
@@ -86,7 +86,7 @@ header .navbar-collapse ul.navbar-nav {
 }
 header .nav li .dropdown-menu li a {
     color:white;
-     font-size: 18px;
+     font-size: 17px;
 }
 .info-blocks {
     margin-bottom: 35px;

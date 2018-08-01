@@ -272,7 +272,9 @@ class Manage_projects extends Manage_center {
 		    		$this->plans->plans_gallery = NULL;
 		    	}
 
-		    	$this->plans->insert();	
+		    	if($this->plans->plans_name != ''  && $this->plans->plans_detail != '' && $this->plans->plans_picture != ''){
+		    		$this->plans->insert();	
+				}
 			}
 		}
 		redirect('manage_projects/projects_list');
@@ -501,6 +503,9 @@ class Manage_projects extends Manage_center {
 			    	}
 			    	$this->plans->insert();	
 				}
+			}else{
+				$this->plans->plans_projects_id = $projects_id;
+				$this->plans->delete();
 			}
 			redirect('manage_projects/edit/'.$projects_id);
 			

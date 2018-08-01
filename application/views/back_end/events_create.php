@@ -22,7 +22,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>manage_events/add"  onsubmit="return chk_form();"  enctype="multipart/form-data">
+<form id="events_form" name="events_form" method="post" action="<?php echo base_url();?>manage_events/add" enctype="multipart/form-data">
 <div class="row">
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
@@ -51,7 +51,6 @@
                             <select class="form-control form-control-line" id="events_status" name="events_status">
                                 <option value="ACTIVE" >เผยแพร่</option>
                                 <option value="INACTIVE" >ไม่เผยแพร่</option>
-                                <option value="CANCEL" >ยกเลิกการเผยแพร่</option>
                             </select>
                         </div>
                     </div>
@@ -119,7 +118,7 @@
     <!-- Column -->
 
     <div class="col-lg-12 col-xlg-12 col-md-12 text-center"> 
-        <button class="btn btn-primary" >บันทึก</button>
+        <button class="btn btn-primary"  type="button" onclick="chk_form();">บันทึก</button>
         <a href="<?php echo base_url(); ?>manage_events" class="btn btn-warning" style="position:absolute;left:15px;">ย้อนกลับ</a>
     </div>
     <br/>
@@ -170,6 +169,7 @@ function chk_file(obj){
         } 
 }
 function chk_form(){
+    event.preventDefault();
     chk = true;
     if($("#events_name").val().trim() == ''){
         $("#msg-1").show();
@@ -187,7 +187,9 @@ function chk_form(){
           $("#msg-2").show();
           chk = false;
     }
-    return chk;
+    if(chk){
+        $("#events_form").submit();
+    }
 }
 
 </script>

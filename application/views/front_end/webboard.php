@@ -55,10 +55,19 @@ a:hover{
     color:gray;
 }
 .btn-regis-webboard{
-    font-weight:bold;height:40px;font-size:20px;color:white;background-color:#ff0000d1;border:none;padding-left: 15px;padding-right:15px;
+    font-weight:bold;height:40px;font-size:20px;color:white;background-color:#294cee;border:none;padding-left: 15px;padding-right:15px;
 }
 .btn-member-backend{
-    font-weight:bold;height:40px;font-size:20px;color:white;background-color:limegreen;border:none;padding-left: 15px;padding-right:15px;
+    font-weight:bold;height:40px;font-size:20px;color:white;background-color:#294cee;border:none;padding-left: 15px;padding-right:15px;
+}
+.pagination>li>a, .pagination>li>span {
+    color:#fff;
+    background-color: dodgerblue;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+.pagination>li>a:disabled{
+    color:red;
 }
 </style>
 
@@ -108,13 +117,13 @@ a:hover{
                         </form>
                         <?php if(empty($this->session->userdata("user_username"))){ ?>
                                 <div style="padding-top: 10px;">
-                                    <a href="<?php echo base_url();?>register"><button class="btn-regis-webboard" >สร้างกระดานซื้อขาย ฟรี!!!
+                                    <a href="<?php echo base_url();?>register"><button class="btn-regis-webboard" >ลงประกาศขาย ฟรี!!!
                                     </button></a>
                                 </div>
                         <?php }else{ ?>
                             <?php if($this->session->userdata("user_status") == 'MEMBER'){ ?>
                                 <div style="padding-top: 10px;">
-                                    <a href="<?php echo base_url();?>member/webboard"><button class="btn-member-backend" >สร้างกระดานซื้อขาย
+                                    <a href="<?php echo base_url();?>member/webboard"><button class="btn-member-backend" >สร้างประกาศขาย
                                     </button></a>
 
                                 </div>
@@ -133,7 +142,7 @@ a:hover{
             <div class="row" style="margin-bottom:5px;">
                 <div class="col-sm-12 col-md-12 col-lg-12 text-center ">
                      <div style="margin-top:25px;" align="center">
-                        <span style="font-size:18px;margin-top:2px;font-weight: bold;color:#777777;padding-left:4%;float:left">ทั้งหมด  <?php echo count($webboards_list);?> รายการ</span>
+                        <span style="font-size:18px;margin-top:2px;font-weight: bold;color:#777777;padding-left:4%;float:left">ทั้งหมด  <?php echo $total_rows;?> รายการ</span>
                         <span style="font-size:18px;font-weight: bold;color:#777777;padding-right:3%;float:right">
                             เรียงลำดับตาม : 
                             <select id="typeby" onchange="orderBy()">
@@ -198,8 +207,20 @@ a:hover{
                         <?php if($num_cols == 0){ ?>
                         </div>
                         <?php $num_cols = 2; }?> 
-
                     <?php }?>
+                    <div class="col-sm-12 text-center" style="height: 150px;">
+                        <ul class="pagination">
+                            <li><a style="cursor: pointer;" onclick="page(1)">หน้าแรก</a></li>
+                            <?php for($i = 1;$i<$total_pages+1;$i++){ ?>
+                                <?php 
+                                $check = $page - $i;
+                                if(   $check == -1 || $check == -2 || $check == 1 || $check == 2 || $check == 0 ){ ?>
+                                <li class="<?php if($page == $i){ echo 'disabled'; } ?>"><a style="cursor: pointer;" onclick="page(<?php echo $i; ?>)"><?php echo $i; ?></a></li>
+                                <?php }?>
+                            <?php }?>
+                            <li><a style="cursor: pointer;" onclick="page(<?php echo $total_pages; ?>)">หน้าสุดท้าย</a></li>
+                        </ul>
+                    </div>
                  <?php }else{ ?>
                 <div class="col-sm-12 col-md-12 col-lg-12 text-center" style="height:300px;padding-top:120px;font-size:25px;">
                     - ไม่พบกระดานซื้อขาย -
@@ -210,13 +231,40 @@ a:hover{
     <!--// End Gallery 1-2 -->  
 <script type="text/javascript">
     var check_form = 1;
-    function orderBy(order){
+    function page(page){
+         $.ajax({
+              type: "POST",
+                  url: "<?php echo base_url();?>webboard/page/"+page+"",
+                  data: {},
+                  cache : false,
+                  success: function(response)
+                  {
+                      $("#web-all").html(response);
+                  }
+          });
+    }
+    function page_order(page){
         type = $("#typeby").val();
         order = $("#orderby").val();
         $.ajax({
               type: "POST",
+                  url: "<?php echo base_url();?>webboard/order/"+page+"",
+                  data: {typeby:type,orderby:order,page,page},
+                  cache : false,
+                  success: function(response)
+                  {
+                      $("#web-all").html(response);
+                  }
+          });
+    }
+    function orderBy(order){
+        type = $("#typeby").val();
+        order = $("#orderby").val();
+        page = $("#page").val();
+        $.ajax({
+              type: "POST",
                   url: "<?php echo base_url();?>webboard/order",
-                  data: {typeby:type,orderby:order},
+                  data: {typeby:type,orderby:order,page,page},
                   cache : false,
                   success: function(response)
                   {
@@ -226,7 +274,7 @@ a:hover{
     }
     function chk_search(){
         if(check_form == 1){
-            if( $("#search-webboard").val() != ''){
+            if( $("#search-webboard").val().trim() != ''){
                 return true;
             }else{
                 $("#search-webboard").focus();
@@ -234,7 +282,7 @@ a:hover{
             }
         }else{
             if( $("#search-area").val() == '' && $("#search-type").val() == '' && $("#search-price").val() == 'default'){
-                if( $("#search-webboard").val() != ''){
+                if( $("#search-webboard").val().trim() != ''){
                     return true;
                 }else{
                     $("#search-webboard").focus();

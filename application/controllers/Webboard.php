@@ -16,7 +16,7 @@ class Webboard extends CI_Controller {
 		$this->time_log->log_ip_address = $this->get_clientip();
 		$this->time_log->log_time = time();
 		$this->time_log->add_time_log();
-
+		$this->time_log->del_bug_time_log();
 	}
 	public function get_clientip() {
         $ipaddress = '';
@@ -42,13 +42,27 @@ class Webboard extends CI_Controller {
 		$this->load->model('area');
 		$this->load->model('menu');
 		$this->load->model('webboards');
-		$data['webboards_list'] = $this->webboards->get_webboards_public();
+
+		$page = 1;
+		$no_of_records_per_page = 10;
+		$offset = ($page-1) * $no_of_records_per_page;
+		$total_rows = count($this->webboards->get_webboards_public());
+		$total_pages = ceil($total_rows / $no_of_records_per_page);
+		$data['page'] = $page;
+		$data['total_pages'] = $total_pages ;
+		$data['total_rows'] = $total_rows ;
+
+		$data['webboards_list'] = $this->webboards->get_webboards_page($offset,$no_of_records_per_page);
+
 		$data['area'] = $this->area->get_area_active();
 		$data['menu_list'] = $this->menu->get_menu_active();
 		$data['menu'] = 4;
 		$data['header'] = $this->load->view('front_end/header',$data,true);
 		$this->menu->menu_id = 4;
 		$data['menu'] = $this->menu->get_menu_by_id();
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/webboard',$data,true);
 		$this->load->view('front_end/page',$data);
 	}
@@ -70,6 +84,9 @@ class Webboard extends CI_Controller {
 			if(empty($data['webboards'])){
 				redirect('webboard');
 			}
+			$this->load->model('tags');
+			$data['title'] = $data['webboards'][0]['webboards_name']." - Sawasdee Chonburi";
+			$data['description'] = $this->tags->get_tag()[0]['tags_name'].",".$data['webboards'][0]['webboards_tag'];
 			$data['content'] = $this->load->view('front_end/webboard-detail',$data,true);
 			$this->load->view('front_end/page',$data);
 
@@ -78,7 +95,7 @@ class Webboard extends CI_Controller {
 		}
 	}
 
-	public function order(){
+	public function order($page = 1){
 		$typeby = $this->input->post('typeby');
 		$orderby = $this->input->post('orderby');
 
@@ -91,10 +108,39 @@ class Webboard extends CI_Controller {
 		}
 
 		$this->load->model('webboards');
-		$data['webboards_list'] = $this->webboards->get_webboards_order_by($type,$orderby);
+
+		$page = $page;
+		$no_of_records_per_page = 10;
+		$offset = ($page-1) * $no_of_records_per_page;
+		$total_rows = count($this->webboards->get_webboards_order_by($type,$orderby));
+		$total_pages = ceil($total_rows / $no_of_records_per_page);
+		$data['page'] = $page;
+		$data['total_pages'] = $total_pages ;
+		$data['total_rows'] = $total_rows ;
+
+		$data['webboards_list'] = $this->webboards->get_webboards_order_by_page($type,$orderby,$offset,$no_of_records_per_page);
+
 		echo $this->load->view('front_end/webboards-order',$data,true);
 	}
 
+	
+	public function page($page = 1){
+		$this->load->model('area');
+		$this->load->model('menu');
+		$this->load->model('webboards');
+
+		$page = $page;
+		$no_of_records_per_page = 10;
+		$offset = ($page-1) * $no_of_records_per_page;
+		$total_rows = count($this->webboards->get_webboards_public());
+		$total_pages = ceil($total_rows / $no_of_records_per_page);
+		$data['page'] = $page;
+		$data['total_pages'] = $total_pages ;
+
+		$data['webboards_list'] = $this->webboards->get_webboards_page($offset,$no_of_records_per_page);
+
+		$this->load->view('front_end/webboard-page',$data);
+	}
 	public function search(){
 		
 		$search = trim(str_replace("'","",strip_tags($this->input->post('search-webboard'))));
@@ -104,7 +150,6 @@ class Webboard extends CI_Controller {
 		$this->load->model('area');
 		$this->load->model('menu');
 		$this->load->model('webboards');
-		$data['webboards_list'] = $this->webboards->get_webboards_public();
 		$data['area'] = $this->area->get_area_active();
 		$data['menu_list'] = $this->menu->get_menu_active();
 		$data['menu'] = 4;
@@ -115,11 +160,22 @@ class Webboard extends CI_Controller {
 		$data['area'] = $area;
 		$data['type'] = $type;
 		$data['price'] = $price;
-		$data['webboards_list'] = $this->webboards->get_webboards_by_search($search,$area,$type,$price,NULL,NULL);
+		$page = 1;
+		$no_of_records_per_page = 10;
+		$offset = ($page-1) * $no_of_records_per_page;
+		$total_rows = count($this->webboards->get_webboards_by_search($search,$area,$type,$price,NULL,NULL,999,999));
+		$total_pages = ceil($total_rows / $no_of_records_per_page);
+		$data['page'] = $page;
+		$data['total_pages'] = $total_pages ;
+		$data['total_rows'] = $total_rows ;
+		$data['webboards_list'] = $this->webboards->get_webboards_by_search($search,$area,$type,$price,NULL,NULL,$offset,$no_of_records_per_page);
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/webboard-search',$data,true);
 		$this->load->view('front_end/page',$data);
 	}
-	public function search_order(){
+	public function search_order($page = 1){
 		
 		$search = trim(str_replace("'","",strip_tags($this->input->post('search'))));
 		$area = $this->input->post('area');
@@ -135,8 +191,50 @@ class Webboard extends CI_Controller {
 		}else{
 			$typeby = NULL;
 		}
-		$this->load->model('webboards');		
-		$data['webboards_list'] = $this->webboards->get_webboards_by_search($search,$area,$type,$price,$typeby,$order);
+		$this->load->model('webboards');	
+		$page = 1;
+		$no_of_records_per_page = 10;
+		$offset = ($page-1) * $no_of_records_per_page;
+		$total_rows = count($this->webboards->get_webboards_by_search($search,$area,$type,$price,$typeby,$order,999,999));
+		$total_pages = ceil($total_rows / $no_of_records_per_page);
+		$data['page'] = $page;
+		$data['total_pages'] = $total_pages ;
+		$data['total_rows'] = $total_rows ;
+		$data['webboards_list'] = $this->webboards->get_webboards_by_search($search,$area,$type,$price,$typeby,$order,$offset,$no_of_records_per_page);	
 		echo $this->load->view('front_end/webboard-search-order',$data,true);
+	}
+	public function search_page($page = 1){
+		$search = trim(str_replace("'","",strip_tags($this->input->post('search'))));
+		$area = $this->input->post('area');
+		$type = $this->input->post('type');
+		$price = $this->input->post('price');
+		$typeby = $this->input->post('typeby');
+		$order = $this->input->post('orderby');
+		
+		if($typeby == 'sell'){
+			$typeby = 'SELL';
+		}else if($typeby == 'hire'){
+			$typeby = 'HIRE';
+		}else{
+			$typeby = NULL;
+		}
+
+		$this->load->model('area');
+		$this->load->model('menu');
+		$this->load->model('webboards');
+		$data['search'] = $search;
+		$data['area'] = $area;
+		$data['type'] = $type;
+		$data['price'] = $price;
+		$page = $page;
+		$no_of_records_per_page = 10;
+		$offset = ($page-1) * $no_of_records_per_page;
+		$total_rows = count($this->webboards->get_webboards_by_search($search,$area,$type,$price,$typeby,$order,999,999));
+		$total_pages = ceil($total_rows / $no_of_records_per_page);
+		$data['page'] = $page;
+		$data['total_pages'] = $total_pages ;
+		$data['total_rows'] = $total_rows ;
+		$data['webboards_list'] = $this->webboards->get_webboards_by_search($search,$area,$type,$price,$typeby,$order,$offset,$no_of_records_per_page);
+		$this->load->view('front_end/webboard-search-page',$data);
 	}
 }

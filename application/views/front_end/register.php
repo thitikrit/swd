@@ -134,7 +134,7 @@
                                 <div class="col-md-12" style="padding-top: 15px;">
                                   <div class="col-md-4">
                                       <div class="controls">                                  
-                                        <span style="font-size:20px;">เบอร์โทรศัพท์ : </span><br/><p style="color:red;">* ใช้เพื่อติดต่อกระดานซื้อขาย</p>
+                                        <span style="font-size:20px;">เบอร์โทรศัพท์ : </span><br/><p style="color:red;"></p>
                                       </div>
                                   </div>
                                    <div class="col-md-8">
@@ -273,6 +273,7 @@ var tel_status = false;
       } 
     });
     $( "#tel" ).keyup(function() {
+      $(".tel-status").hide();
       tel_status = false;
       $(".tel-status").hide();
       if ( /[^0-9]/.test($("#tel").val())){     

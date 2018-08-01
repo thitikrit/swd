@@ -44,7 +44,7 @@
                             </div>
                             <div class="control-group" style="padding-top:10px">
                                 <div class="controls">
-                                  <input type="tel" class="form-control" placeholder="เบอร์โทรศัพท์" id="contacts_tel" name="contacts_tel" style="font-size: 18px;"/>
+                                  <input type="tel" class="form-control" placeholder="เบอร์โทรศัพท์" id="contacts_tel" name="contacts_tel" style="font-size: 18px;" maxlength="10" />
                                   <p id="msg-3" class="help-block" style="color:deeppink;display:none;">กรุณากรอกเบอร์โทรศัพท์ *</p>
                                 </div>
                             </div>  
@@ -71,7 +71,13 @@
     $( "textarea" ).keypress(function() {
        $(".help-block").hide();
     });
-   
+    $( "#contacts_tel" ).keyup(function() {
+      if ( /[^0-9]/.test($("#contacts_tel").val())){     
+          alert("กรอกได้เฉพาะตัวเลข");  
+          $("#contacts_tel").val('');   
+          return (false);    
+      }
+    });
    function chk_form(){
       event.preventDefault();
        var chk = true;

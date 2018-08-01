@@ -53,10 +53,19 @@ a:hover{
     color:gray;
 }
 .btn-regis-webboard{
-    font-weight:bold;height:40px;font-size:20px;color:white;background-color:#ff0000d1;border:none;padding-left: 15px;padding-right:15px;
+    font-weight:bold;height:40px;font-size:20px;color:white;background-color:#294cee;border:none;padding-left: 15px;padding-right:15px;
 }
 .btn-member-backend{
-    font-weight:bold;height:40px;font-size:20px;color:white;background-color:limegreen;border:none;padding-left: 15px;padding-right:15px;
+    font-weight:bold;height:40px;font-size:20px;color:white;background-color:#294cee;border:none;padding-left: 15px;padding-right:15px;
+}
+.pagination>li>a, .pagination>li>span {
+    color:#fff;
+    background-color: dodgerblue;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+.pagination>li>a:disabled{
+    color:red;
 }
 </style>
 
@@ -129,7 +138,7 @@ a:hover{
             <div class="row" style="margin-bottom:5px;">
                 <div class="col-sm-12 col-md-12 col-lg-12 text-center ">
                      <div style="margin-top:25px;" align="center">
-                        <span style="font-size:18px;margin-top:2px;font-weight: bold;color:#777777;padding-left:4%;float:left">ผลการค้นหาพบ <?php echo count($webboards_list);?> รายการ</span>
+                        <span style="font-size:18px;margin-top:2px;font-weight: bold;color:#777777;padding-left:4%;float:left">ผลการค้นหาพบ <?php echo $total_rows;?> รายการ</span>
                         <span style="font-size:18px;font-weight: bold;color:#777777;padding-right:3%;float:right">
                             เรียงลำดับตาม : 
                             <select id="typeby" onchange="orderBy()">
@@ -196,6 +205,19 @@ a:hover{
                         <?php $num_cols = 2; }?> 
 
                     <?php }?>
+                    <div class="col-sm-12 text-center" style="height: 150px;">
+                        <ul class="pagination">
+                            <li><a style="cursor: pointer;" onclick="page(1)">หน้าแรก</a></li>
+                            <?php for($i = 1;$i<$total_pages+1;$i++){ ?>
+                                <?php 
+                                $check = $page - $i;
+                                if(   $check == -1 || $check == -2 || $check == 1 || $check == 2 || $check == 0 ){ ?>
+                                <li class="<?php if($page == $i){ echo 'disabled'; } ?>"><a style="cursor: pointer;" onclick="page(<?php echo $i; ?>)"><?php echo $i; ?></a></li>
+                                <?php }?>
+                            <?php }?>
+                            <li><a style="cursor: pointer;" onclick="page(<?php echo $total_pages; ?>)">หน้าสุดท้าย</a></li>
+                        </ul>
+                    </div>
                  <?php }else{ ?>
             <div class="col-sm-12 col-md-12 col-lg-12 text-center" style="height:300px;padding-top:120px;font-size:25px;">
                 - ไม่พบกระดานซื้อขาย -
@@ -206,7 +228,7 @@ a:hover{
     <!--// End Gallery 1-2 -->  
 <script type="text/javascript">
     var check_form = 1;
-    function orderBy(order){
+    function page(page){
         var search = '<?php echo $search; ?>';
         var area = '<?php echo $area; ?>';
         var type = '<?php echo $type; ?>';
@@ -226,6 +248,40 @@ a:hover{
 
         typeby = $("#typeby").val();
         order = $("#orderby").val();
+
+        $.ajax({
+              type: "POST",
+                  url: "<?php echo base_url();?>webboard/search_page/"+page+"",
+                  data: {typeby:typeby,orderby:order,search:search,area:area,type:type,price:price},
+                  cache : false,
+                  success: function(response)
+                  {
+                      $("#web-all").html(response);
+                  }
+          });
+    }
+    function orderBy(){
+
+        var search = '<?php echo $search; ?>';
+        var area = '<?php echo $area; ?>';
+        var type = '<?php echo $type; ?>';
+        var price = '<?php echo $price; ?>';
+        if(search == ''){
+            search = $("#search-webboard").val();
+        }
+        if(area == ''){
+            area = $("#search-area").val();
+        }
+        if(type == ''){
+            type = $("#search-type").val();
+        }
+        if(price == 'default'){
+            price = $("#search-price").val();
+        }
+
+        typeby = $("#typeby").val();
+        order = $("#orderby").val();
+
         $.ajax({
               type: "POST",
                   url: "<?php echo base_url();?>webboard/search_order",
@@ -239,7 +295,7 @@ a:hover{
     }
     function chk_search(){
         if(check_form == 1){
-            if( $("#search-webboard").val() != ''){
+            if( $("#search-webboard").val().trim() != ''){
                 return true;
             }else{
                 $("#search-webboard").focus();
@@ -247,7 +303,7 @@ a:hover{
             }
         }else{
             if( $("#search-area").val() == '' && $("#search-type").val() == '' && $("#search-price").val() == 'default'){
-                if( $("#search-webboard").val() != ''){
+                if( $("#search-webboard").val().trim() != ''){
                     return true;
                 }else{
                     $("#search-webboard").focus();

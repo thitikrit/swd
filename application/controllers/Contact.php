@@ -16,7 +16,7 @@ class Contact extends CI_Controller {
 		$this->time_log->log_ip_address = $this->get_clientip();
 		$this->time_log->log_time = time();
 		$this->time_log->add_time_log();
-
+		$this->time_log->del_bug_time_log();
 	}
 
 	public function index()
@@ -30,6 +30,9 @@ class Contact extends CI_Controller {
 		$data['header'] = $this->load->view('front_end/header',$data,true);
 		$this->menu->menu_id = 7;
 		$data['menu'] = $this->menu->get_menu_by_id();
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
 		$data['content'] = $this->load->view('front_end/contact',$data,true);
 		$this->load->view('front_end/page',$data);
 	}

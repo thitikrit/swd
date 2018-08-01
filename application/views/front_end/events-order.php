@@ -1,5 +1,4 @@
-<div class="row row-eq-height">
-    <?php if(!empty($events)){ ?>                
+<?php if(!empty($events)){ ?>                
 <?php foreach($events as $val){
 
         if($val['events_recommend'] == 1){ ?>
@@ -11,7 +10,7 @@
                 <div class="col-sm-5 detail" style="height:100%;padding-top:10px;">
                      <img src="<?php echo base_url(); ?>images/events/<?php echo $val['events_picture'];?>" style="max-height:140px;height:100%;width: 100%;border-radius: 5px;" >
                 </div>
-                <div class="col-sm-7 article-detail">
+                <div class="col-sm-7 events-detail">
                     <p><?php echo mb_substr($val['events_sub_detail'],0,140,'UTF-8'); ?>...</p>
                     <a href="<?php echo base_url();?>event/detail/<?php echo $val['events_id'];?>"><button style="background-color:deeppink;border:none;padding:8px 10px;color:white">รายละเอียดเพิ่มเติม</button></a>
                 </div>             

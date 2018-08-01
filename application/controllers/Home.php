@@ -16,7 +16,6 @@ class Home extends CI_Controller {
 		$this->time_log->log_ip_address = $this->get_clientip();
 		$this->time_log->log_time = time();
 		$this->time_log->add_time_log();
-
 	}
 	public function get_clientip() {
         $ipaddress = '';
@@ -39,11 +38,12 @@ class Home extends CI_Controller {
 
 	public function index()
 	{	
+
 		$this->load->model('area');
 		$this->load->model('menu');
 		$this->load->model('company');
 		$this->load->model('projects');
-	
+
 		$data['area'] = $this->area->get_area_active();
 		$data['menu_list'] = $this->menu->get_menu_active();
 		$data['company'] = $this->company->get_company();
@@ -52,7 +52,11 @@ class Home extends CI_Controller {
 		$data['header'] = $this->load->view('front_end/header',$data,true);
 		$this->menu->menu_id = 1;
 		$data['menu'] = $this->menu->get_menu_by_id();
-		$data['content'] = $this->load->view('front_end/home',$data,true);
+
+		$this->load->model('tags');
+		$data['title'] = $data['menu'][0]['menu_name']." - Sawasdee Chonburi";
+		$data['description'] = $this->tags->get_tag()[0]['tags_name'];
+	 	$data['content'] = $this->load->view('front_end/home',$data,true);
 		$this->load->view('front_end/page',$data);
 	}
 }
