@@ -1,3 +1,14 @@
+<style>
+    @media only screen and (max-width: 768px) {
+        .home-page header .navbar-default{
+            position: relative; 
+        }
+        .space{
+            display: none;
+        }
+    }
+.
+</style>
 <?php if($menu[0]['menu_type'] == 'SLIDE' && !empty($menu[0]['menu_picture'])){?>
     <section id="banner">
     <!-- Slider -->
@@ -39,7 +50,7 @@
     <!-- end slider -->
     </section>
 <?php }else{?>
-    <div style="background-color: white;height:72px"><br/><br/><br/>
+    <div style="background-color: white;height:72px" class="space"><br/><br/><br/>
     </div>
     <section id="call-to-action-2" style="padding-top: 50px;padding-bottom:  20px;">
 

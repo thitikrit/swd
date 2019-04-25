@@ -51,6 +51,10 @@ a:hover{
 #search-article::placeholder{
     color:gray;
 }
+.img-article{
+    max-height:140px;height:100%;width: 100%;border-radius: 5px;object-fit: cover;
+    object-position: center;
+}
 </style>
 
     <section id="call-to-action-2" style="padding:10px;padding-bottom:0px;background: aliceblue;box-shadow: 0 2px 2px -2px gray;
@@ -106,7 +110,7 @@ a:hover{
                                 $val['articles_name']; ?></h4></a>
                             </div>
                             <div class="col-sm-5 detail" style="height:100%;padding-top:10px;">
-                                 <img src="<?php echo base_url(); ?>images/articles/<?php echo $val['articles_picture'];?>" style="max-height:140px;height:100%;width: 100%;border-radius: 5px;" >
+                                 <img src="<?php echo base_url(); ?>images/articles/<?php echo $val['articles_picture'];?>" class="img-article">
                             </div>
                             <div class="col-sm-7 article-detail">
                                 <p><?php echo mb_substr($val['articles_sub_detail'],0,140,'UTF-8'); ?>...</p>
@@ -125,7 +129,7 @@ a:hover{
                                 $val['articles_name']; ?></h4></a>
                             </div>
                             <div class="col-sm-5 detail" style="height:100%;padding-top:10px;">
-                                 <img src="<?php echo base_url(); ?>images/articles/<?php echo $val['articles_picture'];?>" style="max-height:140px;height:100%;width: 100%;border-radius: 5px;" >
+                                 <img src="<?php echo base_url(); ?>images/articles/<?php echo $val['articles_picture'];?>" class="img-article">
                             </div>
                             <div class="col-sm-7 article-detail">
                                 <p><?php echo mb_substr($val['articles_sub_detail'],0,140,'UTF-8'); ?>...</p>

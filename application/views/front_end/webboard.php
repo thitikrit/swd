@@ -27,8 +27,8 @@ h4{
     z-index: 10 !important;
 }
 .webboard-detail-bar{
-    padding: 10px 10px;
-    font-size: 18px;
+    padding: 5px 10px;
+    font-size: 15px;
     font-weight: bold;
 }
 a:hover{

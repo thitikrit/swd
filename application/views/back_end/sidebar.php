@@ -7,6 +7,12 @@
                 <a href="<?php echo site_url();?>manage_general" class="waves-effect <?php if($menu == 0){echo 'active';} ?>"><i class="fa fa-dashboard m-r-10" aria-hidden="true"></i>แดชบอร์ด</a>
             </li>
             <li>
+                <a href="<?php echo site_url();?>manage_registrations" class="waves-effect <?php if($menu == 99){echo 'active';} ?>"><i class="fa fa-group m-r-10" aria-hidden="true"></i>รายการลงทะเบียน <span style="padding-left:20px;color:red;font-size: 18px;font-weight: bold">
+                    <?php echo ($this->Registrations->get_count_new() == 0)?'':$this->Registrations->get_count_new();?>
+                        
+                    </span></a>
+            </li>
+            <li>
                 <a href="<?php echo site_url();?>manage_menu" class="waves-effect <?php if($menu == 1){echo 'active';} ?>"><i class="fa fa-globe m-r-10" aria-hidden="true"></i>จัดการเมนู</a>
             </li>
             <li>

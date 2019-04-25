@@ -50,6 +50,10 @@ a:hover{
 #search-events::placeholder{
     color:gray;
 }
+.img-event{
+    max-height:140px;height:100%;width: 100%;border-radius: 5px;object-fit: cover;
+    object-position: center;
+}
 </style>
 
 
@@ -105,7 +109,7 @@ a:hover{
                                 $val['events_name']; ?></h4></a>
                             </div>
                             <div class="col-sm-5 detail" style="height:100%;padding-top:10px;">
-                                 <img src="<?php echo base_url(); ?>images/events/<?php echo $val['events_picture'];?>" style="max-height:140px;height:100%;width: 100%;border-radius: 5px;" >
+                                 <img src="<?php echo base_url(); ?>images/events/<?php echo $val['events_picture'];?>" class="img-event">
                             </div>
                             <div class="col-sm-7 events-detail">
                                 <p><?php echo mb_substr($val['events_sub_detail'],0,140,'UTF-8'); ?>...</p>
@@ -124,7 +128,7 @@ a:hover{
                                 $val['events_name']; ?></h4></a>
                             </div>
                             <div class="col-sm-5 detail" style="height:100%;padding-top:10px;">
-                                 <img src="<?php echo base_url(); ?>images/events/<?php echo $val['events_picture'];?>" style="max-height:140px;height:100%;width: 100%;border-radius: 5px;" >
+                                 <img src="<?php echo base_url(); ?>images/events/<?php echo $val['events_picture'];?>" class="img-event">
                             </div>
                             <div class="col-sm-7 events-detail">
                                 <p><?php echo mb_substr($val['events_sub_detail'],0,140,'UTF-8'); ?>...</p>

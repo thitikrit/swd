@@ -21,6 +21,12 @@
 #search-input:focus{
     outline-color: 
 }
+.img-responsive{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
 </style>
     <section id="call-to-action-2" style="padding: 10px 0;">
         <div class="container">
@@ -140,7 +146,7 @@
                          <div class="col-md-4 col-sm-6 col-xs-12 gallery-item-wrapper area<?php echo $val['area_id']; ?>" >
                             <div class="gallery-item">
                                 <div class="gallery-thumb">
-                                    <img src="<?php echo base_url(); ?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $val['projects_picture'];?>" style="height:180px;width: 100%" class="img-responsive">
+                                    <img src="<?php echo base_url(); ?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $val['projects_picture'];?>"class="img-responsive">
                                     <div class="image-overlay"></div>
                                     <a href="<?php echo site_url();?>project/detail/<?php echo $val['projects_id'];?>" class="gallery-link"><i class="fa fa-eye"></i></a>
                                 </div>

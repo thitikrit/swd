@@ -114,9 +114,12 @@ img.img-polaroid {
 .img-box {
 	max-width:100%;
 }
-.navbar-default .navbar-toggle {
+.navbar-default .navbar-toggle .icon-ber {
     border-color: #002e5b;
     margin-top: 10px;
+}
+.icon-bar {
+	background-color: white !important;
 }
 /*  Header
 ==================================== */
@@ -177,7 +180,7 @@ header .navbar-collapse  ul.navbar-nav {
 header .navbar {min-height: 70px;padding: 18px 0;background: #ffffff;}
 .home-page header .navbar-default{
     background: #ffffff;
-    /* position: absolute; */
+    position: absolute;
     width: 100%;
     box-shadow: 1px 1px 1px rgba(156, 156, 156, 0.36);
 }
@@ -1602,7 +1605,7 @@ article img.pull-right, article .align-right{
 
 @media (max-width: 767px) {
 .navbar-default .navbar-collapse{border-color: none;background: #ffffff;}
-.navbar-default .navbar-toggle .icon-bar {background-color: #002e5b;border-radius: 0;}
+.navbar-default .navbar-toggle .icon-bar {background-color: white;border-radius: 0;}
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
 background-color: rgba(221, 221, 221, 0);
 }
@@ -1659,9 +1662,7 @@ background-color: rgba(221, 221, 221, 0);
 	
 	li.active  {
 		border: none;
-		overflow: hidden;
-		/* background: #2e8eda; */
-}
+	}
 
 	
 	.box {
@@ -1757,6 +1758,46 @@ background-color: rgba(221, 221, 221, 0);
 	}
 
 
+}
+@media (max-width: 1200px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-default .navbar-toggle {
+    border-color: white;
+    margin-top: 15px;
+}
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
 }
 
  

@@ -137,10 +137,11 @@
 .filter li {
     display: inline-block;
     margin: 0;
+
 }
 .filter li:before {
     display: inline-block;
-    content: "/";
+    content: " ";
     padding: 0 25px 0 19px;
     color: rgba(0,0,0,0.20);
 }
@@ -152,6 +153,9 @@
     font-weight: 700;
     font-size: 16px;
     color: #777777;
+    border:1px solid deepskyblue;
+    padding: 5px 10px;
+    border-radius: 10px;
 }
 .filter li a:hover,
 .filter li a:focus,
@@ -207,11 +211,24 @@
 /*	Gallery 1 MEDIA QUERIES
 /*----------------------------------------------------*/
 
+@media only screen and (max-width : 992px) {
+    .filter li {
+        display: inline-block;
+        margin: 0;
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+    .filter li:before {
+        display: inline-block;
+        content: " ";
+        padding: 0;
+        color: rgba(0,0,0,0.20);
+    }
+}
+
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
-	
-		
-	
+
 }
 
 /* Medium Devices, Desktops */

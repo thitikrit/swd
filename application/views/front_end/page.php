@@ -19,6 +19,7 @@
 <link href="<?php echo base_url();?>/assets/united-business/css/style.css" rel="stylesheet" />
 <link href="<?php echo base_url();?>/assets/united-business/css/gallery-1.css" rel="stylesheet">
 <script type='text/javascript' src='<?php echo base_url();?>/assets/js/jquery-11.0.min.js'></script>   
+    <script src="<?php echo base_url();?>assets/jquery.maskedinput/js/jquery.maskedinput.js"></script>
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -54,7 +55,6 @@ html,body,h1,h2,h3,h4,h5,h6,a{
 }
 .home-page header .navbar-default {
     background: rgba(0,0,0,0.5);
-    position: absolute;
     width: 100%;
     box-shadow: none;
 }
