@@ -2,16 +2,23 @@
   #content{
     padding: 0;
   }
-  .registration-banner{
-    object-fit: cover;
-    object-position: center;
-    height: 100%;
+  .registration-banner-desktop{
+	object-fit: cover;
+	object-position: center;
+	height: 100%;
+	width:100%;
+	}
+	.registration-banner-mobile{
+		display: none;
+	}
+  @media only screen and (max-width: 500px) {
+    .registration-banner-mobile{
+    display:block;
+    /*height: 500px;*/
     width:100%;
     }
-  @media only screen and (max-width: 768px) {
-    .registration-banner{
-    height: 500px;
-    width:100%;
+    .registration-banner-desktop{
+    	display:none;
     }
    
   }
@@ -50,7 +57,7 @@
     display: block;
     width: 100%;
     color: #005eab;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 35px;
     border: none;
     background: 0 0;
@@ -496,13 +503,15 @@ select.form-element-field {
 }
 </style>
 <section id="content">
-  <img class="registration-banner" src="<?php echo base_url();?>/images/eiei.jpg"/>
+  <img class="registration-banner-desktop" src="<?php echo base_url();?>images/banner.jpg"/>
+  <img class="registration-banner-mobile" src="<?php echo base_url();?>images/cover_mobile.jpg"/>
   <div class="container">
     <div class="form-registration">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-2 col-lg-6">
         </div>
         <div class="col-12 col-sm-12 col-md-8 col-lg-6" style="background-color: rgba(255,255,255,0.7);padding:20px">
+        	<center><h3 style="color:#005eab">ลงทะเบียนเพื่อรับข้อเสนอเพิ่มเติม</h3></center>
             <form id="form-registration" method="post" onsubmit="chk_form();">
             <div class="row">
               <div class="col-12 col-md-12">
@@ -553,7 +562,7 @@ select.form-element-field {
                   <label class="form-element-label" for="mobile" autocomplete="false">เบอร์มือถือ</label>
                 </div>
               </div>
-              <div class="col-12 col-sm-6 col-md-6">
+              <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-element ">
                   <input id="line" name="line" class="form-element-field" placeholder=" " type="input" required/>
                   <div class="form-element-bar"></div>
@@ -573,7 +582,7 @@ select.form-element-field {
                   <?php }?>
                 </div>
               </div>
-              <div class="col-12 col-sm-12 col-md-12">
+              <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-radio form-radio-inline">
                   <br/>
                   <div class="form-radio-legend">ท่ายได้รับข่าวสารโครงการข้างต้นจากช่องทางใด?</div>

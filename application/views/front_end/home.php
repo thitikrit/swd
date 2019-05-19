@@ -1,15 +1,45 @@
 <?php include 'bar.php';?>
-
+<style>
+  .btn-form{
+   padding:15px 15px;
+   color:white;
+   font-size: 18px;
+   text-align:center;
+   border:1px;
+   border-radius:15px !important;
+   background-color: royalblue;
+   width: 100%;
+   text-align: center;
+   font-weight: bold;
+   outline: none;
+  }
+  .btn-registration{
+    position:absolute;right:10px;
+  }
+  @media only screen and (max-width: 500px) {
+    .btn-registration{
+        position:relative;
+        right:0px;
+        margin-top: 30px;
+      }
+  }
+</style>
 
     <?php foreach($company as $val){ ?>   
     <section id="call-to-action-2">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-9">
+                <div class="col-md-12 col-sm-12">
                     <h1 style="color:white;"><?php echo $val['com_name'];?></h1>
-                    <p style="font-size:22px;font-weight:bold;line-height:35px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $val['com_detail'];?></p>
+                    <p style="font-size:22px;font-weight:bold;line-height:35px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $val['com_detail'];?>
+                        <div class="btn-registration">
+                            <a href="<?php echo base_url();?>registration" >
+                            <button id="btn-form" class="btn-form">ลงทะเบียนเพื่อรับข้อเสนอเพิ่มเติม</button>
+                            </a>
+                        </div>
+                    </p>
                 </div>
-                
+
             </div>
         </div>
     </section>
