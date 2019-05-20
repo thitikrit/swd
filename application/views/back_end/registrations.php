@@ -9,6 +9,9 @@
             <li class="breadcrumb-item active">รายการลงทะเบียน</li>
         </ol>
     </div>
+    <div class="col-md-6 col-4 align-self-center">
+        <a href="<?php echo base_url();?>manage_registrations/export" class="btn pull-right hidden-sm-down btn-success">Download CSV</a>
+    </div>
 </div>
 <!-- ============================================================== -->
 <!-- End Bread crumb and right sidebar toggle -->

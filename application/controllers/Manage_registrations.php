@@ -46,4 +46,10 @@ class Manage_registrations extends Manage_center {
 			redirect('manage_registrations');		
 		}
 	}
+
+
+	public function export(){
+		$this->load->model('Registration_csv_service');
+    	$this->Registration_csv_service->export();
+	}
 }
