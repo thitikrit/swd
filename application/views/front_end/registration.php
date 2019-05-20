@@ -57,7 +57,7 @@
     display: block;
     width: 100%;
     color: #005eab;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 35px;
     border: none;
     background: 0 0;
@@ -501,6 +501,10 @@ select.form-element-field {
   -webkit-appearance: none;
   margin: 0;
 }
+.star{
+  font-size: 20px;
+  color:red;
+}
 </style>
 <section id="content">
   <img class="registration-banner-desktop" src="<?php echo base_url();?>images/banner.jpg"/>
@@ -511,12 +515,13 @@ select.form-element-field {
         <div class="col-12 col-sm-12 col-md-2 col-lg-6">
         </div>
         <div class="col-12 col-sm-12 col-md-8 col-lg-6" style="background-color: rgba(255,255,255,0.7);padding:20px">
-        	<center><h3 style="color:#005eab">ลงทะเบียนเพื่อรับข้อเสนอเพิ่มเติม</h3></center>
+        	<center><h3 style="color:#005eab">ลงทะเบียนรับข้อเสนอพิเศษ</h3></center>
             <form id="form-registration" method="post" onsubmit="chk_form();">
             <div class="row">
               <div class="col-12 col-md-12">
+                <label class="form-element-label" style="color:red;font-size: 14px;"><span class="star"> * </span>ข้อมูลจำเป็น</label><br/><br/>  
                 <div class="form-radio form-radio-inline">
-                  <div class="form-radio-legend">คำนำหน้าชื่อ</div>
+                  <div class="form-radio-legend">คำนำหน้าชื่อ <span class="star"> *</span></div>
                   <label class="form-radio-label">
                       <input name="title_name" class="form-radio-field" type="radio" required value="นาย" />
                       <i class="form-radio-button"></i>
@@ -536,43 +541,45 @@ select.form-element-field {
               </div>
               <div class="col-12 col-sm-6 col-md-6">
                 <div class="form-element ">
-                  <input id="fname" name="fname" class="form-element-field" placeholder=" " type="input" required/>
+                  <input                   
+                  id="fname" name="fname" class="form-element-field" placeholder=" " type="input" autocomplete="false" required />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="fname" autocomplete="false">ชื่อ</label>
+                  <label class="form-element-label" for="fname" >ชื่อ <span class="star"> *</span></label>
                 </div>
               </div>
               <div class="col-12 col-sm-6 col-md-6">
                 <div class="form-element ">
-                  <input id="lname" name="lname" class="form-element-field" placeholder=" " type="input" required/>
+                  <input id="lname" name="lname" class="form-element-field" placeholder=" " type="input" autocomplete="false" required />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="lname" autocomplete="false">นามสกุล</label>
+                  <label class="form-element-label" for="lname" >นามสกุล <span class="star"> *</span></label>
                 </div>
               </div>
               <div class="col-12 col-sm-6 col-md-6">
                 <div class="form-element ">
-                  <input id="email" name="email" class="form-element-field" placeholder=" " type="input" required/>
+                  <input id="mobile" name="mobile" class="form-element-field" placeholder=" " type="input" autocomplete="false" required/>
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="email" autocomplete="false">อีเมล</label>
+                  <label class="form-element-label" for="mobile" >เบอร์มือถือ <span class="star"> *</span></label>
                 </div>
               </div>
               <div class="col-12 col-sm-6 col-md-6">
                 <div class="form-element ">
-                  <input id="mobile" name="mobile" class="form-element-field" placeholder=" " type="input" required/>
+                  <input id="email" name="email" class="form-element-field" placeholder=" " type="input" autocomplete="false" />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="mobile" autocomplete="false">เบอร์มือถือ</label>
+                  <label class="form-element-label" for="email" >อีเมล</label>
                 </div>
               </div>
               <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-element ">
-                  <input id="line" name="line" class="form-element-field" placeholder=" " type="input" required/>
+                  <input id="line" name="line" class="form-element-field" placeholder=" " type="input" autocomplete="false" />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="line" autocomplete="false">ไอดีไลน์</label>
+                  <label class="form-element-label" for="line" >ไอดีไลน์ </label>
                 </div>
               </div>
-              <div class="col-12 col-sm-12 col-md-12">
+              <div class="col-12 col-sm-12 col-md-12"></div>
+              <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-radio form-radio-inline">
                   <br/>
-                  <div class="form-radio-legend">โครงการที่ท่านสนใจ?</div>
+                  <div class="form-radio-legend">โครงการที่ท่านสนใจ? <span class="star"> *</span></div>
                   <?php foreach($projects as $val){?>
                   <label class="form-radio-label">
                       <input name="projects" class="form-radio-field" type="radio" required value="<?php echo $val['projects_name'];?>" />
@@ -585,7 +592,7 @@ select.form-element-field {
               <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-radio form-radio-inline">
                   <br/>
-                  <div class="form-radio-legend">ท่ายได้รับข่าวสารโครงการข้างต้นจากช่องทางใด?</div>
+                  <div class="form-radio-legend">ท่ายได้รับข่าวสารโครงการข้างต้นจากช่องทางใด? <span class="star"> *</span></div>
                   <label class="form-radio-label">
                       <input name="channel" class="form-radio-field" type="radio" required value="เว็บไซต์" />
                       <i class="form-radio-button"></i>

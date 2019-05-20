@@ -34,7 +34,7 @@
                     <p style="font-size:22px;font-weight:bold;line-height:35px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $val['com_detail'];?>
                         <div class="btn-registration">
                             <a href="<?php echo base_url();?>registration" >
-                            <button id="btn-form" class="btn-form">ลงทะเบียนเพื่อรับข้อเสนอเพิ่มเติม</button>
+                            <button id="btn-form" class="btn-form">ลงทะเบียนรับข้อเสนอพิเศษ</button>
                             </a>
                         </div>
                     </p>
