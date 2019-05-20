@@ -24,7 +24,6 @@
       }
   }
 </style>
-
     <?php foreach($company as $val){ ?>   
     <section id="call-to-action-2">
         <div class="container">

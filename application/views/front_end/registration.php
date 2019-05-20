@@ -20,7 +20,6 @@
     .registration-banner-desktop{
     	display:none;
     }
-   
   }
    @media only screen and (max-width: 1024px) {
      .form-element {
