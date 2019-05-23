@@ -591,7 +591,7 @@ select.form-element-field {
               <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-radio form-radio-inline">
                   <br/>
-                  <div class="form-radio-legend">ท่ายได้รับข่าวสารโครงการข้างต้นจากช่องทางใด? <span class="star"> *</span></div>
+                  <div class="form-radio-legend">ท่านได้รับข่าวสารโครงการข้างต้นจากช่องทางใด? <span class="star"> *</span></div>
                   <label class="form-radio-label">
                       <input name="channel" class="form-radio-field" type="radio" required value="เว็บไซต์" />
                       <i class="form-radio-button"></i>
