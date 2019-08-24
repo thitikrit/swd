@@ -134,15 +134,19 @@
     margin: 0 0 60px 0;
     text-align: center;
 }
+.filter.left{
+    text-align: left !important;
+}
 .filter li {
     display: inline-block;
-    margin: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
 
 }
 .filter li:before {
     display: inline-block;
     content: " ";
-    padding: 0 25px 0 19px;
+    padding: 0 0px 0 19px;
     color: rgba(0,0,0,0.20);
 }
 .filter li:first-child:before {

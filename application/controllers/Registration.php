@@ -22,7 +22,7 @@ class Registration extends CI_Controller {
 
 		$this->load->model('projects');
 
-		$data['projects'] = $this->projects->get_projects_active_and_area();
+		$data['projects'] = $this->projects->get_projects_active_and_working();
 		$data['content'] = $this->load->view('front_end/registration',$data,true);
 		$this->load->view('front_end/page',$data);
 	}

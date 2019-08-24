@@ -62,6 +62,8 @@ a:hover{
         margin-bottom:20px;
         word-wrap: break-word;
     }
+    img{  max-width: 100%;
+    height: auto !important;}
 </style>
 
     <section id="call-to-action-2" style="padding:10px;padding-bottom:0px;background: aliceblue;">

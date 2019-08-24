@@ -182,5 +182,10 @@ class Projects extends CI_Model {
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
+	function get_projects_active_and_working(){
+		$sql = "SELECT * FROM projects JOIN workings  ON workings_project_id = projects_id WHERE projects_status = 'ACTIVE' AND workings_type = 'NEW' order by projects_id DESC";
+		$query = $this->db->query($sql)->result_array();
+		return $query;
+	}
 }
 ?>

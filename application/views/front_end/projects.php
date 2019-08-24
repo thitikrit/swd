@@ -130,7 +130,7 @@
             <div class="container">
 
             <div class="editContent">
-                <ul class="filter">
+                <ul class="filter left">
                     <li><a id="a0" href="#" data-filter="*">ทั้งหมด</a></li>
                     <?php foreach($area as $val){?>
                     <li><a id="a<?php echo $val['area_id']; ?>" href="#" data-filter=".area<?php echo $val['area_id']; ?>"><?php echo $val['area_name']; ?></a></li>

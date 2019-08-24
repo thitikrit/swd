@@ -7,7 +7,6 @@
             display: none;
         }
     }
-.
 </style>
 <?php if($menu[0]['menu_type'] == 'SLIDE' && !empty($menu[0]['menu_picture'])){?>
     <section id="banner">

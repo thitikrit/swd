@@ -608,11 +608,20 @@ select.form-element-field {
                       <span>ป้ายประชาสัมพันธ์</span>
                   </label><br/>
                   <label class="form-radio-label">
-                      <input name="channel" class="form-radio-field" type="radio" required value="อื่นๆ" />
+                      <input name="channel" class="form-radio-field" type="radio" required value="เพื่อนแนะนำ" />
                       <i class="form-radio-button"></i>
-                      <span>อื่นๆ</span>
+                      <span>เพื่อนแนะนำ</span>
                   </label><br/>
-
+                  <label class="form-radio-label">
+                      <input name="channel" class="form-radio-field" type="radio" required value="ไลน์แอด" />
+                      <i class="form-radio-button"></i>
+                      <span>ไลน์แอด</span>
+                  </label><br/>
+                  <label class="form-radio-label">
+                      <input name="channel" class="form-radio-field" type="radio" required value="ใบปลิว" />
+                      <i class="form-radio-button"></i>
+                      <span>ใบปลิว</span>
+                  </label><br/>
                 </div>
               </div>
             </div>

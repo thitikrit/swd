@@ -40,6 +40,58 @@ usort($slide, function($a, $b) {
       display: flex;
       flex-wrap: wrap;
     }
+    .blog{
+        background-color:#f5f5f5;font-size:18px;padding:20px;font-weight:none;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px
+    }
+    .blog-detail{
+        background-color:#428bca;color:white;font-size:18px;padding:20px;border-top-left-radius: 20px;border-bottom-left-radius: 20px
+    }
+    #content{
+        padding: 40px 15px;
+    }
+    .section-padding{
+        padding: 40px;background-color:lightgrey
+    }
+     @media only screen and (max-width: 768px) {
+        .home-page header .navbar-default{
+            position: relative; 
+        }
+        .space{
+            display: none;
+        }
+        .blog{
+            background-color:#f5f5f5;
+            font-size:18px;
+            padding:20px;
+            font-weight:none;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .blog-detail{
+            background-color:#428bca;
+            color:white;
+            font-size:18px;
+            padding:20px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 0px;
+        }
+        #content{
+            padding: 40px 0px;
+        }
+        .section-padding{
+            padding: 20px;background-color:lightgrey;
+        }
+        .col-centered {
+           display:inline-block;
+           float:left;
+           /* reset the text-align */
+           text-align:center;
+           /* inline-block space fix */
+           vertical-align: text-top;
+        }
+    }
 </style>
 
 <?php if(!empty($val['projects_slide'])) { ?>
@@ -76,7 +128,7 @@ usort($slide, function($a, $b) {
     </section>   
 <?php }?>
 
-<section id="content" style="padding: 40px 15px;">
+<section id="content" style="">
 
                 <div class="row" > 
                     <div class="col-md-12">
@@ -86,15 +138,15 @@ usort($slide, function($a, $b) {
                     </div>
                 </div>
 
-                    <section class="section-padding" style="padding: 40px;background-color:lightgrey;">
+                    <section class="section-padding">
                         <div class="container">
 
                             <div class="row showcase-section\">
                                 <div class="col-md-1"></div>
-                                <div class="col-md-2" align="left" style="background-color:#428bca;color:white;font-size:18px;padding:20px;border-top-left-radius: 20px;border-bottom-left-radius: 20px">
+                                <div class="col-md-2 blog-detail" align="left">
                                     <b>ข้อมูลโครงการ</b>
                                 </div>
-                                <div class="col-md-8" style="background-color:#f5f5f5;font-size:18px;padding:20px;font-weight:none;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
+                                <div class="col-md-8 blog" >
                                     <?php echo $val['projects_detail'];?>
                                        
                                 </div>
@@ -102,10 +154,10 @@ usort($slide, function($a, $b) {
                             <div class="row showcase-section">
                                 <div class="col-md-1"></div>
 
-                                <div class="col-md-2" align="left" style="background-color:#428bca;color:white;font-size:18px;padding:20px;border-top-left-radius: 20px;border-bottom-left-radius: 20px">
+                                <div class="col-md-2 blog-detail" align="left" >
                                     <b>ติดต่อเรา</b>
                                 </div>
-                                <div class="col-md-8" style="background-color:#f5f5f5;font-size:18px;padding:20px;font-weight:none;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
+                                <div class="col-md-8 blog" >
                                     <?php $contacts = json_decode($val['projects_contact']); ?>
                                     <p> 
                                         <?php if($contacts->projects_tel != ''){ ?>
@@ -127,10 +179,10 @@ usort($slide, function($a, $b) {
                             </div>
                             <div class="row showcase-section">
                                 <div class="col-md-1"></div>
-                                <div class="col-md-2" align="left" style="background-color:#428bca;color:white;font-size:18px;padding:20px;border-top-left-radius: 20px;border-bottom-left-radius: 20px">
+                                <div class="col-md-2 blog-detail" align="left">
                                     <b>ที่ตั้งโครงการ</b>
                                 </div>
-                                <div class="col-md-8" style="background-color:#f5f5f5;font-size:18px;padding:20px;font-weight:none;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px">
+                                <div class="col-md-8 blog">
                                     <p><?php echo $val['projects_location']; ?></p>
                                 </div>
                             </div>
@@ -154,7 +206,7 @@ usort($slide, function($a, $b) {
             <?php if($condition < 3) {?>
             <div class="row" align="center">
                 <?php for($i = 0 ; $i < count($facility);$i++){?>
-                    <div class="col-sm-2 info-blocks col-centered" align="center">
+                    <div class="col-xs-6 col-sm-4 col-md-2  info-blocks col-centered" align="center">
                         <img src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $facility[$i]->picture;?>" height="100px" width="auto" />
                         <div class="info-blocks-in" style="padding: 20px 0px;">
                             <b style="font-size: 18px"><?php echo $facility[$i]->name;?></b>
@@ -165,7 +217,7 @@ usort($slide, function($a, $b) {
             <?php }else if($condition == 3 || $condition == 6 ) {?>
             <div class="row row-eq-height" align="center">
                  <?php for($i = 0 ; $i < count($facility);$i++){?>
-                    <div class="col-sm-2 info-blocks" align="center">
+                <div class="col-xs-6 col-sm-4 col-md-2  info-blocks col-centered" align="center">
                         <img src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $facility[$i]->picture;?>" height="100px" width="auto" />
                         <div class="info-blocks-in" style="padding: 20px 0px;">
                             <b style="font-size: 18px"><?php echo $facility[$i]->name;?></b>
@@ -177,7 +229,7 @@ usort($slide, function($a, $b) {
             <?php $num_item_facility = 0; ?>
             <div class="row" align="center">
                 <?php for($i = 0 ; $i < $condition+1 ;$i++){?>
-                    <div class="col-sm-2 info-blocks col-centered" align="center">
+                    <div class="col-xs-6 col-sm-4 col-md-2  info-blocks col-centered" align="center">
                         <img src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $facility[$i]->picture;?>" height="100px" width="auto" />
                         <div class="info-blocks-in" style="padding: 20px 0px;">
                             <b style="font-size: 18px"><?php echo $facility[$i]->name;?></b>
@@ -185,7 +237,7 @@ usort($slide, function($a, $b) {
                     </div>
                 <?php $num_item_facility++; } ?>
                 <?php for($i = $num_item_facility; $i < count($facility);$i++){?>
-                    <div class="col-sm-2 info-blocks col-centered" align="center">
+                    <div class="col-xs-6 col-sm-4 col-md-2  info-blocks col-centered" align="center">
                         <img src="<?php echo base_url();?>images/projects/<?php echo $val['projects_id'];?>/<?php echo $facility[$i]->picture;?>" height="100px" width="auto" />
                         <div class="info-blocks-in" style="padding: 20px 0px;">
                             <b style="font-size: 18px"><?php echo $facility[$i]->name;?></b>
