@@ -309,16 +309,16 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script>
 <script src="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.css"> 
+<script src="<?php echo base_url();?>assets/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url();?>assets/ckfinder/ckfinder.js"></script>
 <script>
 var count_div_gal; 
 var count_div_fac; 
 var count_tr_pic;
 var count_tr_plans;
 $(function() { 
-    $('#projects_detail').froalaEditor({ 
-        height: 300 ,
-        placeholderText: 'กรุณากรอกรายละเอียด'
-    });
+    CKFinder.setupCKEditor();
+    CKEDITOR.replace( 'projects_detail' );
     count_div_gal = $("#row_div_gal div").length + 1;
     count_div_fac = $("#row_div_fac div").length + 1;
     count_tr_pic = $("#picture_slide tbody tr").length + 1;

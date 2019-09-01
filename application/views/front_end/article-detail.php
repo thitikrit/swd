@@ -99,7 +99,15 @@ a:hover{
                             <div class="col-sm-12">
                                 <?php echo $val['articles_detail']; ?>
                             </div>
-                           
+                            <br/><br/>	
+      						<div class="col-sm-12 text-center ">
+      							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo site_url(); ?>/article/detail/<?php echo $val['articles_id'];?>" style="padding:5px;">
+                              		<img alt="sawasdee-share" src="<?php echo base_url();?>images/fb.png?>" width="40px">
+                          		</a>
+                          		<a href="line://msg/text/<?php echo site_url(); ?>/article/detail/<?php echo $val['articles_id'];?>" target="_blank" style="padding:5px;">
+                                	<img alt="sawasdee-share" src="<?php echo base_url();?>images/line.png?>" width="40px">
+	                            </a>
+                            </div>
                             <div class="col-sm-12">    
                                 <hr/>
                                  <?php if(!empty($val['articles_tag'])){ ?>
@@ -109,7 +117,6 @@ a:hover{
                                     <?php }?>
                                 <?php }?>
                             </div>
-                            
                         </div>
                           
                     </div>           

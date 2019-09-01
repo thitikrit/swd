@@ -176,13 +176,13 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
 <!-- Include Editor JS files. -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script> 
+<script src="<?php echo base_url();?>assets/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url();?>assets/ckfinder/ckfinder.js"></script>
 <script> 
 var count_div_gal; 
 $(function() { 
-    $('textarea').froalaEditor({ 
-        height: 300 ,
-        placeholderText: 'กรุณากรอกรายละเียด'
-    });
+    CKFinder.setupCKEditor();
+    CKEDITOR.replace( 'textarea' );
     count_div_gal = $("#row_div_gal div").length + 1;
 }); 
 function add_gallery(){

@@ -180,13 +180,13 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script> 
 <script src="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.css"> 
+<script src="<?php echo base_url();?>assets/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url();?>assets/ckfinder/ckfinder.js"></script>
 <script>
 var count_div_gal; 
 $(function() { 
-    $('#webboards_detail').froalaEditor({ 
-        height: 300 ,
-        placeholderText: 'กรุณากรอกรายละเอียด',
-    });
+    CKFinder.setupCKEditor();
+    CKEDITOR.replace( 'webboards_detail' );
     count_div_gal = $("#row_div_gal div").length + 1;
     $( "input" ).keypress(function() {
         $(".help-block").hide();
