@@ -63,6 +63,15 @@ a:hover{
         word-wrap: break-word;
     }
 </style>
+<?php if(!empty($article)){ ?>
+    <?php foreach($article as $val){ ?>
+
+	<meta property="og:url"           content="<?php echo site_url(); ?>article/detail/<?php echo $val['articles_id'];?>" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="<?php echo $val['articles_name'];?>" />
+	<meta property="og:description"   content="swd" />
+	<meta property="og:image"         content="<?php echo base_url();?>images/articles/<?php echo $val['articles_picture'];?>" />
+
 
     <section id="call-to-action-2" style="padding:10px;padding-bottom:0px;background: aliceblue;">
         <div class="container">
@@ -82,8 +91,7 @@ a:hover{
             </div>
         </div>
     </section>
-<?php if(!empty($article)){ ?>
-    <?php foreach($article as $val){ ?>
+
     <!-- Start Gallery 1-2 -->
     <section id="gallery-1" class="content-block section-wrapper gallery-1" style="padding-top: 40px;background-color: #eee">
         <div class="container">          
@@ -101,10 +109,10 @@ a:hover{
                             </div>
                             <br/><br/>	
       						<div class="col-sm-12 text-center ">
-      							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo site_url(); ?>/article/detail/<?php echo $val['articles_id'];?>" style="padding:5px;">
+      							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo site_url(); ?>article/detail/<?php echo $val['articles_id'];?>" style="padding:5px;">
                               		<img alt="sawasdee-share" src="<?php echo base_url();?>images/fb.png?>" width="40px">
                           		</a>
-                          		<a href="line://msg/text/<?php echo site_url(); ?>/article/detail/<?php echo $val['articles_id'];?>" target="_blank" style="padding:5px;">
+                          		<a href="line://msg/text/<?php echo site_url(); ?>article/detail/<?php echo $val['articles_id'];?>" target="_blank" style="padding:5px;">
                                 	<img alt="sawasdee-share" src="<?php echo base_url();?>images/line.png?>" width="40px">
 	                            </a>
                             </div>

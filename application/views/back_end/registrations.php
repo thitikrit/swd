@@ -30,9 +30,7 @@
                             <tr>
                                 <th><b>#</b></th>
                                 <th><b>ชื่อผู้ลงทะเบียน</b></th>
-                                <th><b>อีเมล</b></th>
                                 <th><b>เบอร์โทรศัพท์</b></th>
-                                <th><b>ไอดีไลน์</b></th>
                                 <th><b>โครงการที่สนใจ</b></th>
                                 <th><b>รู้จักผ่านช่องทาง</b></th>
                                 <th><b>สถานะ</b></th>
@@ -49,9 +47,7 @@
                                         <tr> 
                                         <td><?php echo $no; ?></td>
                                         <td><?php echo $val['reg_title_name'].' '.$val['reg_fname'].' '.$val['reg_lname']; ?></td>
-                                        <td><?php echo $val['reg_email']; ?></td>
                                         <td><?php echo $val['reg_mobile']; ?></td>
-                                        <td><?php echo $val['reg_line']; ?></td>
                                         <td><?php echo $val['reg_projects']; ?></td>
                                         <td><?php echo $val['reg_channel']; ?></td>
                                         <td><span class="label label-warning">ใหม่</span>

@@ -35,22 +35,35 @@
                             <?php echo $val['reg_title_name'].' '.$val['reg_fname'].' '.$val['reg_lname']; ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-12">อีเมล</label>
-                        <div class="col-md-12">
-                            <?php echo $val['reg_email']; ?>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label class="col-md-12">เบอร์โทรศัพท์</label>
                         <div class="col-md-12">
-                            <?php echo $val['reg_mobile']; ?>
+                            <?php echo $val['reg_mobile']?$val['reg_mobile']:'-';  ?>
                         </div>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
+                        <label class="col-md-12">อายุ</label>
+                        <div class="col-md-12">
+                            <?php echo $val['reg_age']?$val['reg_age']:'-';  ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12">ที่อยู่</label>
+                        <div class="col-md-12">
+                            <?php echo $val['reg_address']?$val['reg_address']:'-';  ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12">อีเมล</label>
+                        <div class="col-md-12">
+                            <?php echo $val['reg_email']?$val['reg_email']:'-'; ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-12">ไอดีไลน์</label>
                         <div class="col-md-12">
-                            <?php echo $val['reg_line']; ?>
+                            <?php echo $val['reg_line']?$val['reg_line']:'-';  ?>
                         </div>
                     </div>
             </div>

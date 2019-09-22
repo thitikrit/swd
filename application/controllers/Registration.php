@@ -35,9 +35,11 @@ class Registration extends CI_Controller {
 			$this->registrations->reg_title_name =  $this->input->post('title_name');
 			$this->registrations->reg_fname =  $this->input->post('fname');
 			$this->registrations->reg_lname =  $this->input->post('lname');
-			$this->registrations->reg_email =  $this->input->post('email');
+			//$this->registrations->reg_email =  $this->input->post('email');
 			$this->registrations->reg_mobile =  $this->input->post('mobile');
-			$this->registrations->reg_line =  $this->input->post('line');
+			$this->registrations->reg_age =  $this->input->post('age');
+			$this->registrations->reg_address =  $this->input->post('address');
+			//$this->registrations->reg_line =  $this->input->post('line');
 			$this->registrations->reg_projects =  $this->input->post('projects');
 			$this->registrations->reg_channel =  $this->input->post('channel');
 			$this->registrations->reg_create_date = time();

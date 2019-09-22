@@ -14,6 +14,8 @@ class Registration_csv_service extends CI_Model{
       'reg_fname' => 'ชื่อ',
       'reg_lname' => 'นามสกุล',
       'reg_mobile' => 'เบอร์มือถือ',
+      'reg_age' => 'อายุ',
+      'reg_address' => 'ที่พักในปัจจุบัน',
       'reg_email' => 'อีเมล',
       'reg_line' => 'ไอดีไลน์',
       'reg_projects' => 'โครงการที่สนใจ',

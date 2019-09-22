@@ -562,16 +562,16 @@ select.form-element-field {
               </div>
               <div class="col-12 col-sm-6 col-md-6">
                 <div class="form-element ">
-                  <input id="email" name="email" class="form-element-field" placeholder=" " type="input" autocomplete="false" />
+                  <input id="age" name="age" class="form-element-field" placeholder=" " type="text" autocomplete="false" min="0" max="100" maxlength="2" required />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="email" >อีเมล</label>
+                  <label class="form-element-label" for="age" >อายุ <span class="star"> *</span></label>
                 </div>
               </div>
               <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-element ">
-                  <input id="line" name="line" class="form-element-field" placeholder=" " type="input" autocomplete="false" />
+                  <input id="address" name="address" class="form-element-field" placeholder=" " type="input" autocomplete="false" required />
                   <div class="form-element-bar"></div>
-                  <label class="form-element-label" for="line" >ไอดีไลน์ </label>
+                  <label class="form-element-label" for="address" >ที่พักอาศัยปัจจุบัน <span class="star"> * </span><span style="color:red;font-size: 13px;">(ตัวอย่าง : หนองมน บางแสน)</span></label>
                 </div>
               </div>
               <div class="col-12 col-sm-12 col-md-12"></div>
@@ -622,6 +622,11 @@ select.form-element-field {
                       <i class="form-radio-button"></i>
                       <span>ใบปลิว</span>
                   </label><br/>
+                  <label class="form-radio-label">
+                      <input name="channel" class="form-radio-field" type="radio" required value="บูทกิจกรรม" />
+                      <i class="form-radio-button"></i>
+                      <span>บูทกิจกรรม</span>
+                  </label><br/>
                 </div>
               </div>
             </div>
@@ -651,7 +656,25 @@ select.form-element-field {
 </section>
 <script type="text/javascript">
     $('#mobile').mask('999-999-9999');
-
+    $( "#age" ).keyup(function( event ) {
+      if( !(event.keyCode == 8                                // backspace
+        || event.keyCode == 46                              // delete
+        || (event.keyCode >= 35 && event.keyCode <= 40)     // arrow keys/home/end
+        || (event.keyCode >= 48 && event.keyCode <= 57)     // numbers on keyboard
+        || (event.keyCode >= 96 && event.keyCode <= 105))   // number on keypad
+        ) {
+            event.preventDefault();     // Prevent character input
+      }
+    }).keydown(function( event ) {
+      if( !(event.keyCode == 8                                // backspace
+        || event.keyCode == 46                              // delete
+        || (event.keyCode >= 35 && event.keyCode <= 40)     // arrow keys/home/end
+        || (event.keyCode >= 48 && event.keyCode <= 57)     // numbers on keyboard
+        || (event.keyCode >= 96 && event.keyCode <= 105))   // number on keypad
+        ) {
+            event.preventDefault();     // Prevent character input
+      }
+    });
    function chk_form(){
       event.preventDefault();
 
