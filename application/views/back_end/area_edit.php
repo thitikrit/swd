@@ -30,7 +30,23 @@
     <!-- Column -->
     <div class="col-lg-6 col-xlg-6 col-md-6">
         <div class="card">
-            <div class="card-block">
+                    <div class="card-block">
+                        <div class="form-group">
+                        <label class="col-md-12">เขตทำเล</label>
+                        <div class="col-md-12">
+                            <select name="area_category_area_id" id="area_category_area_id" class="form-control" required="">
+                              <option value="0"> - โปรดระบุ - </option>
+                              <?php
+                              $category_area_list = $this->Area_service->get_list();
+                              foreach($category_area_list as $category_area_list){
+                              $selected = ($val['area_category_area_id'] == $category_area_list['status_code'])?'selected':'';
+                                echo '<option value="'.$category_area_list['status_code'].'" '.$selected.'>'.$category_area_list['status_name'].'</option>';
+                              }
+                              ?>
+                            </select>
+                             <p id="msg-2" class="help-block" style="color:red;display:none;">กรุณาเลือกเขตทำเล *</p>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-12">ชื่อทำเล</label>
                             <div class="col-md-12">
@@ -78,6 +94,10 @@ function chk_form(){
     chk = true;
     if($("#area_name").val().trim() == ''){
         $("#msg-1").show();
+        chk = false;
+    }
+    if($("#area_category_area_id").val().trim() == 0){
+        $("#msg-2").show();
         chk = false;
     }
     

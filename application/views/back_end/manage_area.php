@@ -30,6 +30,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th><b>เขตทำเล</b></th>
                                 <th><b>ทำเล</b></th>
                                 <th><b>สถานะ</b></th>
                                 <th><b>จัดการ</b></th>
@@ -40,6 +41,7 @@
                             foreach($area as $val){ ?>
                                 <tr>
                                     <td><?php echo $val['area_id'];?></td>
+                                    <td><?php echo $this->Area_service->get_name($val['area_category_area_id']);?></td>
                                     <td><?php echo $val['area_name'];?></td>
                                     <td><?php 
                                             if($val['area_status'] == 'ACTIVE'){ 

@@ -7,13 +7,13 @@ class Area extends CI_Model {
 	}
 	
 	function insert(){
-		$sql = "INSERT INTO  area (area_name,area_status) VALUES (?,?) ";
-		$query = $this->db->query($sql,array($this->area_name,$this->area_status));
+		$sql = "INSERT INTO  area (area_name,area_status,area_category_area_id) VALUES (?,?,?) ";
+		$query = $this->db->query($sql,array($this->area_name,$this->area_status,$this->area_category_area_id));
 		return $query;
 	}
 	function update(){
-		$sql = "UPDATE area SET area_name = ? , area_status = ? WHERE area_id = ? ";
-			$query = $this->db->query($sql,array($this->area_name,$this->area_status,$this->area_id));
+		$sql = "UPDATE area SET area_name = ? , area_status = ? , area_category_area_id = ? WHERE area_id = ? ";
+			$query = $this->db->query($sql,array($this->area_name,$this->area_status,$this->area_category_area_id,$this->area_id));
 	}	
 	function get_area(){
 		$sql = "SELECT * FROM area";

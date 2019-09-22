@@ -24,6 +24,7 @@ class Manage_projects extends Manage_center {
 	/* -------------- START manage area -----------------*/
 	public function manage_area(){
 		$this->load->model('area');
+		$this->load->model('Area_service');
 		$data['area'] = $this->area->get_area();
 		$data['menu'] = 3;
 		$data['sidebar'] = $this->load->view('back_end/sidebar',$data,true);
@@ -31,6 +32,7 @@ class Manage_projects extends Manage_center {
 		$this->load->view('back_end/page',$data);
 	}
 	public function area_create(){
+		$this->load->model('Area_service');
 		$data['menu'] = 3;
 		$data['sidebar'] = $this->load->view('back_end/sidebar',$data,true);
 		$data['content'] = $this->load->view('back_end/area_create',$data,true);
@@ -40,12 +42,14 @@ class Manage_projects extends Manage_center {
 		$this->load->model('area');
 		$this->area->area_name = $this->input->post('area_name');
 		$this->area->area_status = $this->input->post('area_status');
+		$this->area->area_category_area_id = $this->input->post('area_category_area_id');
 		$this->area->insert();
 		redirect('manage_projects/manage_area');
 	}
 	public function area_edit($id = NULL){
 		if($id != NULL){
 			$this->load->model('area');
+			$this->load->model('Area_service');
 			$this->area->area_id = $id;
 			$data['area_detail'] = $this->area->get_area_by_id();
 			$data['menu'] = 3;
@@ -63,6 +67,7 @@ class Manage_projects extends Manage_center {
 			$this->area->area_id = $this->input->post('area_id');
 			$this->area->area_name = $this->input->post('area_name');
 			$this->area->area_status = $this->input->post('area_status');
+			$this->area->area_category_area_id = $this->input->post('area_category_area_id');
 			$this->area->update();
 			redirect('manage_projects/area_edit/'.$area_id);
 		}else{
